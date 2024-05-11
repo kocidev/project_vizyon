@@ -1,38 +1,62 @@
 import { User } from "@/types";
 import { Head } from "@inertiajs/react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import ApplicationLogo from "./ApplicationLogo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import ResponsiveNavLink from "./ResponsiveNavLink";
 import NavLink from "./NavLink";
 
 export default function Header({ user, title }: { user: User; title: string }) {
+    const [isDark, setIsDark] = useState<boolean>(true);
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    useEffect(() => {
+        if (isDark) {
+            document.body.classList.add("dark");
+        } else {
+            document.body.classList.remove("dark");
+        }
+    }, [isDark]);
 
     return (
         <>
             <Head title={title} />
-            <header className="w-full lg:w-5/6 mx-auto flex items-center my-4 p-4 rounded bg-white dark:bg-t322C2B">
+            <header className="w-full border-b dark:border-b-0 bg-havuc lg:w-5/6 mx-auto flex items-center my-4 p-4 rounded dark:bg-visne">
                 <div>
-                    <ApplicationLogo className="block h-9 w-auto fill-current text-t87431D dark:text-tE4C59E" />
+                    <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-tFFF2D7" />
                 </div>
                 <div className="mx-2">
-                    <h1 className="text-t2D2424 dark:text-tE4C59E">
+                    <h1 className="text-white dark:text-tFFF2D7 font-semibold">
                         {import.meta.env.VITE_APP_NAME}
                     </h1>
                 </div>
-                <div className="ml-auto">
+                <div className="ml-auto flex items-center">
+                    <div className="flex">
+                        <button
+                            className="w-5"
+                            onClick={() => setIsDark(!isDark)}
+                        >
+                            {isDark ? (
+                                <MdDarkMode className="text-white dark:text-tFFF2D7 w-full h-full" />
+                            ) : (
+                                <MdLightMode className="text-white dark:text-tFFF2D7 w-full h-full" />
+                            )}
+                        </button>
+                    </div>
                     {user && (
                         <>
-                            <div className="hidden sm:flex sm:items-center sm:ms-6">
-                                <div className="ms-3 relative">
+                            <div className="hidden sm:flex sm:items-center ms-2">
+                                <div className="relative">
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-tFFE0B5 hover:text-gray-700 dark:hover:text-white focus:outline-none transition ease-in-out duration-150"
+                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white dark:text-tFFF2D7 focus:outline-none transition ease-in-out duration-150"
                                                 >
                                                     {user.name}
 
@@ -55,14 +79,20 @@ export default function Header({ user, title }: { user: User; title: string }) {
                                             <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
-                                                Profil
+                                                <div className="flex items-center gap-1">
+                                                    <FaUser className="w-4 h-4" />
+                                                    <h1>Profil</h1>
+                                                </div>
                                             </Dropdown.Link>
                                             <Dropdown.Link
                                                 href={route("logout")}
                                                 method="post"
                                                 as="button"
                                             >
-                                                Çıkış yap
+                                                <div className="flex items-center gap-1">
+                                                    <FiLogOut className="h-4 w-4" />
+                                                    <h1>Çıkış yap</h1>
+                                                </div>
                                             </Dropdown.Link>
                                         </Dropdown.Content>
                                     </Dropdown>
@@ -75,7 +105,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
                                             (previousState) => !previousState
                                         )
                                     }
-                                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+                                    className="ml-2 inline-flex items-center justify-center p-2 rounded-md text-white dark:text-tFFF2D7 focus:outline-none hover:bg-white/20 dark:hover:bg-white/10 focus:text-white dark:focus:text-tFFF2D7 transition duration-150 ease-in-out"
                                 >
                                     <svg
                                         className="h-6 w-6"
@@ -112,7 +142,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
                     )}
                     {!user && (
                         <>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 ml-2">
                                 <NavLink as="button" href={route("login")}>
                                     Giriş yap
                                 </NavLink>
@@ -131,12 +161,12 @@ export default function Header({ user, title }: { user: User; title: string }) {
                         " sm:hidden"
                     }
                 >
-                    <div className="mb-1 pt-4 pb-1 border border-t-0 border-gray-200 dark:border-gray-600">
-                        <div className="px-4 border-l-2 border-t87431D">
-                            <div className="font-medium text-base text-gray-800 dark:text-gray-200">
+                    <div className="mb-1 pt-4 pb-1 border dark:border-white/10">
+                        <div className="px-4 border-l-2 border-havuc dark:border-visne">
+                            <div className="font-medium text-gray-600 dark:text-tFFF2D7 text-sm">
                                 {user.name}
                             </div>
-                            <div className="font-medium text-sm text-gray-500">
+                            <div className="font-medium text-sm text-gray-400">
                                 {user.email}
                             </div>
                         </div>
@@ -144,15 +174,16 @@ export default function Header({ user, title }: { user: User; title: string }) {
                         <div className="my-2 space-y-2">
                             <ResponsiveNavLink
                                 href={route("profile.edit")}
-                                className="border-l-2 border-t87431D"
+                                className="border-l-2 border-havuc dark:border-visne"
                             >
-                                Profil
+                                <FaUser />
+                                <h1>Profil</h1>
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
                                 href={route("logout")}
                                 as="button"
-                                className="border-l-2 border-t87431D"
+                                className="border-l-2 border-havuc dark:border-visne"
                             >
                                 Çıkış yap
                             </ResponsiveNavLink>

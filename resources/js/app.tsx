@@ -18,7 +18,7 @@ createInertiaApp({
         const root = createRoot(el);
         root.render(
             <>
-                <main className="w-[85%] mx-auto">
+                <main className="dark:bg-111216 dark:text-tFFE0B5">
                     <App {...props} />
                 </main>
             </>
