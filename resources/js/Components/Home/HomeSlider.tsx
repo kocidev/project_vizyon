@@ -39,10 +39,15 @@ const HomeSlider = () => {
                 hidden={vizyondakiler.length < 3}
                 className="max-w-[80%] m-[0_auto]"
             >
+                <h1 className="uppercase text-havuc dark:text-current font-bold text-2xl">
+                    <span className="border-b border-current pr-2">
+                        Vizyondakiler
+                    </span>
+                </h1>
                 <section className="relative overflow-hidden mb-8">
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 h-full py-4 z-10">
                         <button
-                            className="bg-havuc/25 dark:bg-visne/25 text-havuc dark:text-visne px-2 rounded z-10 text-xl h-full hover:bg-havuc/50 dark:hover:bg-visne/50"
+                            className="bg-havuc/25 dark:bg-visne/25 text-havuc dark:text-visne px-2 rounded z-10 text-xl h-full hover:bg-havuc/80 dark:hover:bg-visne/50"
                             onClick={handlePrevSlide}
                         >
                             <IoChevronForwardSharp className="rotate-180 text-xl" />
@@ -54,7 +59,7 @@ const HomeSlider = () => {
                     >
                         <img
                             data-id={currentIndex - 1}
-                            className="cursor-pointer transition-all w-full h-[260px] object-cover p-1 inline-block shadow rounded-sm bg-havuc/50 dark:bg-visne/50 hover:scale-105 max-w-[550px]"
+                            className="cursor-pointer transition-all w-full h-[260px] object-cover p-1 inline-block shadow rounded-sm bg-havuc/80 dark:bg-visne/50 hover:scale-105 max-w-[550px]"
                             src={
                                 vizyondakiler[currentIndex - 1]?.image ??
                                 vizyondakiler[limit - 1]?.image
@@ -63,13 +68,13 @@ const HomeSlider = () => {
                         />
                         <img
                             data-id={currentIndex}
-                            className="cursor-pointer transition-all w-full h-[260px] object-cover p-1 inline-block shadow rounded-sm bg-havuc/50 dark:bg-visne/50 hover:scale-105 max-w-[550px]"
+                            className="cursor-pointer transition-all w-full h-[260px] object-cover p-1 inline-block shadow rounded-sm bg-havuc/80 dark:bg-visne/50 hover:scale-105 max-w-[550px]"
                             src={vizyondakiler[currentIndex]?.image}
                             alt="poster"
                         />
                         <img
                             data-id={currentIndex + 1}
-                            className="cursor-pointer transition-all w-full h-[260px] object-cover p-1 inline-block shadow rounded-sm bg-havuc/50 dark:bg-visne/50 hover:scale-105 max-w-[550px]"
+                            className="cursor-pointer transition-all w-full h-[260px] object-cover p-1 inline-block shadow rounded-sm bg-havuc/80 dark:bg-visne/50 hover:scale-105 max-w-[550px]"
                             src={
                                 vizyondakiler[currentIndex + 1]?.image ??
                                 vizyondakiler[0]?.image
@@ -79,7 +84,7 @@ const HomeSlider = () => {
                     </div>
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 h-full py-4 z-10">
                         <button
-                            className="bg-havuc/25 dark:bg-visne/25 text-havuc dark:text-visne px-2 rounded z-10 text-xl h-full hover:bg-havuc/50 dark:hover:bg-visne/50"
+                            className="bg-havuc/25 dark:bg-visne/25 text-havuc dark:text-visne px-2 rounded z-10 text-xl h-full hover:bg-havuc/80 dark:hover:bg-visne/50"
                             onClick={handleNextSlide}
                         >
                             <IoChevronForwardSharp className="text-xl" />

@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Helvetica";
+    src: local("SFMono"),
+        url("/fonts/Helvetica/Helvetica.ttf") format("TrueType");
+}
+@font-face {
+    font-family: "Helvetica";
+    src: url("/fonts/Helvetica/Helvetica-Bold.ttf") format("TrueType");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Helvetica";
+    src: url("/fonts/Helvetica/Helvetica-Light.ttf") format("TrueType");
+    font-weight: 100;
+}
+@font-face {
+    font-family: "Helvetica-Rounded";
+    src: url("/fonts/Helvetica/Helvetica-Rounded-Bold.otf") format("TrueType");
+    font-weight: bold;
+}
+
 :root {
-    font-family: Figtree, ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+    font-family: "Helvetica", serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.5;
     color: black;
     /* color-scheme: dark; */

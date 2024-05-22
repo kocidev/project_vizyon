@@ -15,7 +15,7 @@ export default function ResponsiveNavLink({
                 {
                     "border-indigo-400 dark:border-indigo-600 text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/50 focus:text-indigo-800 dark:focus:text-indigo-200 focus:bg-indigo-100 dark:focus:bg-indigo-900 focus:border-indigo-700 dark:focus:border-indigo-300":
                         active,
-                    "text-gray-600 dark:text-tFFF2D7 hover:text-white dark:hover:text-gray-200 hover:bg-havuc dark:hover:bg-visne/60 hover:border-havuc dark:hover:border-visne focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600":
+                    "text-havuc dark:text-current hover:text-white dark:hover:text-gray-200 hover:bg-havuc dark:hover:bg-visne/60 hover:border-havuc dark:hover:border-visne focus:text-havuc dark:focus:text-current focus:bg-gray-50 dark:focus:bg-visne/50 focus:border-gray-300 dark:focus:border-visne":
                         !active,
                 },
                 "text-base font-medium focus:outline-none transition duration-150 ease-in-out",

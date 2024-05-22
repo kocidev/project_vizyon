@@ -1,3 +1,4 @@
+import "../../css/header.css";
 import { User } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
@@ -8,9 +9,10 @@ import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import ResponsiveNavLink from "./ResponsiveNavLink";
 import NavLink from "./NavLink";
+import { FaSearch } from "react-icons/fa";
 
 export default function Header({ user, title }: { user: User; title: string }) {
-    const [isDark, setIsDark] = useState<boolean>(true);
+    const [isDark, setIsDark] = useState<boolean>(false);
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
@@ -28,7 +30,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
             <header className="w-full border-b dark:border-b-0 bg-havuc lg:w-5/6 lg:mx-auto flex items-center my-4 p-4 rounded dark:bg-visne">
                 <div>
                     <Link href="/">
-                        <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-tFFF2D7" />
+                        <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-tFFF2D7 outline-none ring-0 foucs:ring-0" />
                     </Link>
                 </div>
                 <div className="mx-2">
@@ -36,14 +38,26 @@ export default function Header({ user, title }: { user: User; title: string }) {
                         {import.meta.env.VITE_APP_NAME}
                     </h1>
                 </div>
-                <div className="ml-auto flex items-center">
-                    <div className="flex">
+                <div className="ml-auto flex items-center w-min whitespace-nowrap">
+                    <div className="flex gap-4">
+                        <div className="w-fit h-fit relative search-box hidden lg:block">
+                            <button className="btn-search absolute flex items-center p-1.5 rounded-full top-1/2 -translate-y-1/2 right-0">
+                                <FaSearch className="text-white dark:text-current" />
+                            </button>
+                            <input
+                                className="text-white w-0 h-8 input-search border-none tracking-widest outline-none transition-all duration-500 pr-8 text-sm ring-0 focus:outline-none focus:ring-0 placeholder:text-sky bg-transparent"
+                                type="text"
+                                name="search-bar"
+                                id="search-bar"
+                                placeholder="Aradığınız film..."
+                            />
+                        </div>
                         <button
                             className="w-5"
                             onClick={() => setIsDark(!isDark)}
                         >
                             {isDark ? (
-                                <MdDarkMode className="text-white dark:text-tFFF2D7 w-full h-full" />
+                                <MdDarkMode className="text-white dark:text-current w-full h-full" />
                             ) : (
                                 <MdLightMode className="text-white dark:text-tFFF2D7 w-full h-full" />
                             )}
@@ -144,7 +158,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
                     )}
                     {!user && (
                         <>
-                            <div className="flex items-center gap-2 ml-2">
+                            <div className="flex items-center gap-2 ml-4">
                                 <NavLink as="button" href={route("login")}>
                                     Giriş yap
                                 </NavLink>
@@ -176,7 +190,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
                         <div className="my-2 space-y-2">
                             <ResponsiveNavLink
                                 href={route("profile.edit")}
-                                className="border-l-2 border-havuc dark:border-visne"
+                                className="border-l-2 border-havuc dark:border-visne flex items-center gap-1"
                             >
                                 <FaUser />
                                 <h1>Profil</h1>
