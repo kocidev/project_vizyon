@@ -1,5 +1,5 @@
 import { User } from "@/types";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
@@ -25,9 +25,11 @@ export default function Header({ user, title }: { user: User; title: string }) {
     return (
         <>
             <Head title={title} />
-            <header className="w-full border-b dark:border-b-0 bg-havuc lg:w-5/6 mx-auto flex items-center my-4 p-4 rounded dark:bg-visne">
+            <header className="w-full border-b dark:border-b-0 bg-havuc lg:w-5/6 lg:mx-auto flex items-center my-4 p-4 rounded dark:bg-visne">
                 <div>
-                    <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-tFFF2D7" />
+                    <Link href="/">
+                        <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-tFFF2D7" />
+                    </Link>
                 </div>
                 <div className="mx-2">
                     <h1 className="text-white dark:text-tFFF2D7 font-semibold">

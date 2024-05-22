@@ -7,10 +7,8 @@ export default function Home({ auth }: PageProps) {
     return (
         <>
             <Header user={auth.user} title="Home" />
-            <div className="relative w-full lg:w-5/6 mx-auto">
-                <div>
-                    <HomeSlider />
-                </div>
+            <div className="relative w-full lg:w-5/6 lg:mx-auto h-full">
+                <HomeSlider />
             </div>
             <Footer />
         </>
