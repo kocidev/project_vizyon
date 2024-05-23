@@ -62,8 +62,8 @@ const Theaters = () => {
     }
 
     const MovieGrid: React.FC<MovieGridProps> = ({ movies }) => (
-        <div className="flex flex-row flex-1 border-2 border-havuc/50 dark:border-visne/50">
-            <div className="flex flex-col min-w-[50%] max-w-[50%]">
+        <div className="flex flex-col sm:flex-row border-2 border-havuc/50 dark:border-visne/50">
+            <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                 <div className="flex flex-row">
                     <MovieButton movie={movies[0]} />
                 </div>
@@ -72,7 +72,7 @@ const Theaters = () => {
                     <MovieButton movie={movies[2]} little />
                 </div>
             </div>
-            <div className="flex flex-col min-w-[50%] max-w-[50%]">
+            <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                 <div className="flex flex-row">
                     <MovieButton movie={movies[4]} little />
                     <MovieButton movie={movies[5]} little />

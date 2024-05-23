@@ -36,7 +36,7 @@ const Items: ItemType[] = [
 const Sidebar = () => {
     return (
         <>
-            <div className="min-w-40 max-w-40 lg:min-w-48 lg:max-w-48 border-gray-300 dark:border-1e2029 pb-10">
+            <div className="min-w-40 max-w-40 lg:min-w-48 lg:max-w-48 border-gray-300 dark:border-1e2029 pb-10 hidden sm:block">
                 <div className="flex flex-col">
                     {Items.map((item, i) => (
                         <NavLink

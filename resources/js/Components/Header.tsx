@@ -45,7 +45,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
     return (
         <>
             <Head title={title} />
-            <header className="w-full lg:my-4 lg:w-4/5 xl:w-2/3 lg:rounded mx-auto p-4 transition-colors bg-havuc flex items-center dark:bg-visne">
+            <header className="w-full mb-4 lg:my-4 lg:w-4/5 xl:w-2/3 lg:rounded mx-auto p-4 transition-colors bg-havuc flex items-center dark:bg-visne">
                 <div>
                     <Link href="/">
                         <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-FFF2D7 outline-none ring-0 foucs:ring-0" />
