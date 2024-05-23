@@ -8,5 +8,7 @@ export type VizyondakiFilmlerType = {
 };
 
 export type DataContextProps = {
-    GetVizyondakiFilmler: (limit: number) => Promise<VizyondakiFilmlerType[]>;
+    GetVizyondakiFilmler: (limit?: number) => Promise<VizyondakiFilmlerType[]>;
+    isDark: boolean;
+    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
 };

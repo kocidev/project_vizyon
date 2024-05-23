@@ -11,11 +11,10 @@ export default function NavLink({
         <Link
             {...props}
             className={classNames(
-                "border-b border-transparent inline-flex items-center p-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none",
+                "focus:outline-none focus:ring-0 transition-colors hover:bg-havuc/10 dark:hover:bg-visne/25 hover:border-mandalina",
                 {
-                    "text-white dark:text-tFFE0B5": active,
-                    "hover:border-b text-white dark:text-tFFE0B5 hover:border-white dark:hover:border-tFFE0B5 focus:border-b focus:text-white dark:focus:text-tFFE0B5 focus:border-white dark:focus:border-tFFE0B5":
-                        !active,
+                    "!text-havuc dark:!text-FFF2D7 !border-mandalina dark:!border-vadigulu bg-havuc/10 dark:bg-visne/25":
+                        active,
                 },
                 className
             )}

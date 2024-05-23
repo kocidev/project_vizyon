@@ -3,29 +3,114 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "Helvetica";
-    src: local("SFMono"),
-        url("/fonts/Helvetica/Helvetica.ttf") format("TrueType");
+    font-family: "Typold-Black";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Black.otf") format("OpenType");
+    font-weight: 700;
 }
 @font-face {
-    font-family: "Helvetica";
-    src: url("/fonts/Helvetica/Helvetica-Bold.ttf") format("TrueType");
-    font-weight: bold;
+    font-family: "Typold";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Bold.otf") format("OpenType");
+    font-weight: 700;
 }
 @font-face {
-    font-family: "Helvetica";
-    src: url("/fonts/Helvetica/Helvetica-Light.ttf") format("TrueType");
+    font-family: "Typold-Book";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Book.otf") format("OpenType");
+}
+@font-face {
+    font-family: "Typold-Book";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Book_500.otf") format("OpenType");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Typold-Condensed";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Condensed_Bold.otf") format("OpenType");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Typold-Condensed";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Condensed_Light.otf") format("OpenType");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Typold-Condensed";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Condensed_Medium.otf") format("OpenType");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Typold-Condensed";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Condensed_Regular.otf") format("OpenType");
+}
+@font-face {
+    font-family: "Typold-Condensed";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Condensed_Thin.otf") format("OpenType");
     font-weight: 100;
 }
 @font-face {
-    font-family: "Helvetica-Rounded";
-    src: url("/fonts/Helvetica/Helvetica-Rounded-Bold.otf") format("TrueType");
-    font-weight: bold;
+    font-family: "Typold-Extended";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Extended_Bold.otf") format("OpenType");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Typold-Extended";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Extended_Light.otf") format("OpenType");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Typold-Extended";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Extended_Medium.otf") format("OpenType");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Typold-Extended";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Extended_Regular.otf") format("OpenType");
+}
+@font-face {
+    font-family: "Typold-Extended";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Extended_Thin.otf") format("OpenType");
+    font-weight: 100;
+}
+@font-face {
+    font-family: "Typold";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Light.otf") format("OpenType");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Typold";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Medium.otf") format("OpenType");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Typold";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Regular.otf") format("OpenType");
+}
+@font-face {
+    font-family: "Typold";
+    src: local("Typold"),
+        url("/fonts/Typold/Typold_Thin.otf") format("OpenType");
+    font-weight: 100;
 }
 
 :root {
-    font-family: "Helvetica", serif, system-ui, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: "Typold-Book", serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
     line-height: 1.5;
     color: black;
     /* color-scheme: dark; */

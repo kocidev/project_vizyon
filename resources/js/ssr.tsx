@@ -4,6 +4,7 @@ import createServer from "@inertiajs/react/server";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { route } from "../../vendor/tightenco/ziggy";
 import { RouteName } from "ziggy-js";
+import { App as _App } from "@/Components/App/index";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
@@ -25,7 +26,11 @@ createServer((page) =>
                     // @ts-expect-error
                     location: new URL(page.props.ziggy.location),
                 });
-            return <App {...props} />;
+            return (
+                <_App>
+                    <App {...props} />
+                </_App>
+            );
         },
     })
 );

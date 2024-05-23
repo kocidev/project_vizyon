@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
     DataContextProps,
     VizyondakiFilmlerType,
@@ -10,7 +10,17 @@ export const DataCtx = createContext<DataContextProps>({} as DataContextProps);
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
-    const GetVizyondakiFilmler = async (limit: number) => {
+    const [isDark, setIsDark] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isDark) {
+            document.body.classList.add("dark");
+        } else {
+            document.body.classList.remove("dark");
+        }
+    }, [isDark]);
+
+    const GetVizyondakiFilmler = async (limit?: number) => {
         try {
             const response = await axios.get("api/movies/theaters");
             const vizyondakiler = response.data;
@@ -21,7 +31,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
                     if (vizyondakiler[index]) {
                         limbo[index] = vizyondakiler[index];
                     } else {
-                        break; // Limitten az film varsa döngüyü bitir
+                        break;
                     }
                 }
             } else {
@@ -36,6 +46,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const value = {
         GetVizyondakiFilmler,
+        isDark,
+        setIsDark,
     };
 
     return <DataCtx.Provider value={value}>{children}</DataCtx.Provider>;
