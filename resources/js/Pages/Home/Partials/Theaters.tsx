@@ -33,7 +33,7 @@ const Theaters = () => {
             })}
         >
             <img
-                className="group-hover:scale-105 transition duration-500"
+                className="group-hover:scale-105 transition duration-500 w-full h-full"
                 src={movie.image}
                 alt={movie.name}
             />
@@ -85,7 +85,7 @@ const Theaters = () => {
     );
     return (
         <div>
-            <h1 className="text-havuc dark:text-current text-xl font-typold font-medium mb-2">
+            <h1 className="text-havuc dark:text-current text-xl font-typold font-medium mb-2 px-2 pt-2">
                 Vizyondakiler
             </h1>
             {vizyondakiler.length > 0 && <MovieGrid movies={vizyondakiler} />}

@@ -10,7 +10,7 @@ type ItemType = {
     label: string;
 };
 
-const Items: ItemType[] = [
+export const SideBarItems: ItemType[] = [
     {
         href: "home",
         icon: IoMdHome,
@@ -36,9 +36,9 @@ const Items: ItemType[] = [
 const Sidebar = () => {
     return (
         <>
-            <div className="min-w-40 max-w-40 lg:min-w-48 lg:max-w-48 border-gray-300 dark:border-1e2029 pb-10 hidden sm:block">
-                <div className="flex flex-col">
-                    {Items.map((item, i) => (
+            <div className="max-sm:hidden min-w-40 max-w-40 lg:min-w-48 lg:max-w-48 max-sm:z-10 max-sm:bg-F7F2EB dark:max-sm:bg-111216 h-full">
+                <div className="flex flex-col border-gray-300 dark:border-1e2029">
+                    {SideBarItems.map((item, i) => (
                         <NavLink
                             key={i}
                             href={

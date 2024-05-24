@@ -18,7 +18,7 @@ export default function ResponsiveNavLink({
                     "text-havuc dark:text-current hover:text-white dark:hover:text-gray-200 hover:bg-havuc/60 dark:hover:bg-visne/60 hover:border-havuc dark:hover:border-visne focus:text-havuc dark:focus:text-current focus:bg-gray-50 dark:focus:bg-visne/50 focus:border-gray-300 dark:focus:border-visne":
                         !active,
                 },
-                "text-base font-medium focus:outline-none transition duration-150 ease-in-out",
+                "text-base font-medium focus:outline-none transition-none",
                 className
             )}
         >

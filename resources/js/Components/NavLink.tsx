@@ -11,7 +11,7 @@ export default function NavLink({
         <Link
             {...props}
             className={classNames(
-                "focus:outline-none focus:ring-0 transition-colors hover:bg-havuc/10 dark:hover:bg-visne/25 hover:border-mandalina",
+                "focus:outline-none focus:ring-0 transition-[background-color_border-color] hover:bg-havuc/10 dark:hover:bg-visne/25 hover:border-mandalina",
                 {
                     "!text-havuc dark:!text-FFF2D7 !border-mandalina dark:!border-vadigulu bg-havuc/10 dark:bg-visne/25":
                         active,

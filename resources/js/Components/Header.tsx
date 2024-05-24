@@ -4,16 +4,17 @@ import { Head, Link } from "@inertiajs/react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import ApplicationLogo from "./ApplicationLogo";
 import { useState } from "react";
+import ApplicationLogo from "./ApplicationLogo";
 import Dropdown from "./Dropdown";
 import ResponsiveNavLink from "./ResponsiveNavLink";
 import NavLink from "./NavLink";
 import { FaSearch } from "react-icons/fa";
-import classNames from "classnames";
-import useData from "@/Hooks/useData";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
+import classNames from "classnames";
+import useData from "@/Hooks/useData";
+import { SideBarItems } from "@/Pages/Home/Partials/Sidebar";
 
 export default function Header({ user, title }: { user: User; title: string }) {
     const { isDark, setIsDark } = useData();
@@ -25,7 +26,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
             onClick={() =>
                 setShowingNavigationDropdown(!showingNavigationDropdown)
             }
-            className="inline-flex items-center justify-center rounded text-white dark:text-FFF2D7 focus:outline-none hover:bg-white/20 dark:hover:bg-white/10 focus:text-white dark:focus:text-FFF2D7 transition duration-150 ease-in-out"
+            className="inline-flex items-center justify-center rounded text-white dark:text-FFF2D7 focus:outline-none hover:bg-white/20 dark:hover:bg-white/10 focus:text-white dark:focus:text-FFF2D7 sm:transition"
         >
             <HiMiniBars3BottomRight
                 className={classNames("w-6 h-6", {
@@ -45,7 +46,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
     return (
         <>
             <Head title={title} />
-            <header className="w-full mb-4 lg:my-4 lg:w-4/5 xl:w-2/3 lg:rounded mx-auto p-4 transition-colors bg-havuc flex items-center dark:bg-visne">
+            <header className="w-full lg:mb-4 lg:my-4 lg:w-4/5 xl:w-2/3 lg:rounded mx-auto p-4 bg-havuc flex items-center dark:bg-visne z-[999]">
                 <div>
                     <Link href="/">
                         <ApplicationLogo className="block h-9 w-auto fill-current text-white dark:text-FFF2D7 outline-none ring-0 foucs:ring-0" />
@@ -63,7 +64,7 @@ export default function Header({ user, title }: { user: User; title: string }) {
                                 <FaSearch className="text-white dark:text-current" />
                             </button>
                             <input
-                                className="text-white w-0 h-8 input-search border-none tracking-widest outline-none transition-all duration-500 pr-8 text-sm ring-0 focus:outline-none focus:ring-0 placeholder:text-sky bg-transparent"
+                                className="text-white w-0 h-8 input-search border-none tracking-widest outline-none transition duration-500 pr-8 text-sm ring-0 focus:outline-none focus:ring-0 placeholder:text-sky bg-transparent"
                                 type="text"
                                 name="search-bar"
                                 id="search-bar"
@@ -160,13 +161,19 @@ export default function Header({ user, title }: { user: User; title: string }) {
                     </>
                 </div>
             </header>
-            <div
-                className={classNames("sm:hidden", {
-                    block: showingNavigationDropdown,
-                    hidden: !showingNavigationDropdown,
-                })}
-            >
-                <div className="mb-4 p-1 border dark:border-vadigulu border-mandalina rounded-b-sm">
+            <div className={classNames("relative sm:hidden")}>
+                <div
+                    className={classNames(
+                        "absolute w-full z-[100] p-1 shadow border-b transition-[opacity,transform] duration-200",
+                        "bg-F7F2EB dark:bg-111216 dark:border-vadigulu border-mandalina",
+                        {
+                            "opacity-0 -translate-y-full":
+                                !showingNavigationDropdown,
+                            "opacity-100 translate-y-0":
+                                showingNavigationDropdown,
+                        }
+                    )}
+                >
                     {user && (
                         <>
                             <div className="px-4 border-l-2 border-havuc dark:border-visne">
@@ -201,18 +208,31 @@ export default function Header({ user, title }: { user: User; title: string }) {
                         <div className="my-2 space-y-2">
                             <ResponsiveNavLink
                                 href={route("login")}
-                                className="border-l-2 border-havuc dark:border-visne flex items-center gap-1"
+                                className="border-l-2 border-havuc dark:border-visne"
                             >
                                 <h1>Giriş Yap</h1>
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 href={route("register")}
-                                className="border-l-2 border-havuc dark:border-visne flex items-center gap-1"
+                                className="border-l-2 border-havuc dark:border-visne"
                             >
                                 <h1>Kayıt Ol</h1>
                             </ResponsiveNavLink>
                         </div>
                     )}
+                    <hr className="border-gray-300 dark:border-visne/50" />
+                    <div className="my-2 space-y-2">
+                        {SideBarItems.map((item, i) => (
+                            <ResponsiveNavLink
+                                key={i}
+                                href={route("register")}
+                                className="border-l-2 border-havuc dark:border-visne flex items-center gap-2"
+                            >
+                                <item.icon />
+                                <h1>{item.label}</h1>
+                            </ResponsiveNavLink>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
