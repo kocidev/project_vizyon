@@ -1,20 +1,25 @@
 import useData from "@/Hooks/useData";
-import { VizyondakiFilmlerType } from "@/types/DataProviderTypes";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
+import { VizyondakiFilmlerType } from "@/types/DataProviderTypes";
+import { MdArrowForwardIos } from "react-icons/md";
 
 interface Movie {
     image: string;
     name: string;
     type: string;
 }
-
 interface MovieButtonProps {
     movie: Movie;
     little?: boolean;
 }
+interface MovieGridProps {
+    movies: Movie[];
+}
 
 const Theaters = () => {
+    const moviesPerPage = 6;
+    const [page, setPage] = useState<number>(1);
     const { GetVizyondakiFilmler } = useData();
     const [vizyondakiler, setVizyondakiler] = useState<VizyondakiFilmlerType[]>(
         []
@@ -24,6 +29,19 @@ const Theaters = () => {
             setVizyondakiler(theaters);
         });
     }, []);
+
+    const handlePageClick = (
+        e: React.MouseEvent<HTMLButtonElement>,
+        forward: boolean
+    ) => {
+        e.preventDefault();
+        const totalPages = Math.ceil(vizyondakiler.length / moviesPerPage);
+        if (forward) {
+            setPage(page === totalPages ? 1 : page + 1);
+        } else {
+            setPage(page === 1 ? totalPages : page - 1);
+        }
+    };
 
     const MovieButton: React.FC<MovieButtonProps> = ({ movie, little }) => (
         <button
@@ -57,37 +75,66 @@ const Theaters = () => {
         </button>
     );
 
-    interface MovieGridProps {
-        movies: Movie[];
-    }
+    const MovieGrid: React.FC<MovieGridProps> = ({ movies }) => {
+        const startIndex = (page - 1) * moviesPerPage;
+        const endIndex = startIndex + moviesPerPage;
+        const moviesToDisplay = movies.slice(startIndex, endIndex);
 
-    const MovieGrid: React.FC<MovieGridProps> = ({ movies }) => (
-        <div className="flex flex-col sm:flex-row border-2 border-havuc/50 dark:border-visne/50">
-            <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
-                <div className="flex flex-row">
-                    <MovieButton movie={movies[0]} />
+        return (
+            <div className="flex flex-col sm:flex-row border-2 border-havuc/50 dark:border-visne/50">
+                <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
+                    <div className="flex flex-row">
+                        <MovieButton movie={moviesToDisplay[0]} />
+                    </div>
+                    <div className="flex flex-row">
+                        <MovieButton movie={moviesToDisplay[1]} little />
+                        <MovieButton movie={moviesToDisplay[2]} little />
+                    </div>
                 </div>
-                <div className="flex flex-row">
-                    <MovieButton movie={movies[1]} little />
-                    <MovieButton movie={movies[2]} little />
+                <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
+                    <div className="flex flex-row">
+                        <MovieButton movie={moviesToDisplay[4]} little />
+                        <MovieButton movie={moviesToDisplay[5]} little />
+                    </div>
+                    <div className="flex flex-row">
+                        <MovieButton movie={moviesToDisplay[3]} />
+                    </div>
                 </div>
             </div>
-            <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
-                <div className="flex flex-row">
-                    <MovieButton movie={movies[4]} little />
-                    <MovieButton movie={movies[5]} little />
-                </div>
-                <div className="flex flex-row">
-                    <MovieButton movie={movies[3]} />
-                </div>
-            </div>
-        </div>
-    );
+        );
+    };
+
     return (
         <div>
-            <h1 className="text-havuc dark:text-current text-xl font-typold font-medium mb-2 px-2 pt-2">
-                Vizyondakiler
-            </h1>
+            <div className="flex justify-between items-center">
+                <h1 className="text-havuc dark:text-current text-xl font-typold font-medium mb-2 max-sm:px-2 max-sm:pt-2">
+                    Vizyondakiler
+                </h1>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={(e) => handlePageClick(e, false)}
+                        className={classNames(
+                            "p-2 sm:p-1 border rounded-full",
+                            "bg-havuc/80 hover:bg-havuc dark:bg-visne/80 dark:hover:bg-visne",
+                            "border-mandalina dark:border-vadigulu",
+                            "text-gray-300 hover:text-white"
+                        )}
+                    >
+                        <MdArrowForwardIos className="rotate-180" />
+                    </button>
+                    <button
+                        onClick={(e) => handlePageClick(e, true)}
+                        className={classNames(
+                            "p-2 sm:p-1 border rounded-full",
+                            "bg-havuc/80 hover:bg-havuc dark:bg-visne/80 dark:hover:bg-visne",
+                            "border-mandalina dark:border-vadigulu",
+                            "text-gray-300 hover:text-white"
+                        )}
+                    >
+                        <MdArrowForwardIos />
+                    </button>
+                </div>
+            </div>
             {vizyondakiler.length > 0 && <MovieGrid movies={vizyondakiler} />}
         </div>
     );
