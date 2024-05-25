@@ -1,46 +1,54 @@
-import GuestLayout from '@/Layouts/GuestLayout';
-import PrimaryButton from '@/Components/PrimaryButton';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import GuestLayout from "@/Layouts/GuestLayout";
+import PrimaryButton from "@/Components/PrimaryButton";
+import { Head, Link, useForm } from "@inertiajs/react";
+import { FormEventHandler } from "react";
+import SecondaryButton from "@/Components/SecondaryButton";
 
 export default function VerifyEmail({ status }: { status?: string }) {
     const { post, processing } = useForm({});
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        post(route('verification.send'));
+        post(route("verification.send"));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Email Verification" />
-
-            <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                Thanks for signing up! Before getting started, could you verify your email address by clicking on the
-                link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+        <GuestLayout title="Email Doğrulama">
+            <div className="mt-10 sm:max-w-md mx-auto">
+                <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
+                    <div className="mb-6 space-y-2">
+                        <h1 className="text-lg text-center mt-2 text-royal-700 dark:text-FFF2D7 font-typold-condensed font-medium tracking-wider uppercase">
+                            Eposta Onayla
+                        </h1>
+                        <h1 className="text-sm text-center">
+                            Kaydolduğunuz için teşekkürler! Başlamadan önce,
+                            Eposta adresinizi doğrulayın. E-postayı
+                            almadıysanız, size memnuniyetle tekrar göndereceğiz.
+                        </h1>
+                    </div>
+                    {status === "verification-link-sent" && (
+                        <div className="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                            E-postaya yeni bir doğrulama bağlantısı gönderildi.
+                        </div>
+                    )}
+                    <form onSubmit={submit}>
+                        <div className="flex flex-col items-center justify-center mt-6 gap-3">
+                            <PrimaryButton
+                                type="submit"
+                                disabled={processing}
+                                className="w-full flex items-center justify-center"
+                            >
+                                <h1>Maili Tekrar Gönder</h1>
+                            </PrimaryButton>
+                            <Link href={route("login")} className="w-full">
+                                <SecondaryButton className="w-full flex items-center justify-center">
+                                    Geri Dön
+                                </SecondaryButton>
+                            </Link>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            {status === 'verification-link-sent' && (
-                <div className="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                    A new verification link has been sent to the email address you provided during registration.
-                </div>
-            )}
-
-            <form onSubmit={submit}>
-                <div className="mt-4 flex items-center justify-between">
-                    <PrimaryButton disabled={processing}>Resend Verification Email</PrimaryButton>
-
-                    <Link
-                        href={route('logout')}
-                        method="post"
-                        as="button"
-                        className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    >
-                        Log Out
-                    </Link>
-                </div>
-            </form>
         </GuestLayout>
     );
 }

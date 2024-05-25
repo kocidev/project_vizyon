@@ -11,7 +11,7 @@ export default function Edit({
     status,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
-        <MainLayout user={auth.user}>
+        <MainLayout user={auth.user} title="Profile">
             <Head title="Profile" />
             <div className="w-full lg:w-4/5 lg:mx-auto">
                 <div className="space-y-4">

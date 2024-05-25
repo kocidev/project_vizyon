@@ -4,10 +4,14 @@ import Sidebar from "@/Pages/Home/Partials/Sidebar";
 import { User } from "@/types";
 import { PropsWithChildren } from "react";
 
-const MainLayout = ({ user, children }: PropsWithChildren<{ user: User }>) => {
+const MainLayout = ({
+    user,
+    title,
+    children,
+}: PropsWithChildren<{ user: User; title: string }>) => {
     return (
         <>
-            <Header user={user} title="Home" />
+            <Header user={user} title={title} />
             <div className="w-full mx-auto lg:w-4/5 xl:w-2/3 mb-8">
                 <div className="w-full h-full flex flex-col sm:flex-row sm:gap-4 relative">
                     <Sidebar />

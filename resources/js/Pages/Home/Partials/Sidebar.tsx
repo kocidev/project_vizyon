@@ -37,7 +37,7 @@ const Sidebar = () => {
     return (
         <>
             <div className="max-sm:hidden min-w-40 max-w-40 lg:min-w-48 lg:max-w-48 max-sm:z-10 max-sm:bg-F7F2EB dark:max-sm:bg-111216 h-full">
-                <div className="flex flex-col border-gray-300 dark:border-1e2029">
+                <div className="flex flex-col border-gray-300 dark:border-shark-950">
                     {SideBarItems.map((item, i) => (
                         <NavLink
                             key={i}
@@ -45,7 +45,7 @@ const Sidebar = () => {
                                 item.href != "#" ? route(item.href) : item.href
                             }
                             as="button"
-                            className="w-full p-1.5 px-4 border-r-2 border-gray-300 text-mandalina dark:text-FFF2D7 dark:border-1e2029 dark:hover:border-vadigulu"
+                            className="w-full p-1.5 px-4 border-r-2 border-gray-300 text-danube-500 dark:text-FFF2D7 dark:border-shark-950 dark:hover:border-copper-rose-600"
                             active={route().current(item.href)}
                         >
                             <h1 className="whitespace-nowrap text-start font-bold text-ellipsis overflow-hidden flex items-center gap-2">

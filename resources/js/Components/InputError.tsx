@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { HTMLAttributes } from "react";
 
 export default function InputError({
@@ -8,7 +9,7 @@ export default function InputError({
     return message ? (
         <p
             {...props}
-            className={"text-sm text-red-600 dark:text-red-400 " + className}
+            className={classNames("text-sm text-red-600 dark:text-red-400 ")}
         >
             {message}
         </p>

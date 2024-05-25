@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import {
     forwardRef,
     useEffect,
@@ -31,10 +32,14 @@ export default forwardRef(function TextInput(
         <input
             {...props}
             type={type}
-            className={
-                "border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm " +
+            className={classNames(
+                "rounded-md shadow-sm",
+                "border-gray-300 dark:border-gray-700",
+                "dark:bg-shark-950",
+                "dark:text-gray-100 focus:border-royal-500 dark:focus:border-lotus-600",
+                "focus:ring-royal-500 dark:focus:ring-lotus-600",
                 className
-            }
+            )}
             ref={localRef}
         />
     );

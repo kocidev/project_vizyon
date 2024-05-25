@@ -58,7 +58,7 @@ const Theaters = () => {
             <div className="absolute w-full h-full bg-black/25 top-0 left-0">
                 <div className="flex flex-col gap-1">
                     <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-havuc bg-havuc/75 dark:border-vadigulu dark:bg-vadigulu/75 text-white font-bold font-typold">
+                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-700 bg-royal-700/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold font-typold">
                             {"23 Mayıs"}
                         </h1>
                         <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
@@ -66,7 +66,7 @@ const Theaters = () => {
                         </h1>
                     </div>
                     <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full">
-                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-havuc bg-havuc/75 dark:border-vadigulu dark:bg-vadigulu/75 text-white font-bold font-typold">
+                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-700 bg-royal-700/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold font-typold">
                             {movie.name}
                         </h1>
                     </div>
@@ -81,7 +81,7 @@ const Theaters = () => {
         const moviesToDisplay = movies.slice(startIndex, endIndex);
 
         return (
-            <div className="flex flex-col sm:flex-row border-2 border-havuc/50 dark:border-visne/50">
+            <div className="flex flex-col sm:flex-row border-2 border-royal-700/50 dark:border-lotus-700/50">
                 <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                     <div className="flex flex-row">
                         <MovieButton movie={moviesToDisplay[0]} />
@@ -107,7 +107,7 @@ const Theaters = () => {
     return (
         <div>
             <div className="flex justify-between items-center">
-                <h1 className="text-havuc dark:text-current text-xl font-typold font-medium mb-2 max-sm:px-2 max-sm:pt-2">
+                <h1 className="text-royal-700 dark:text-current text-xl font-typold font-medium mb-2 max-sm:px-2 max-sm:pt-2">
                     Vizyondakiler
                 </h1>
                 <div className="flex items-center gap-2">
@@ -115,8 +115,8 @@ const Theaters = () => {
                         onClick={(e) => handlePageClick(e, false)}
                         className={classNames(
                             "p-2 sm:p-1 border rounded-full",
-                            "bg-havuc/80 hover:bg-havuc dark:bg-visne/80 dark:hover:bg-visne",
-                            "border-mandalina dark:border-vadigulu",
+                            "bg-royal-700/80 hover:bg-royal-700 dark:bg-lotus-700/80 dark:hover:bg-lotus-700",
+                            "border-danube-500 dark:border-copper-rose-600",
                             "text-gray-300 hover:text-white"
                         )}
                     >
@@ -126,8 +126,8 @@ const Theaters = () => {
                         onClick={(e) => handlePageClick(e, true)}
                         className={classNames(
                             "p-2 sm:p-1 border rounded-full",
-                            "bg-havuc/80 hover:bg-havuc dark:bg-visne/80 dark:hover:bg-visne",
-                            "border-mandalina dark:border-vadigulu",
+                            "bg-royal-700/80 hover:bg-royal-700 dark:bg-lotus-700/80 dark:hover:bg-lotus-700",
+                            "border-danube-500 dark:border-copper-rose-600",
                             "text-gray-300 hover:text-white"
                         )}
                     >

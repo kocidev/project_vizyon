@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { InputHTMLAttributes } from "react";
 
 export default function Checkbox({
@@ -8,10 +9,15 @@ export default function Checkbox({
         <input
             {...props}
             type="checkbox"
-            className={
-                "rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800 " +
+            className={classNames(
+                "rounded shadow-sm cursor-pointer",
+                "bg-white dark:bg-shark-950",
+                "border-shark-200 dark:border-shark-800",
+                "text-royal-700 dark:text-lotus-600",
+                "focus:ring-royal-500 dark:focus:ring-lotus-600 focus:ring-offset-F7F2EB dark:focus:ring-offset-111216",
+                "checked:!bg-royal-700 dark:checked:!bg-lotus-600 dark:checked:!border-lotus-600",
                 className
-            }
+            )}
         />
     );
 }

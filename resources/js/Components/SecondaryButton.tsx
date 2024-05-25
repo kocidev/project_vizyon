@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { ButtonHTMLAttributes } from "react";
 
 export default function SecondaryButton({
@@ -11,11 +12,21 @@ export default function SecondaryButton({
         <button
             {...props}
             type={type}
-            className={
-                `inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150 ${
-                    disabled && "opacity-25"
-                } ` + className
-            }
+            className={classNames(
+                "inline-flex items-center",
+                "px-4 py-2",
+                "border rounded-md",
+                "font-semibold text-xs uppercase tracking-widest",
+                "shadow-sm",
+                "border-gray-300 dark:border-gray-700",
+                "text-gray-700 dark:text-gray-400 dark:hover:text-gray-300",
+                "bg-white dark:bg-shark-950",
+                "hover:bg-gray-100 dark:hover:bg-shark-900",
+                "focus:ring-2 focus:ring-royal-500 dark:focus:ring-copper-rose-600 focus:ring-offset-2 focus:ring-offset-F7F2EB dark:focus:ring-offset-111216",
+                "transition ease-in-out duration-150",
+                "disabled:opacity-25",
+                className
+            )}
             disabled={disabled}
         >
             {children}
