@@ -56,10 +56,10 @@ export default function Header({
                 <div className="flex items-center gap-2">
                     <Link href="/" className="flex items-center gap-2">
                         <ApplicationLogo className="block h-9 w-auto fill-F7F2EB dark:fill-FFF2D7" />
+                        <h1 className="text-F7F2EB dark:text-FFF2D7 font-typold-extended font-bold">
+                            {import.meta.env.VITE_APP_NAME}
+                        </h1>
                     </Link>
-                    <h1 className="text-F7F2EB dark:text-FFF2D7 font-typold-extended font-bold">
-                        {import.meta.env.VITE_APP_NAME}
-                    </h1>
                 </div>
                 <div className="ml-auto flex items-center gap-2 w-min whitespace-nowrap">
                     <div className="flex gap-4 items-center">
