@@ -113,11 +113,10 @@
 }
 
 :root {
-    font-family: "Typold-Book", serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+    font-family: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
+        Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     line-height: 1.5;
-    @apply text-gray-800;
+    color: #101010;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;

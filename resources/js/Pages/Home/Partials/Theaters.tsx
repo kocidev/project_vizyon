@@ -107,7 +107,7 @@ const Theaters = () => {
     return (
         <>
             <div className="flex justify-between items-center">
-                <h1 className="text-royal-700 dark:text-current text-xl font-typold font-medium mb-2 max-sm:px-2 max-sm:pt-2">
+                <h1 className="dark:text-current text-xl font-typold font-medium mb-2 max-sm:px-2 max-sm:pt-2">
                     Vizyondakiler
                 </h1>
                 <div className="flex items-center gap-2 max-sm:px-2">

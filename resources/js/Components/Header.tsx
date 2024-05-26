@@ -56,7 +56,7 @@ export default function Header({
                 <div className="flex items-center gap-2">
                     <Link
                         href="/"
-                        className="flex items-center gap-2 pr-1 focus:ring-0 focus:outline-white focus:outline-none focus:rounded-sm"
+                        className="flex items-center gap-2 pr-1 ring-0 focus:outline-white focus:rounded-sm"
                     >
                         <ApplicationLogo className="block h-9 w-auto fill-F7F2EB dark:fill-FFF2D7" />
                         <h1 className="text-F7F2EB dark:text-FFF2D7 font-typold-extended font-bold">

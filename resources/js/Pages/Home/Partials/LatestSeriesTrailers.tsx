@@ -14,8 +14,11 @@ const LatestSeriesTrailers = () => {
 
     return (
         <>
-            <h1>New Series Stories</h1>
-            <div>{JSON.stringify(lastSeries)}</div>
+            <div className="flex items-center mb-2">
+                <h1 className="dark:text-current text-xl mb-2 max-sm:px-2 max-sm:pt-2">
+                    Gelecek Diziler Ve Sezonlar
+                </h1>
+            </div>
         </>
     );
 };

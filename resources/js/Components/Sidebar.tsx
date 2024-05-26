@@ -14,7 +14,7 @@ export const SideBarItems: ItemType[] = [
     {
         href: "home",
         icon: IoMdHome,
-        label: "Anasayfa",
+            label: "Anasayfa",
     },
     {
         href: "#",
