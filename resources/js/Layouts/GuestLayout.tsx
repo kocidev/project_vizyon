@@ -1,6 +1,6 @@
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
-import Sidebar from "@/Pages/Home/Partials/Sidebar";
+import Sidebar from "@/Components/Sidebar";
 import { PropsWithChildren } from "react";
 
 export default function Guest({

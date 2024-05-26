@@ -14,7 +14,7 @@ import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import classNames from "classnames";
 import useData from "@/Hooks/useData";
-import { SideBarItems } from "@/Pages/Home/Partials/Sidebar";
+import { SideBarItems } from "@/Components/Sidebar";
 
 export default function Header({
     user,
@@ -54,7 +54,10 @@ export default function Header({
             <Head title={title} />
             <header className="w-full lg:mb-4 lg:my-4 lg:w-4/5 xl:w-2/3 lg:rounded mx-auto p-4 bg-royal-700 flex items-center dark:bg-lotus-700 z-[999]">
                 <div className="flex items-center gap-2">
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 pr-1 focus:ring-0 focus:outline-white focus:outline-none focus:rounded-sm"
+                    >
                         <ApplicationLogo className="block h-9 w-auto fill-F7F2EB dark:fill-FFF2D7" />
                         <h1 className="text-F7F2EB dark:text-FFF2D7 font-typold-extended font-bold">
                             {import.meta.env.VITE_APP_NAME}
@@ -68,7 +71,7 @@ export default function Header({
                                 <FaSearch className="text-white dark:text-current" />
                             </button>
                             <input
-                                className="text-white dark:text-F7F2EB w-0 h-8 input-search border-none tracking-widest outline-none transition duration-500 pr-8 text-xs ring-0 focus:outline-none focus:ring-0 placeholder:text-sky dark:placeholder:text-F7F2EB bg-transparent"
+                                className="text-white dark:text-F7F2EB w-0 h-8 input-search border-none tracking-widest outline-none transition duration-500 pr-8 text-xs ring-0 focus:outline-none focus:ring-0 placeholder:text-white dark:placeholder:text-F7F2EB bg-transparent"
                                 type="text"
                                 name="search-bar"
                                 id="search-bar"

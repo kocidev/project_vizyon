@@ -1,4 +1,4 @@
-import NavLink from "../../../Components/NavLink";
+import NavLink from "./NavLink";
 import { IoMdHome } from "react-icons/io";
 import { RiCompassDiscoverLine } from "react-icons/ri";
 import { FaArrowTrendUp } from "react-icons/fa6";
