@@ -20,6 +20,4 @@ export type UpComingSerieTypes = {
 export type DataContextProps = {
     GetVizyondakiFilmler: (limit?: number) => Promise<VizyondakiFilmlerType[]>;
     GetUpComingSeries: (limit?: number) => Promise<UpComingSerieTypes[]>;
-    isDark: boolean;
-    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
 };

@@ -11,22 +11,13 @@ export const DataCtx = createContext<DataContextProps>({} as DataContextProps);
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
-    const [isDark, setIsDark] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (isDark) {
-            document.body.classList.add("dark");
-        } else {
-            document.body.classList.remove("dark");
-        }
-    }, [isDark]);
-
     const GetVizyondakiFilmler = async (
         limit?: number
     ): Promise<VizyondakiFilmlerType[]> => {
         try {
             const response = await axios.get("api/movies/theaters");
             const result: VizyondakiFilmlerType[] = response.data;
+            
             if (limit !== undefined) {
                 return result.slice(0, limit);
             }
@@ -56,8 +47,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     const value = {
         GetVizyondakiFilmler,
         GetUpComingSeries,
-        isDark,
-        setIsDark,
     };
 
     return <DataCtx.Provider value={value}>{children}</DataCtx.Provider>;

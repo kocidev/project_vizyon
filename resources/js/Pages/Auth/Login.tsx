@@ -36,7 +36,7 @@ export default function Login({
         <GuestLayout title="Giriş Yap">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
-                    <h1 className="text-lg text-center mt-2 text-royal-700 dark:text-FFF2D7 font-typold-condensed font-medium tracking-wider uppercase">
+                    <h1 className="text-lg text-center mt-2 text-royal-700 dark:text-FFF2D7-condensed font-medium tracking-wider uppercase">
                         Hoşgeldin
                     </h1>
                     {status && (

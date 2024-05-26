@@ -17,7 +17,7 @@ export default function Footer() {
                     className="flex items-center gap-2 pr-1 focus:ring-0 focus:outline-royal-600 dark:focus:outline-lotus-600 focus:rounded-sm"
                 >
                     <ApplicationLogo className="block h-9 w-auto fill-royal-700 dark:fill-FFF2D7" />
-                    <h1 className="text-royal-700 dark:text-FFF2D7 font-typold-extended font-bold">
+                    <h1 className="text-royal-700 dark:text-FFF2D7 font-bold">
                         {import.meta.env.VITE_APP_NAME}
                     </h1>
                 </Link>

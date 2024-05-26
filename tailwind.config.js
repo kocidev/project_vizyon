@@ -13,6 +13,9 @@ export default {
     ],
     theme: {
         extend: {
+            animation: {
+                "fade-in": "fadeIn 1s ease-in-out",
+            },
             colors: {
                 111216: "#111216",
                 F7F2EB: "#F7F2EB",
@@ -85,11 +88,12 @@ export default {
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-                typold: "Typold",
-                "typold-black": "Typold-Black",
-                "typold-book": "Typold-Book",
-                "typold-condensed": "Typold-Condensed",
-                "typold-extended": "Typold-Extended",
+            },
+            keyframes: {
+                fadeIn: {
+                    "0%": { opacity: "25%" },
+                    "100%": { opacity: "1" },
+                },
             },
         },
     },

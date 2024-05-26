@@ -10,7 +10,7 @@ export default function Home({ auth }: PageProps) {
                 <div>
                     <Theaters />
                 </div>
-                <div className="my-6">
+                <div className="my-2">
                     <LatestSeriesTrailers />
                 </div>
             </MainLayout>

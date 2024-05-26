@@ -1,6 +1,6 @@
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
-import Sidebar from "@/Components/Sidebar";
+import classNames from "classnames";
 import { PropsWithChildren } from "react";
 
 export default function Guest({
@@ -10,7 +10,12 @@ export default function Guest({
     return (
         <>
             <Header user={undefined} title={title} />
-            <div className="w-full mx-auto lg:w-4/5 xl:w-2/3 mb-8">
+            <div
+                className={classNames(
+                    "w-full mb-8 mx-auto",
+                    "xl:w-3/5 lg:w-3/4 sm:w-11/12"
+                )}
+            >
                 <div className="w-full h-full relative">{children}</div>
             </div>
             <Footer />
