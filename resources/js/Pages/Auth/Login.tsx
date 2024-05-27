@@ -36,7 +36,7 @@ export default function Login({
         <GuestLayout title="Giriş Yap">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
-                    <h1 className="text-lg text-center mt-2 text-royal-700 dark:text-FFF2D7-condensed font-medium tracking-wider uppercase">
+                    <h1 className="text-lg text-center mt-2 text-royal-950 dark:text-FFF2D7 font-medium tracking-wider uppercase">
                         Hoşgeldin
                     </h1>
                     {status && (
@@ -104,7 +104,7 @@ export default function Login({
                                     href={route("password.request")}
                                     className={classNames(
                                         "px-1 rounded-none underline text-sm underline-offset-2",
-                                        "text-gray-500 dark:text-gray-400 hover:text-royal-700 dark:hover:text-lotus-400 focus:text-royal-700 dark:focus:text-lotus-400",
+                                        "text-gray-500 dark:text-gray-400 hover:text-royal-950 dark:hover:text-lotus-400 focus:text-royal-950 dark:focus:text-lotus-400",
                                         "focus:outline-none focus:ring-0"
                                     )}
                                 >
@@ -126,7 +126,7 @@ export default function Login({
                         href={route("register")}
                         className={classNames(
                             "px-1 rounded-none underline text-sm underline-offset-2",
-                            "text-gray-500 dark:text-gray-400 hover:text-royal-700 dark:hover:text-lotus-400 focus:text-royal-700 dark:focus:text-lotus-400",
+                            "text-gray-500 dark:text-gray-400 hover:text-royal-950 dark:hover:text-lotus-400 focus:text-royal-950 dark:focus:text-lotus-400",
                             "focus:outline-none focus:ring-0"
                         )}
                     >

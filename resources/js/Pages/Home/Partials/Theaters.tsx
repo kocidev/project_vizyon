@@ -60,7 +60,7 @@ const Theaters = () => {
             <div className="absolute w-full h-full bg-black/25 top-0 left-0">
                 <div className="flex flex-col gap-1">
                     <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-700 bg-royal-700/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
                             {"23 Mayıs"}
                         </h1>
                         <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
@@ -68,7 +68,7 @@ const Theaters = () => {
                         </h1>
                     </div>
                     <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full">
-                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-700 bg-royal-700/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
                             {movie.name}
                         </h1>
                     </div>
@@ -78,14 +78,13 @@ const Theaters = () => {
     );
 
     const MovieGrid: React.FC<MovieGridProps> = ({ movies }) => {
-        
         const startIndex = (page - 1) * moviesPerPage;
         const endIndex = startIndex + moviesPerPage;
         const moviesToDisplay = movies.slice(startIndex, endIndex);
 
         return (
-            <div className="w-full h-full">
-                <div className="flex flex-col sm:flex-row border-2 border-royal-700/50 dark:border-lotus-700/50 animate-fade-in">
+            <div className="w-full h-full relative">
+                <div className="flex flex-col sm:flex-row border-2 border-royal-950/50 dark:border-lotus-700/50 animate-fade-in">
                     <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                         <div className="flex flex-row">
                             <MovieButton movie={moviesToDisplay[0]} />
@@ -104,6 +103,30 @@ const Theaters = () => {
                             <MovieButton movie={moviesToDisplay[3]} />
                         </div>
                     </div>
+                    <div className="flex items-center gap-2 absolute bottom-2 right-2">
+                        <button
+                            onClick={(e) => handlePageClick(e, false)}
+                            className={classNames(
+                                "p-1 border-2 rounded-full",
+                                "hover:bg-royal-950 dark:hover:bg-lotus-700",
+                                "border-white hover:border-royal-950 dark:hover:border-lotus-700",
+                                "text-white"
+                            )}
+                        >
+                            <MdArrowForwardIos className="rotate-180" />
+                        </button>
+                        <button
+                            onClick={(e) => handlePageClick(e, true)}
+                            className={classNames(
+                                "p-1 border-2 rounded-full",
+                                "hover:bg-royal-950 dark:hover:bg-lotus-700",
+                                "border-white hover:border-royal-950 dark:hover:border-lotus-700",
+                                "text-white"
+                            )}
+                        >
+                            <MdArrowForwardIos />
+                        </button>
+                    </div>
                 </div>
             </div>
         );
@@ -113,33 +136,9 @@ const Theaters = () => {
         !isLoading && (
             <>
                 <div className="flex justify-between items-center max-sm:px-2">
-                    <h1 className="drop-shadow-sm font-extrabold py-4 sm:text-4xl text-2xl">
+                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold py-4 sm:text-4xl text-2xl">
                         Vizyondakiler
                     </h1>
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={(e) => handlePageClick(e, false)}
-                            className={classNames(
-                                "p-1 border-2 rounded-full",
-                                "hover:bg-royal-700 dark:hover:bg-lotus-700",
-                                "border-royal-700 dark:border-lotus-700",
-                                "text-royal-700 hover:text-white dark:text-lotus-500 dark:hover:text-white"
-                            )}
-                        >
-                            <MdArrowForwardIos className="rotate-180" />
-                        </button>
-                        <button
-                            onClick={(e) => handlePageClick(e, true)}
-                            className={classNames(
-                                "p-1 border-2 rounded-full",
-                                "hover:bg-royal-700 dark:hover:bg-lotus-700",
-                                "border-royal-700 dark:border-lotus-700",
-                                "text-royal-700 hover:text-white dark:text-lotus-500 dark:hover:text-white"
-                            )}
-                        >
-                            <MdArrowForwardIos />
-                        </button>
-                    </div>
                 </div>
                 {vizyondakiler.length > 0 && (
                     <MovieGrid movies={vizyondakiler} />

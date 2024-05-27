@@ -7,13 +7,25 @@ type ItemType = {
     href: string;
     icon: React.ElementType;
     label: string;
+    isMobile?: boolean;
 };
 
 export const SideBarItems: ItemType[] = [
     {
         href: "home",
-        icon: IoMdHome,
         label: "Anasayfa",
+        icon: IoMdHome,
+        isMobile: true,
+    },
+    {
+        href: "#",
+        icon: RiCompassDiscoverLine,
+        label: "Filmler",
+    },
+    {
+        href: "#",
+        icon: RiCompassDiscoverLine,
+        label: "Diziler",
     },
     {
         href: "#",
@@ -24,10 +36,11 @@ export const SideBarItems: ItemType[] = [
         href: "#",
         icon: FaArrowTrendUp,
         label: "Trendler",
+        isMobile: true,
     },
     {
         href: "#",
         icon: MdMessage,
-        label: "Tartışmalar",
+        label: "Tartışma",
     },
 ];

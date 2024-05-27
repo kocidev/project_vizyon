@@ -17,12 +17,13 @@ const LatestSeriesTrailers = () => {
     return (
         !isLoading && (
             <>
-                <div className="flex items-center mb-2">
-                    <div className="mb-2 max-sm:px-2 max-sm:pt-2">
-                        <h1 className="drop-shadow-sm font-extrabold py-4 sm:text-4xl text-2xl">
+                <div className="flex flex-col mb-2 gap-2">
+                    <div className="max-sm:px-2 max-sm:pt-2">
+                        <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold py-4 sm:text-4xl text-2xl">
                             Gelecek Diziler Ve Sezonlar
                         </h1>
                     </div>
+                    <div>1</div>
                 </div>
             </>
         )

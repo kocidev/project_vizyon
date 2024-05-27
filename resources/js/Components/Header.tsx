@@ -61,54 +61,60 @@ export default function Header({
             <Head title={title} />
             <header
                 className={classNames(
+                    "fixed",
                     "w-full h-16",
                     "p-4",
                     "z-[999]",
-                    "bg-royal-700 dark:bg-lotus-700"
+                    "bg-royal-950 dark:bg-lotus-700"
                 )}
             >
                 <div
                     className={classNames(
-                        "w-full mx-auto flex items-center",
+                        "w-full h-full mx-auto flex items-center gap-8",
                         "xl:w-2/3 lg:w-3/4"
                     )}
                 >
                     <div className="flex items-center gap-2">
                         <Link
                             href="/"
-                            className="flex items-center gap-2 pr-1 ring-0 focus:outline-white focus:rounded-sm"
+                            className="flex items-center gap-2 ring-0 focus:outline-white focus:rounded-sm active:outline-none"
                         >
                             <ApplicationLogo className="block h-9 w-auto fill-F7F2EB dark:fill-FFF2D7" />
-                            <h1 className="text-F7F2EB dark:text-FFF2D7 font-bold">
+                            <h1 className="text-F7F2EB dark:text-FFF2D7 font-bold text-lg">
                                 {import.meta.env.VITE_APP_NAME}
                             </h1>
                         </Link>
                     </div>
-                    <div className="ml-auto flex items-center gap-2 w-min whitespace-nowrap">
-                        <div className="flex gap-4 items-center">
-                            <div className="w-fit h-fit relative search-box hidden lg:block">
-                                <button className="btn-search absolute flex items-center p-1.5 rounded-full top-1/2 -translate-y-1/2 right-0">
-                                    <FaSearch className="text-white dark:text-current" />
-                                </button>
-                                <input
-                                    className="text-white dark:text-F7F2EB w-0 h-8 input-search border-none tracking-widest outline-none transition duration-500 pr-8 text-xs ring-0 focus:outline-none focus:ring-0 placeholder:text-white dark:placeholder:text-F7F2EB bg-transparent"
-                                    type="text"
-                                    name="search-bar"
-                                    id="search-bar"
-                                    placeholder="Aradığınız film..."
-                                />
-                            </div>
-                            <button
-                                className="w-5 group"
-                                onClick={() => setIsDark(!isDark)}
-                            >
-                                {isDark ? (
-                                    <MdDarkMode className="text-white dark:text-current w-full h-full transition-transform duration-[1.5s] group-hover:rotate-[360deg] group-focus:rotate-[360deg]" />
-                                ) : (
-                                    <MdLightMode className="text-white dark:text-FFF2D7 w-full h-full transition-transform duration-[1.5s] group-hover:rotate-180 group-focus:rotate-180" />
-                                )}
-                            </button>
-                        </div>
+                    <div className="flex items-center gap-8 max-sm:hidden">
+                        {SideBarItems.map(
+                            (item, i) =>
+                                !item.isMobile && (
+                                    <Link
+                                        key={i}
+                                        href={item.href}
+                                        className={classNames(
+                                            "flex items-center gap-2 outline-none ring-0 border-b border-transparent transition-colors",
+                                            "hover:border-white dark:hover:border-FFF2D7"
+                                        )}
+                                    >
+                                        <h1 className="text-F7F2EB dark:text-FFF2D7 font-bold transition-none">
+                                            {item.label}
+                                        </h1>
+                                    </Link>
+                                )
+                        )}
+                    </div>
+                    <div className="ml-auto flex items-center gap-4 w-min whitespace-nowrap">
+                        <button
+                            className="w-5 group"
+                            onClick={() => setIsDark(!isDark)}
+                        >
+                            {isDark ? (
+                                <MdDarkMode className="text-white dark:text-current w-full h-full transition-transform duration-[1.5s] group-hover:rotate-[360deg] group-focus:rotate-[360deg]" />
+                            ) : (
+                                <MdLightMode className="text-white dark:text-FFF2D7 w-full h-full transition-transform duration-[1.5s] group-hover:rotate-180 group-focus:rotate-180" />
+                            )}
+                        </button>
                         {user && (
                             <div className="hidden sm:flex sm:items-center ms-2">
                                 <div className="relative">
@@ -135,7 +141,7 @@ export default function Header({
                                                 </button>
                                             </span>
                                         </Dropdown.Trigger>
-                                        <Dropdown.Content>
+                                        <Dropdown.Content align="right">
                                             <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
@@ -160,18 +166,18 @@ export default function Header({
                             </div>
                         )}
                         {!user && (
-                            <div className="hidden sm:flex items-center gap-2 ml-4">
+                            <div className="hidden sm:flex items-center gap-4">
                                 <NavLink
                                     as="button"
                                     href={route("login")}
-                                    className="!text-white dark:!text-FFF2D7 !border-white dark:!border-FFF2D7 hover:border-b focus:border-b"
+                                    className="!text-white dark:!text-FFF2D7 hover:!border-white dark:hover:!border-FFF2D7 border-b border-transparent focus:!border-white dark:focus:!border-FFF2D7"
                                 >
                                     <h1 className="text-sm">Giriş yap</h1>
                                 </NavLink>
                                 <NavLink
                                     as="button"
                                     href={route("register")}
-                                    className="!text-white dark:!text-FFF2D7 !border-white dark:!border-FFF2D7 hover:border-b focus:border-b"
+                                    className="!text-white dark:!text-FFF2D7 hover:!border-white dark:hover:!border-FFF2D7 border-b border-transparent focus:!border-white dark:focus:!border-FFF2D7"
                                 >
                                     <h1 className="text-sm">Kayıt Ol</h1>
                                 </NavLink>
@@ -183,10 +189,11 @@ export default function Header({
                     </div>
                 </div>
             </header>
+            {/* Mobile */}
             <div className={classNames("relative sm:hidden")}>
                 <div
                     className={classNames(
-                        "absolute w-full z-[100] p-1 py-3 shadow border-b transition-[opacity,transform] duration-200",
+                        "absolute w-full z-[100] p-1 py-3 shadow border-b transition-[opacity,transform] duration-200 mt-16",
                         "bg-F7F2EB dark:bg-111216 dark:border-copper-rose-600 border-danube-500",
                         {
                             "opacity-0 -translate-y-full":
@@ -198,7 +205,7 @@ export default function Header({
                 >
                     {user && (
                         <>
-                            <div className="px-4 border-l-2 border-royal-700 dark:border-lotus-700">
+                            <div className="px-4 border-l-2 border-royal-950 dark:border-lotus-700">
                                 <div className="font-medium text-gray-600 dark:text-FFF2D7 text-sm">
                                     {user.name}
                                 </div>
@@ -210,7 +217,7 @@ export default function Header({
                             <div className="my-2 space-y-2">
                                 <ResponsiveNavLink
                                     href={route("profile.edit")}
-                                    className="border-l-2 border-royal-700 dark:border-lotus-700 flex items-center gap-1"
+                                    className="border-l-2 border-royal-950 dark:border-lotus-700 flex items-center gap-1"
                                 >
                                     <FaUser />
                                     <h1>Profil</h1>
@@ -219,7 +226,7 @@ export default function Header({
                                     method="post"
                                     href={route("logout")}
                                     as="button"
-                                    className="border-l-2 border-royal-700 dark:border-lotus-700"
+                                    className="border-l-2 border-royal-950 dark:border-lotus-700"
                                 >
                                     Çıkış yap
                                 </ResponsiveNavLink>
@@ -230,13 +237,13 @@ export default function Header({
                         <div className="my-2 space-y-2">
                             <ResponsiveNavLink
                                 href={route("login")}
-                                className="border-l-2 border-royal-700 dark:border-lotus-700"
+                                className="border-l-2 border-royal-950 dark:border-lotus-700"
                             >
                                 <h1>Giriş Yap</h1>
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 href={route("register")}
-                                className="border-l-2 border-royal-700 dark:border-lotus-700"
+                                className="border-l-2 border-royal-950 dark:border-lotus-700"
                             >
                                 <h1>Kayıt Ol</h1>
                             </ResponsiveNavLink>
@@ -248,7 +255,7 @@ export default function Header({
                             <ResponsiveNavLink
                                 key={i}
                                 href={route("register")}
-                                className="border-l-2 border-royal-700 dark:border-lotus-700 flex items-center gap-2"
+                                className="border-l-2 border-royal-950 dark:border-lotus-700 flex items-center gap-2"
                             >
                                 <item.icon />
                                 <h1>{item.label}</h1>

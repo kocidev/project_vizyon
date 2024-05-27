@@ -13,9 +13,6 @@ export default {
     ],
     theme: {
         extend: {
-            animation: {
-                "fade-in": "fadeIn 1s ease-in-out",
-            },
             colors: {
                 111216: "#111216",
                 F7F2EB: "#F7F2EB",
@@ -89,7 +86,15 @@ export default {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            animation: {
+                "fade-in": "fadeIn 1s ease-in-out",
+                slide: "slide 15s infinite linear",
+            },
             keyframes: {
+                slide: {
+                    from: { transform: "translateX(0%)" },
+                    to: { transform: "translateX(100%)" },
+                },
                 fadeIn: {
                     "0%": { opacity: "25%" },
                     "100%": { opacity: "1" },
