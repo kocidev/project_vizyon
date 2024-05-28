@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext } from "react";
 import {
     DataContextProps,
     UpComingSerieTypes,
@@ -17,7 +17,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
         try {
             const response = await axios.get("api/movies/theaters");
             const result: VizyondakiFilmlerType[] = response.data;
-            
+
             if (limit !== undefined) {
                 return result.slice(0, limit);
             }

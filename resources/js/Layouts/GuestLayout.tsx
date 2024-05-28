@@ -12,7 +12,7 @@ export default function Guest({
             <Header user={undefined} title={title} />
             <div
                 className={classNames(
-                    "w-full mb-8 mx-auto",
+                    "w-full mb-8 mx-auto mt-16",
                     "xl:w-3/5 lg:w-3/4 sm:w-11/12"
                 )}
             >

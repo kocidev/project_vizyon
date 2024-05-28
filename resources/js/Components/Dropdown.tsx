@@ -55,7 +55,7 @@ const Trigger = ({ children }: PropsWithChildren) => {
 const Content = ({
     align = "right",
     width = "48",
-    contentClasses = "bg-royal-500 dark:bg-lotus-800",
+    contentClasses = "bg-royal-900 dark:bg-lotus-800",
     children,
 }: PropsWithChildren<{
     align?: "left" | "right";

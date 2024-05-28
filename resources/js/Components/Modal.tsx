@@ -1,17 +1,18 @@
 import { Fragment, PropsWithChildren } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import classNames from "classnames";
 
 export default function Modal({
     children,
     show = false,
-    maxWidth = "2xl",
     closeable = true,
     onClose = () => {},
+    className = "",
 }: PropsWithChildren<{
     show: boolean;
-    maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl";
     closeable?: boolean;
     onClose: CallableFunction;
+    className?: string;
 }>) {
     const close = () => {
         if (closeable) {
@@ -19,20 +20,12 @@ export default function Modal({
         }
     };
 
-    const maxWidthClass = {
-        sm: "sm:max-w-sm",
-        md: "sm:max-w-md",
-        lg: "sm:max-w-lg",
-        xl: "sm:max-w-xl",
-        "2xl": "sm:max-w-2xl",
-    }[maxWidth];
-
     return (
         <Transition show={show} as={Fragment} leave="duration-200">
             <Dialog
                 as="div"
                 id="modal"
-                className="fixed inset-0 flex overflow-y-auto px-4 py-6 sm:px-0 items-center z-50 transform transition-all"
+                className="z-[999] fixed inset-0 flex overflow-y-auto px-4 py-6 items-center transform transition-all"
                 onClose={close}
             >
                 <Transition.Child
@@ -57,7 +50,15 @@ export default function Modal({
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <Dialog.Panel
-                        className={`mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto ${maxWidthClass}`}
+                        className={classNames(
+                            "bg-white dark:bg-gray-800",
+                            "rounded-lg",
+                            "overflow-hidden",
+                            "shadow-xl",
+                            "transform transition-all",
+                            "w-full mx-auto",
+                            className
+                        )}
                     >
                         {children}
                     </Dialog.Panel>

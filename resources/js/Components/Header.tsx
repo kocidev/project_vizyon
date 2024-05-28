@@ -4,16 +4,16 @@ import { Head, Link } from "@inertiajs/react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ApplicationLogo from "./ApplicationLogo";
 import Dropdown from "./Dropdown";
 import ResponsiveNavLink from "./ResponsiveNavLink";
 import NavLink from "./NavLink";
-import { FaSearch } from "react-icons/fa";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import classNames from "classnames";
 import { SideBarItems } from "@/Utils/misc";
+import useTheme from "@/Hooks/useTheme";
 
 export default function Header({
     user,
@@ -22,17 +22,9 @@ export default function Header({
     user?: User;
     title: string;
 }) {
-    const [isDark, setIsDark] = useState<boolean>(false);
+    const { theme, toggleTheme } = useTheme();
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-
-    useEffect(() => {
-        if (isDark) {
-            document.body.classList.add("dark");
-        } else {
-            document.body.classList.remove("dark");
-        }
-    }, [isDark]);
 
     const MobileMenuButton = () => (
         <button
@@ -64,7 +56,7 @@ export default function Header({
                     "fixed",
                     "w-full h-16",
                     "p-4",
-                    "z-[999]",
+                    "z-[100]",
                     "bg-royal-950 dark:bg-lotus-700"
                 )}
             >
@@ -105,11 +97,8 @@ export default function Header({
                         )}
                     </div>
                     <div className="ml-auto flex items-center gap-4 w-min whitespace-nowrap">
-                        <button
-                            className="w-5 group"
-                            onClick={() => setIsDark(!isDark)}
-                        >
-                            {isDark ? (
+                        <button className="w-5 group" onClick={toggleTheme}>
+                            {theme == "dark" ? (
                                 <MdDarkMode className="text-white dark:text-current w-full h-full transition-transform duration-[1.5s] group-hover:rotate-[360deg] group-focus:rotate-[360deg]" />
                             ) : (
                                 <MdLightMode className="text-white dark:text-FFF2D7 w-full h-full transition-transform duration-[1.5s] group-hover:rotate-180 group-focus:rotate-180" />
@@ -193,7 +182,7 @@ export default function Header({
             <div className={classNames("relative sm:hidden")}>
                 <div
                     className={classNames(
-                        "absolute w-full z-[100] p-1 py-3 shadow border-b transition-[opacity,transform] duration-200 mt-16",
+                        "absolute w-full z-[99] p-1 py-3 shadow border-b transition-[opacity,transform] duration-200 mt-16",
                         "bg-F7F2EB dark:bg-111216 dark:border-copper-rose-600 border-danube-500",
                         {
                             "opacity-0 -translate-y-full":

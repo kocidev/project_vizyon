@@ -83,18 +83,16 @@ export default {
                     950: "#331e1f",
                 },
             },
-            fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            backgroundImage: {
+                "linear-light":
+                    "linear-gradient(to right, #12c2e9, #c471ed, #f64f59);",
+                "linear-dark":
+                    "linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);",
             },
             animation: {
                 "fade-in": "fadeIn 1s ease-in-out",
-                slide: "slide 15s infinite linear",
             },
             keyframes: {
-                slide: {
-                    from: { transform: "translateX(0%)" },
-                    to: { transform: "translateX(100%)" },
-                },
                 fadeIn: {
                     "0%": { opacity: "25%" },
                     "100%": { opacity: "1" },

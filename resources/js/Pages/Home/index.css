@@ -4,7 +4,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("images/search_bg.jpg");
+    background-image: url("/images/search_bg.jpg");
     background-size: 100%;
     animation: move 125s infinite linear;
 }
