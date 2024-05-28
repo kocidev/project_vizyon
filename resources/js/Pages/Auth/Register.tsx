@@ -1,5 +1,5 @@
 import { useEffect, FormEventHandler } from "react";
-import GuestLayout from "@/Layouts/GuestLayout";
+import MainLayout from "@/Layouts/MainLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -28,7 +28,7 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout title="Kayıt Ol">
+        <MainLayout title="Kayıt Ol">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <h1 className="text-lg text-center mt-2 text-royal-950 dark:text-FFF2D7 font-medium tracking-wider uppercase">
@@ -141,6 +141,6 @@ export default function Register() {
                     </Link>
                 </div>
             </div>
-        </GuestLayout>
+        </MainLayout>
     );
 }

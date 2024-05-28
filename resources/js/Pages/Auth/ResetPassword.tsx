@@ -1,5 +1,5 @@
 import { useEffect, FormEventHandler } from "react";
-import GuestLayout from "@/Layouts/GuestLayout";
+import MainLayout from "@/Layouts/MainLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -33,7 +33,7 @@ export default function ResetPassword({
     };
 
     return (
-        <GuestLayout title="Şifre Sıfırla">
+        <MainLayout title="Şifre Sıfırla">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <div className="mb-6 space-y-2">
@@ -113,6 +113,6 @@ export default function ResetPassword({
                     </form>
                 </div>
             </div>
-        </GuestLayout>
+        </MainLayout>
     );
 }

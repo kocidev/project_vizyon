@@ -3,9 +3,8 @@ import MainLayout from "@/Layouts/MainLayout";
 import Theaters from "./Partials/Theaters";
 import LatestSeriesTrailers from "./Partials/LatestSeriesTrailers";
 import SearchDiv from "./Partials/SearchDiv";
-import "./index.css";
 
-export default function Home({ auth }: PageProps) {
+const Home = ({ auth }: PageProps) => {
     return (
         <>
             <MainLayout user={auth.user} title="Home">
@@ -19,4 +18,6 @@ export default function Home({ auth }: PageProps) {
             </MainLayout>
         </>
     );
-}
+};
+
+export default Home;

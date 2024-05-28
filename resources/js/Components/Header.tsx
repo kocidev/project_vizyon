@@ -1,4 +1,3 @@
-import "../../css/header.css";
 import { User } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";

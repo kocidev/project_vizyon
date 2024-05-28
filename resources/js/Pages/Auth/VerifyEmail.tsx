@@ -1,4 +1,4 @@
-import GuestLayout from "@/Layouts/GuestLayout";
+import MainLayout from "@/Layouts/MainLayout";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
@@ -13,7 +13,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
     };
 
     return (
-        <GuestLayout title="Email Doğrulama">
+        <MainLayout title="Email Doğrulama">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <div className="mb-6 space-y-2">
@@ -49,6 +49,6 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     </form>
                 </div>
             </div>
-        </GuestLayout>
+        </MainLayout>
     );
 }
