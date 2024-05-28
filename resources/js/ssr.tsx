@@ -26,11 +26,7 @@ createServer((page) =>
                     // @ts-expect-error
                     location: new URL(page.props.ziggy.location),
                 });
-            return (
-                <_App>
-                    <App {...props} />
-                </_App>
-            );
+            return <App {...props} />;
         },
     })
 );
