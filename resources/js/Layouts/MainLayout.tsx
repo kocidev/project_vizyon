@@ -1,9 +1,8 @@
-import App from "@/Components/App";
+import { PropsWithChildren } from "react";
+import classNames from "classnames";
+import { User } from "@/types";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
-import { User } from "@/types";
-import classNames from "classnames";
-import { PropsWithChildren } from "react";
 
 const MainLayout = ({
     user,
@@ -11,7 +10,7 @@ const MainLayout = ({
     children,
 }: PropsWithChildren<{ user?: User; title: string }>) => {
     return (
-        <App>
+        <>
             <Header user={user} title={title} />
             <div
                 className={classNames(
@@ -22,7 +21,7 @@ const MainLayout = ({
                 <div className="w-full h-full">{children}</div>
             </div>
             <Footer />
-        </App>
+        </>
     );
 };
 

@@ -88,6 +88,10 @@ export default {
                     "linear-gradient(to right, #12c2e9, #c471ed, #f64f59);",
                 "linear-dark":
                     "linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);",
+                "fade-light":
+                    "linear-gradient(to right, rgba(255, 255, 255, 0) 0, #F7F2EB 100%)",
+                "fade-dark":
+                    "linear-gradient(to right, rgba(0, 0, 0, 0) 0, #111216 100%)",
             },
             animation: {
                 "fade-in": "fadeIn 1s ease-in-out",
@@ -109,6 +113,23 @@ export default {
                 ".scrollbar-hide": {
                     "scrollbar-width": "none",
                     "-ms-overflow-style": "none",
+                },
+                ".edge_fade_blur:after": {
+                    content: '""',
+                    width: "52px",
+                    height: "100%",
+                    position: "absolute",
+                    top: "0",
+                    right: "0",
+                    backgroundImage:
+                        "linear-gradient(to right, rgba(255, 255, 255, 0) 0, #F7F2EB 100%)",
+                    willChange: "opacity",
+                    pointerEvents: "none",
+                    zIndex: 99,
+                },
+                ".edge_fade_blur.is_fading:after": {
+                    transition: "linear 0.3s",
+                    opacity: "1",
                 },
             };
             addUtilities(newUtilities);

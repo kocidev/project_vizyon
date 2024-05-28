@@ -7,12 +7,12 @@ import SearchDiv from "./Partials/SearchDiv";
 const Home = ({ auth }: PageProps) => {
     return (
         <>
-            <MainLayout user={auth.user} title="Home">
+            <MainLayout user={auth.user} title="Anasayfa">
                 <SearchDiv />
-                <div className="mt-2">
+                <div id="theaters">
                     <Theaters />
                 </div>
-                <div className="mt-2">
+                <div id="latest-series-trailers">
                     <LatestSeriesTrailers />
                 </div>
             </MainLayout>

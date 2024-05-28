@@ -48,18 +48,12 @@ div#app > main {
 
 *::-webkit-scrollbar {
     width: 8px;
-    background: #f7f2eb;
+    height: 6px;
+    background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-    background-color: #1e284d;
-}
-
-.dark::-webkit-scrollbar {
-    width: 8px;
-    background: #111216;
-}
-.dark::-webkit-scrollbar-thumb {
-    background-color: #944341;
+    border-radius: 4px;
+    background-color: #dbdbdb;
 }
 
 /* 

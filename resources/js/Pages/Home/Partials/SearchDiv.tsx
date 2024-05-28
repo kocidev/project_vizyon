@@ -13,10 +13,10 @@ const SearchDiv = () => {
             </>
             <div className="space-y-2 z-50 flex flex-col w-full gap-32">
                 <div className="max-sm:text-center w-full space-y-3">
-                    <h1 className="font-extrabold text-5xl text-stone-300 drop-shadow-lg">
+                    <h1 className="font-extrabold text-5xl text-white drop-shadow-lg">
                         Hoş geldiniz !
                     </h1>
-                    <h1 className="font-extrabold text-3xl text-stone-300 drop-shadow-lg">
+                    <h1 className="font-extrabold text-3xl text-white drop-shadow-lg">
                         İzlenilecek Bir şeyler keşfet
                     </h1>
                 </div>

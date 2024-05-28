@@ -135,8 +135,8 @@ const Theaters = () => {
     return (
         !isLoading && (
             <>
-                <div className="flex justify-between items-center max-sm:px-2">
-                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold py-4 sm:text-4xl text-2xl">
+                <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
+                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-3xl sm:text-4xl">
                         Vizyondakiler
                     </h1>
                 </div>
