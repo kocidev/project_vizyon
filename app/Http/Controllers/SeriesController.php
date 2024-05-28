@@ -12,7 +12,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 1,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -20,7 +20,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 2,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -28,7 +28,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 3,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -36,7 +36,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 4,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -44,7 +44,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 5,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -52,7 +52,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 1,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -60,7 +60,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 2,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -68,7 +68,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 3,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -76,7 +76,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 4,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
             [
@@ -84,7 +84,7 @@ class SeriesController extends Controller
                 "meta" => [
                     "season" => 5,
                     "link" => "xhL5ihOUUcs",
-                    "image" => "images/series/doctor-who_thumb.jpg",
+                    "image" => "assets/images/series/doctor-who_thumb.jpg",
                 ],
             ],
         ]);
