@@ -1,4 +1,3 @@
-import ScrollContainer from "@/Components/ScrollContainer";
 import { PlatformType } from "@/types/basic.type";
 import classNames from "classnames";
 import { useState } from "react";
