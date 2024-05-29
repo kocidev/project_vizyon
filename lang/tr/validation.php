@@ -121,7 +121,7 @@ return [
     'prohibited_unless' => ':attribute, :other :values içinde olmadıkça yasaklanmış.',
     'prohibits' => ':attribute, :other öğesinin mevcut olmasını yasaklar.',
     'regex' => ':attribute formatı geçersiz.',
-    'required' => ':attribute alanı gereklidir.',
+    'required' => 'Bu alan gereklidir.',
     'required_array_keys' => ':attribute, şunlar için girişler içermelidir: :values.',
     'required_if' => ':attribute, :other :value olduğunda gereklidir.',
     'required_if_accepted' => ':attribute, :other kabul edildiğinde gereklidir.',
@@ -152,5 +152,9 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-    'attributes' => [],
+    'attributes' => [
+        'password' => 'Şifre',
+        'current_password' => 'Mevcut şifre',
+        'email' => 'Email',
+    ],
 ];

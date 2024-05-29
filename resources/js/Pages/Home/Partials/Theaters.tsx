@@ -1,7 +1,7 @@
-import useData from "@/Hooks/useData";
-import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { VizyondakiFilmlerType } from "@/types/DataProviderTypes";
+import classNames from "classnames";
+import { GetTheatersMovies } from "@/Services/Movie";
+import { iMoviesInTheaters } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
 
 interface Movie {
@@ -21,12 +21,11 @@ const Theaters = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const moviesPerPage = 6;
     const [page, setPage] = useState<number>(1);
-    const { GetVizyondakiFilmler } = useData();
-    const [vizyondakiler, setVizyondakiler] = useState<VizyondakiFilmlerType[]>(
+    const [vizyondakiler, setVizyondakiler] = useState<iMoviesInTheaters[]>(
         []
     );
     useEffect(() => {
-        GetVizyondakiFilmler().then((theaters) => {
+        GetTheatersMovies().then((theaters) => {
             setVizyondakiler(theaters);
             setIsLoading(false);
         });

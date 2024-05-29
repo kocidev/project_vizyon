@@ -17,7 +17,7 @@ const defaultContextValue: ThemeContextType = {
 export const ThemeContext =
     createContext<ThemeContextType>(defaultContextValue);
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const [theme, setTheme] = useState<Theme>(
         (localStorage.getItem("theme") as Theme) || "light"
     );
@@ -38,5 +38,3 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         </ThemeContext.Provider>
     );
 };
-
-export default ThemeProvider;

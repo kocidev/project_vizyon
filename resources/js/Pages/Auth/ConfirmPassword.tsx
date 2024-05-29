@@ -1,10 +1,10 @@
 import { useEffect, FormEventHandler } from "react";
-import MainLayout from "@/Layouts/MainLayout";
+import CoreLayout from "@/Layouts/Core";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -19,12 +19,11 @@ export default function ConfirmPassword() {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
         post(route("password.confirm"));
     };
 
     return (
-        <MainLayout title="Şifre">
+        <CoreLayout title="Şifre">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <div className="mb-6 space-y-2">
@@ -70,6 +69,6 @@ export default function ConfirmPassword() {
                     </form>
                 </div>
             </div>
-        </MainLayout>
+        </CoreLayout>
     );
 }

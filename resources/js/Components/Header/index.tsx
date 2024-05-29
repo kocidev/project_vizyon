@@ -1,18 +1,18 @@
-import { User } from "@/types";
+import { useState } from "react";
 import { Head, Link } from "@inertiajs/react";
+import classNames from "classnames";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import { useState } from "react";
-import ApplicationLogo from "./ApplicationLogo";
-import Dropdown from "./Dropdown";
-import ResponsiveNavLink from "./ResponsiveNavLink";
-import NavLink from "./NavLink";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
-import classNames from "classnames";
-import { SideBarItems } from "@/Utils/misc";
-import useTheme from "@/Hooks/useTheme";
+import { User } from "@/types";
+import useTheme from "@/Hooks/theme/useTheme";
+import ResponsiveNavLink from "../ResponsiveNavLink";
+import ApplicationLogo from "../ApplicationLogo";
+import Dropdown from "../Dropdown";
+import NavLink from "../NavLink";
+import { HeaderItems } from "./items";
 
 export default function Header({
     user,
@@ -77,7 +77,7 @@ export default function Header({
                         </Link>
                     </div>
                     <div className="flex items-center gap-8 max-sm:hidden">
-                        {SideBarItems.map(
+                        {HeaderItems.map(
                             (item, i) =>
                                 !item.isMobile && (
                                     <Link
@@ -239,7 +239,7 @@ export default function Header({
                     )}
                     <hr className="border-gray-300 dark:border-lotus-700/50" />
                     <div className="space-y-2 mt-2">
-                        {SideBarItems.map((item, i) => (
+                        {HeaderItems.map((item, i) => (
                             <ResponsiveNavLink
                                 key={i}
                                 href={route("register")}

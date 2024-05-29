@@ -10,7 +10,7 @@ type ItemType = {
     isMobile?: boolean;
 };
 
-export const SideBarItems: ItemType[] = [
+export const HeaderItems: ItemType[] = [
     {
         href: "home",
         label: "Anasayfa",

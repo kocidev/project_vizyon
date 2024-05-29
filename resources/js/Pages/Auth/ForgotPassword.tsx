@@ -1,8 +1,8 @@
-import MainLayout from "@/Layouts/MainLayout";
+import CoreLayout from "@/Layouts/Core";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
 import SecondaryButton from "@/Components/SecondaryButton";
 
@@ -18,7 +18,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
     };
 
     return (
-        <MainLayout title="Şifremi Unuttum">
+        <CoreLayout title="Şifremi Unuttum">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <div className="mb-6 space-y-2">
@@ -64,6 +64,6 @@ export default function ForgotPassword({ status }: { status?: string }) {
                     </form>
                 </div>
             </div>
-        </MainLayout>
+        </CoreLayout>
     );
 }

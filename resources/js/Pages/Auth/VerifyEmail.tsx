@@ -1,8 +1,9 @@
-import MainLayout from "@/Layouts/MainLayout";
+import CoreLayout from "@/Layouts/Core";
 import PrimaryButton from "@/Components/PrimaryButton";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
 import SecondaryButton from "@/Components/SecondaryButton";
+import Loading from "@/Components/Loading";
 
 export default function VerifyEmail({ status }: { status?: string }) {
     const { post, processing } = useForm({});
@@ -13,7 +14,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
     };
 
     return (
-        <MainLayout title="Email Doğrulama">
+        <CoreLayout title="Email Doğrulama">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <div className="mb-6 space-y-2">
@@ -28,7 +29,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     </div>
                     {status === "verification-link-sent" && (
                         <div className="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                            E-postaya yeni bir doğrulama bağlantısı gönderildi.
+                            Yeni bir doğrulama linki mail adresine gönderildi.
                         </div>
                     )}
                     <form onSubmit={submit}>
@@ -36,9 +37,10 @@ export default function VerifyEmail({ status }: { status?: string }) {
                             <PrimaryButton
                                 type="submit"
                                 disabled={processing}
-                                className="w-full flex items-center justify-center"
+                                className="w-full flex items-center justify-center gap-3"
                             >
                                 <h1>Maili Tekrar Gönder</h1>
+                                {true && <Loading />}
                             </PrimaryButton>
                             <Link href={route("login")} className="w-full">
                                 <SecondaryButton className="w-full flex items-center justify-center">
@@ -49,6 +51,6 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     </form>
                 </div>
             </div>
-        </MainLayout>
+        </CoreLayout>
     );
 }

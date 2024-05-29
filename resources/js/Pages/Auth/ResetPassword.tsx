@@ -1,10 +1,10 @@
 import { useEffect, FormEventHandler } from "react";
-import MainLayout from "@/Layouts/MainLayout";
+import CoreLayout from "@/Layouts/Core";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
 export default function ResetPassword({
     token,
@@ -33,7 +33,7 @@ export default function ResetPassword({
     };
 
     return (
-        <MainLayout title="Şifre Sıfırla">
+        <CoreLayout title="Şifre Sıfırla">
             <div className="mt-10 sm:max-w-md mx-auto">
                 <div className="p-6 border-y sm:border sm:rounded border-gray-300 dark:border-shark-950">
                     <div className="mb-6 space-y-2">
@@ -113,6 +113,6 @@ export default function ResetPassword({
                     </form>
                 </div>
             </div>
-        </MainLayout>
+        </CoreLayout>
     );
 }

@@ -1,15 +1,12 @@
-import { DataProvider } from "@/Providers/DataProvider";
-import ThemeProvider from "@/Providers/ThemeProvider";
+import { ThemeProvider } from "@/Providers/Theme";
 
 export const App: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <>
             <ThemeProvider>
-                <DataProvider>
-                    <main className="bg-F7F2EB dark:bg-111216 dark:text-FFF2D7">
-                        {children}
-                    </main>
-                </DataProvider>
+                <main className="bg-F7F2EB dark:bg-111216 dark:text-FFF2D7">
+                    {children}
+                </main>
             </ThemeProvider>
         </>
     );

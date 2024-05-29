@@ -14,6 +14,7 @@ export default {
     theme: {
         extend: {
             colors: {
+                dbdbdb: "#dbdbdb",
                 111216: "#111216",
                 F7F2EB: "#F7F2EB",
                 FFF2D7: "#FFF2D7",
@@ -92,6 +93,9 @@ export default {
                     "linear-gradient(to right, rgba(255, 255, 255, 0) 0, #F7F2EB 100%)",
                 "fade-dark":
                     "linear-gradient(to right, rgba(0, 0, 0, 0) 0, #111216 100%)",
+                "linear-1": "linear-gradient(to right, #00467f, #a5cc82)",
+                "linear-2": "linear-gradient(to right, #bbd2c5, #536976, #292e49)",
+                "linear-3": "linear-gradient(to right, #0052d4, #4364f7, #6fb1fc)",
             },
             animation: {
                 "fade-in": "fadeIn 1s ease-in-out",

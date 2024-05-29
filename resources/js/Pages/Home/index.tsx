@@ -1,21 +1,27 @@
 import { PageProps } from "@/types";
-import MainLayout from "@/Layouts/MainLayout";
+import CoreLayout from "@/Layouts/Core";
 import Theaters from "./Partials/Theaters";
 import LatestSeriesTrailers from "./Partials/LatestSeriesTrailers";
 import SearchDiv from "./Partials/SearchDiv";
+import Platforms from "./Partials/Platforms";
 
-const Home = ({ auth }: PageProps) => {
+const Home = ({ auth, ziggy }: PageProps) => {
     return (
         <>
-            <MainLayout user={auth.user} title="Anasayfa">
-                <SearchDiv />
-                <div id="theaters">
+            <CoreLayout user={auth.user} title="Anasayfa">
+                <section id="search-article">
+                    <SearchDiv />
+                </section>
+                <section id="theaters">
                     <Theaters />
-                </div>
-                <div id="latest-series-trailers">
+                </section>
+                <section id="latest-series-trailers">
                     <LatestSeriesTrailers />
-                </div>
-            </MainLayout>
+                </section>
+                <section id="platforms">
+                    <Platforms />
+                </section>
+            </CoreLayout>
         </>
     );
 };

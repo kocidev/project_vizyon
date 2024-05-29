@@ -4,7 +4,7 @@ import { User } from "@/types";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
 
-const MainLayout = ({
+const CoreLayout = ({
     user,
     title,
     children,
@@ -25,4 +25,4 @@ const MainLayout = ({
     );
 };
 
-export default MainLayout;
+export default CoreLayout;
