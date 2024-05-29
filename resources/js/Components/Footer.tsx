@@ -21,6 +21,15 @@ export default function Footer() {
                         {import.meta.env.VITE_APP_NAME}
                     </h1>
                 </Link>
+                <div className="ml-auto">
+                    <a href="https://www.themoviedb.org/" target="_blank">
+                        <img
+                            className="w-40"
+                            src="assets/images/tmdb/alt-long.svg"
+                            alt="themoviedatabase"
+                        />
+                    </a>
+                </div>
             </div>
         </footer>
     );

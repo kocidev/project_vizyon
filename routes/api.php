@@ -11,3 +11,7 @@ Route::prefix('movies')->group(function () {
 Route::prefix('series')->group(function () {
     Route::get('/upcoming', [SeriesController::class, 'getUpComing']);
 });
+
+Route::prefix('platforms')->group(function () {
+    Route::get('/upcoming', [SeriesController::class, 'getUpComing']);
+});

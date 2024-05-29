@@ -7,6 +7,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Link, useForm } from "@inertiajs/react";
 import classNames from "classnames";
+import Alert from "@/Components/Alert";
 
 export default function Login({
     status,
@@ -39,11 +40,7 @@ export default function Login({
                     <h1 className="text-lg text-center mt-2 text-royal-950 dark:text-FFF2D7 font-medium tracking-wider uppercase">
                         Hoşgeldin
                     </h1>
-                    {status && (
-                        <div className="mb-4 font-medium text-sm text-green-600">
-                            {status}
-                        </div>
-                    )}
+                    {status && <Alert type="info">{status}</Alert>}
                     <form onSubmit={submit}>
                         <div>
                             <InputLabel htmlFor="email" value="Email" />
