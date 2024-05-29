@@ -178,10 +178,10 @@ export default function Header({
                 </div>
             </header>
             {/* Mobile */}
-            <div className={classNames("relative sm:hidden")}>
+            <div className={classNames("fixed sm:hidden z-[99] w-full")}>
                 <div
                     className={classNames(
-                        "absolute w-full z-[99] p-1 py-3 shadow border-b transition-[opacity,transform] duration-200 mt-16",
+                        "absolute w-full p-1 py-3 shadow border-b transition-[opacity,transform] duration-200 mt-16",
                         "bg-F7F2EB dark:bg-111216 dark:border-copper-rose-600 border-danube-500",
                         {
                             "opacity-0 -translate-y-full":
