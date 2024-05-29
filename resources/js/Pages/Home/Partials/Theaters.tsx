@@ -21,9 +21,7 @@ const Theaters = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const moviesPerPage = 6;
     const [page, setPage] = useState<number>(1);
-    const [vizyondakiler, setVizyondakiler] = useState<iMoviesInTheaters[]>(
-        []
-    );
+    const [vizyondakiler, setVizyondakiler] = useState<iMoviesInTheaters[]>([]);
     useEffect(() => {
         GetTheatersMovies().then((theaters) => {
             setVizyondakiler(theaters);
@@ -43,6 +41,62 @@ const Theaters = () => {
             setPage(page === 1 ? totalPages : page - 1);
         }
     };
+
+    const SkeletonMovieButton: React.FC<{ little?: boolean }> = ({
+        little,
+    }) => (
+        <>
+            <div
+                role="status"
+                className={classNames("flex overflow-hidden relative h-full flex-col", {
+                    "w-full": !little,
+                    "w-1/2": little,
+                })}
+            >
+                <div className="flex items-center justify-center w-full animate-pulse bg-black/75 h-48">
+                    <svg
+                        className="w-10 h-10 text-gray-200/50 dark:text-gray-600/50"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 18"
+                    >
+                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                    </svg>
+                </div>
+                <div className="absolute w-full h-full bg-black/25 top-0 left-0">
+                    <div className="absolute bottom-2 left-2">
+                        <div className="h-2.5 bg-gray-200/50 rounded dark:bg-gray-700/50 w-24"></div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+
+    const SkeletonMovieGrid: React.FC = () => (
+        <div className="w-full h-full relative">
+            <div className="flex flex-col sm:flex-row border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in">
+                <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
+                    <div className="flex flex-row">
+                        <SkeletonMovieButton />
+                    </div>
+                    <div className="flex flex-row">
+                        <SkeletonMovieButton little />
+                        <SkeletonMovieButton little />
+                    </div>
+                </div>
+                <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
+                    <div className="flex flex-row">
+                        <SkeletonMovieButton little />
+                        <SkeletonMovieButton little />
+                    </div>
+                    <div className="flex flex-row">
+                        <SkeletonMovieButton />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     const MovieButton: React.FC<MovieButtonProps> = ({ movie, little }) => (
         <button
@@ -83,7 +137,7 @@ const Theaters = () => {
 
         return (
             <div className="w-full h-full relative">
-                <div className="flex flex-col sm:flex-row border-2 border-royal-950/50 dark:border-lotus-700/50 animate-fade-in">
+                <div className="flex flex-col sm:flex-row border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in">
                     <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                         <div className="flex flex-row">
                             <MovieButton movie={moviesToDisplay[0]} />
@@ -132,18 +186,18 @@ const Theaters = () => {
     };
 
     return (
-        !isLoading && (
-            <>
-                <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
-                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-3xl sm:text-4xl">
-                        Vizyondakiler
-                    </h1>
-                </div>
-                {vizyondakiler.length > 0 && (
-                    <MovieGrid movies={vizyondakiler} />
-                )}
-            </>
-        )
+        <>
+            <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
+                <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-3xl sm:text-4xl">
+                    Vizyondakiler
+                </h1>
+            </div>
+            {isLoading ? (
+                <SkeletonMovieGrid />
+            ) : (
+                vizyondakiler.length > 0 && <MovieGrid movies={vizyondakiler} />
+            )}
+        </>
     );
 };
 
