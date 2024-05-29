@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 const ScrollContainer: React.FC<{
-    className: string;
+    className?: string;
     children: React.ReactNode;
 }> = ({ className, children }) => {
     const containerRef = useRef<HTMLDivElement>(null);
