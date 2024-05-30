@@ -3,25 +3,21 @@ import classNames from "classnames";
 import { GetTheatersMovies } from "@/Services/Movie";
 import { iMoviesInTheaters } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
+import { genreIdsToNames } from "@/Utils/misc";
 
-interface Movie {
-    image: string;
-    name: string;
-    type: string;
-}
 interface MovieButtonProps {
-    movie: Movie;
-    little?: boolean;
+    movie: iMoviesInTheaters;
 }
 interface MovieGridProps {
-    movies: Movie[];
+    movies: iMoviesInTheaters[];
 }
 
 const Theaters = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const moviesPerPage = 6;
+    const moviesPerPage = 8;
     const [page, setPage] = useState<number>(1);
     const [vizyondakiler, setVizyondakiler] = useState<iMoviesInTheaters[]>([]);
+
     useEffect(() => {
         GetTheatersMovies().then((theaters) => {
             setVizyondakiler(theaters);
@@ -42,18 +38,15 @@ const Theaters = () => {
         }
     };
 
-    const SkeletonMovieButton: React.FC<{ little?: boolean }> = ({
-        little,
-    }) => (
+    const SkeletonMovieButton: React.FC = () => (
         <>
             <div
                 role="status"
-                className={classNames("flex overflow-hidden relative h-full flex-col", {
-                    "w-full": !little,
-                    "w-1/2": little,
-                })}
+                className={classNames(
+                    "flex overflow-hidden relative flex-col w-full h-[420px]"
+                )}
             >
-                <div className="flex items-center justify-center w-full animate-pulse bg-black/75 h-48">
+                <div className="h-full flex items-center justify-center w-full animate-pulse bg-black/75">
                     <svg
                         className="w-10 h-10 text-gray-200/50 dark:text-gray-600/50"
                         aria-hidden="true"
@@ -74,21 +67,21 @@ const Theaters = () => {
     );
 
     const SkeletonMovieGrid: React.FC = () => (
-        <div className="w-full h-full relative">
+        <div className="w-full h-full relative max-sm:px-2">
             <div className="flex flex-col sm:flex-row border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in">
                 <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                     <div className="flex flex-row">
                         <SkeletonMovieButton />
                     </div>
                     <div className="flex flex-row">
-                        <SkeletonMovieButton little />
-                        <SkeletonMovieButton little />
+                        <SkeletonMovieButton />
+                        <SkeletonMovieButton />
                     </div>
                 </div>
                 <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
                     <div className="flex flex-row">
-                        <SkeletonMovieButton little />
-                        <SkeletonMovieButton little />
+                        <SkeletonMovieButton />
+                        <SkeletonMovieButton />
                     </div>
                     <div className="flex flex-row">
                         <SkeletonMovieButton />
@@ -98,37 +91,38 @@ const Theaters = () => {
         </div>
     );
 
-    const MovieButton: React.FC<MovieButtonProps> = ({ movie, little }) => (
-        <button
-            className={classNames("flex overflow-hidden relative group", {
-                "w-full h-full flex-col": !little,
-                "w-1/2": little,
-            })}
-        >
-            <img
-                className="group-hover:scale-105 transition duration-500 w-full h-full"
-                src={movie.image}
-                alt={movie.name}
-            />
-            <div className="absolute w-full h-full bg-black/25 top-0 left-0">
-                <div className="flex flex-col gap-1">
-                    <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
-                            {"23 Mayıs"}
-                        </h1>
-                        <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
-                            {movie.type}
-                        </h1>
-                    </div>
-                    <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full">
-                        <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
-                            {movie.name}
-                        </h1>
+    const MovieButton: React.FC<MovieButtonProps> = ({ movie }) =>
+        movie && (
+            <button className={classNames("flex relative group")}>
+                <div className="w-full h-full relative">
+                    <img
+                        className="group-hover:scale-105 transition duration-500 w-full h-full object-cover"
+                        src={
+                            "https://image.tmdb.org/t/p/w500/" +
+                            movie.poster_path
+                        }
+                        alt={movie.title}
+                    />
+                    <div className="absolute w-full h-full bg-black/25 top-0 left-0">
+                        <div className="flex flex-col gap-1">
+                            <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                                    {"23 Mayıs"}
+                                </h1>
+                                <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
+                                    {genreIdsToNames(movie.genre_ids)}
+                                </h1>
+                            </div>
+                            <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full overflow-hidden whitespace-nowrap">
+                                <h1 className="overflow-hidden w-min py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                                    {movie.title}
+                                </h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </button>
-    );
+            </button>
+        );
 
     const MovieGrid: React.FC<MovieGridProps> = ({ movies }) => {
         const startIndex = (page - 1) * moviesPerPage;
@@ -136,27 +130,18 @@ const Theaters = () => {
         const moviesToDisplay = movies.slice(startIndex, endIndex);
 
         return (
-            <div className="w-full h-full relative">
-                <div className="flex flex-col sm:flex-row border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in">
-                    <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
-                        <div className="flex flex-row">
-                            <MovieButton movie={moviesToDisplay[0]} />
-                        </div>
-                        <div className="flex flex-row">
-                            <MovieButton movie={moviesToDisplay[1]} little />
-                            <MovieButton movie={moviesToDisplay[2]} little />
-                        </div>
-                    </div>
-                    <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
-                        <div className="flex flex-row">
-                            <MovieButton movie={moviesToDisplay[4]} little />
-                            <MovieButton movie={moviesToDisplay[5]} little />
-                        </div>
-                        <div className="flex flex-row">
-                            <MovieButton movie={moviesToDisplay[3]} />
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-2 absolute bottom-2 right-2">
+            <div className="w-full h-full relative max-sm:px-2">
+                <div
+                    className={classNames(
+                        "grid grid-cols-3 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
+                    )}
+                >
+                    {moviesToDisplay.map((movie, index) => (
+                        <MovieButton key={index} movie={movie} />
+                    ))}
+                </div>
+                <>
+                    <div className="flex items-center gap-2 absolute top-2 right-2">
                         <button
                             onClick={(e) => handlePageClick(e, false)}
                             className={classNames(
@@ -180,7 +165,7 @@ const Theaters = () => {
                             <MdArrowForwardIos />
                         </button>
                     </div>
-                </div>
+                </>
             </div>
         );
     };

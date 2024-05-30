@@ -5,7 +5,7 @@ export const GetTheatersMovies = async (
     page?: number
 ): Promise<iMoviesInTheaters[]> => {
     try {
-        const response = await apiClient.get("movies/theaters", {
+        const response = await apiClient.get("movie/theaters", {
             params: {
                 page: page,
             },
