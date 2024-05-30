@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+
 class SeriesController extends Controller
 {
-    public function getUpComing()
+    public function getUpComing(): JsonResponse
     {
         return response()->json([
             [

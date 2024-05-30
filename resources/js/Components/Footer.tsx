@@ -1,6 +1,6 @@
-import { Link } from "@inertiajs/react";
-import ApplicationLogo from "./ApplicationLogo";
 import classNames from "classnames";
+import { Link } from "@inertiajs/react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 
 export default function Footer() {
     return (

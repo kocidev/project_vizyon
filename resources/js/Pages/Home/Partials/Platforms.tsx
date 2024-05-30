@@ -1,93 +1,48 @@
+import { GetPlatformContent } from "@/Services/Platforms";
 import { PlatformType } from "@/types/basic.type";
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Platforms = () => {
-    const platforms: PlatformType[] = [
-        {
-            name: "amazon",
-            label: "Amazon",
-            contents: [
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-                {
-                    name: "Lorem Ipsum Lore",
-                    description: "Lorem Ipsum Lore Lorem Ipsum",
-                    image: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/e2499817c466504601f8619bd55d268645b3a614b4f2fecc17d77eafdc1c2857._RI_TTW_SX1080_FMjpg_.jpg",
-                    link: "",
-                    type: "movie",
-                },
-            ],
-        },
-        {
-            name: "netflix",
-            label: "Netflix",
-            contents: [],
-        },
-        {
-            name: "disney",
-            label: "Disney+",
-            contents: [],
-        },
-        {
-            name: "apple",
-            label: "Apple+",
-            contents: [],
-        },
-    ];
+    const PLATFORMS = [
+        { name: "amazon", label: "Amazon", contents: [], isLoad: false },
+        { name: "netflix", label: "Netflix", contents: [], isLoad: false },
+        { name: "disney", label: "Disney+", contents: [], isLoad: false },
+        { name: "apple", label: "AppleTV", contents: [], isLoad: false },
+    ] as Array<PlatformType & { isLoad: boolean }>;
 
-    const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>({
+    const [selectedPlatform, setSelectedPlatform] = useState<
+        PlatformType & { isLoad: boolean }
+    >({
         name: "amazon",
         label: "Amazon",
         contents: [],
+        isLoad: false,
     });
+
+    useEffect(() => {
+        if (!selectedPlatform.isLoad) {
+            GetPlatformContent(selectedPlatform.name).then((response) => {
+                setSelectedPlatform((prevPlatform) => ({
+                    ...prevPlatform,
+                    contents: response,
+                }));
+            });
+        }
+    }, []);
+
+    const handleChangePlatform = (
+        platform: PlatformType & { isLoad: boolean }
+    ) => {
+        if (!platform.isLoad) {
+            GetPlatformContent(platform.name).then((response) => {
+                setSelectedPlatform(() => ({
+                    ...platform,
+                    contents: response,
+                }));
+            });
+        }
+    };
 
     return (
         <>
@@ -122,11 +77,11 @@ const Platforms = () => {
                             </h1>
                         </div>
                         <div className="z-[100] w-min overflow-auto scrollbar-hide flex items-center border rounded-3xl border-royal-500 dark:border-white/30">
-                            {platforms.map((platform, i) => (
+                            {PLATFORMS.map((platform, i) => (
                                 <div
                                     key={i}
                                     onClick={() =>
-                                        setSelectedPlatform(platform)
+                                        handleChangePlatform(platform)
                                     }
                                     className={classNames(
                                         "px-4 py-0.5 rounded-3xl cursor-pointer",

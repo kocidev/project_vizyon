@@ -1,16 +1,16 @@
-import axios from "axios";
 import { iMoviesInTheaters } from "@/types/movie.type";
+import apiClient from "@/Services";
 
 export const GetTheatersMovies = async (
-    limit?: number
+    page?: number
 ): Promise<iMoviesInTheaters[]> => {
     try {
-        const response = await axios.get("api/movies/theaters");
+        const response = await apiClient.get("movies/theaters", {
+            params: {
+                page: page,
+            },
+        });
         const result: iMoviesInTheaters[] = response.data;
-
-        if (limit !== undefined) {
-            return result.slice(0, limit);
-        }
         return result;
     } catch (error) {
         console.error("Fetch error:", error);

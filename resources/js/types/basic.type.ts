@@ -1,11 +1,7 @@
+import { PlatformTypes, iPlatformContent } from "./platform.type";
+
 export type PlatformType = {
-    name: string;
+    name: PlatformTypes;
     label: string;
-    contents: {
-        name: string;
-        type: string;
-        link: string;
-        image: string;
-        description: string;
-    }[];
+    contents: iPlatformContent[];
 };

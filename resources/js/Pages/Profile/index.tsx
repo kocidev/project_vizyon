@@ -1,6 +1,6 @@
-import DeleteUserForm from "./Partials/DeleteUserForm";
-import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
-import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
+import DeleteUserForm from "@/Pages/Profile/Partials/DeleteUserForm";
+import UpdatePasswordForm from "@/Pages/Profile/Partials/UpdatePasswordForm";
+import UpdateProfileInformationForm from "@/Pages/Profile/Partials/UpdateProfileInformationForm";
 import { Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import CoreLayout from "@/Layouts/Core";

@@ -8,11 +8,11 @@ import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import { User } from "@/types";
 import useTheme from "@/Hooks/theme/useTheme";
-import ResponsiveNavLink from "../ResponsiveNavLink";
-import ApplicationLogo from "../ApplicationLogo";
-import Dropdown from "../Dropdown";
-import NavLink from "../NavLink";
-import { HeaderItems } from "./items";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import Dropdown from "@/Components/Dropdown";
+import NavLink from "@/Components/NavLink";
+import { HeaderItems } from "@/Components/Header/items";
 
 export default function Header({
     user,

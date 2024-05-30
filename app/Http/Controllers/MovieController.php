@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+
 class MovieController extends Controller
 {
-    public function getTheaters()
+    public function getTheaters(): JsonResponse
     {
         return response()->json([
             [
