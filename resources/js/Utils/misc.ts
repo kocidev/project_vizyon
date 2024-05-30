@@ -1,4 +1,4 @@
-export function genreIdsToNames(genreIds: number[]): string {
+export function genreIdsToNamesForMovies(genreIds: number[]): string {
     const genres: { [id: number]: string } = {
         28: "Aksiyon",
         12: "Macera",

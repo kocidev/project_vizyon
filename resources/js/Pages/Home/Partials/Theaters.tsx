@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { GetTheatersMovies } from "@/Services/Movie";
 import { iMoviesInTheaters } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
-import { genreIdsToNames } from "@/Utils/misc";
+import { genreIdsToNamesForMovies } from "@/Utils/misc";
 
 interface MovieButtonProps {
     movie: iMoviesInTheaters;
@@ -14,13 +14,13 @@ interface MovieGridProps {
 
 const Theaters = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const moviesPerPage = 8;
+    const moviesPerPage = 4;
     const [page, setPage] = useState<number>(1);
     const [vizyondakiler, setVizyondakiler] = useState<iMoviesInTheaters[]>([]);
 
     useEffect(() => {
-        GetTheatersMovies().then((theaters) => {
-            setVizyondakiler(theaters);
+        GetTheatersMovies(1).then((theaters) => {
+            setVizyondakiler(theaters.results);
             setIsLoading(false);
         });
     }, []);
@@ -68,25 +68,15 @@ const Theaters = () => {
 
     const SkeletonMovieGrid: React.FC = () => (
         <div className="w-full h-full relative max-sm:px-2">
-            <div className="flex flex-col sm:flex-row border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in">
-                <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
-                    <div className="flex flex-row">
-                        <SkeletonMovieButton />
-                    </div>
-                    <div className="flex flex-row">
-                        <SkeletonMovieButton />
-                        <SkeletonMovieButton />
-                    </div>
-                </div>
-                <div className="flex flex-col w-full sm:min-w-[50%] sm:max-w-[50%]">
-                    <div className="flex flex-row">
-                        <SkeletonMovieButton />
-                        <SkeletonMovieButton />
-                    </div>
-                    <div className="flex flex-row">
-                        <SkeletonMovieButton />
-                    </div>
-                </div>
+            <div
+                className={classNames(
+                    "grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
+                )}
+            >
+                <SkeletonMovieButton />
+                <SkeletonMovieButton />
+                <SkeletonMovieButton />
+                <SkeletonMovieButton />
             </div>
         </div>
     );
@@ -94,7 +84,7 @@ const Theaters = () => {
     const MovieButton: React.FC<MovieButtonProps> = ({ movie }) =>
         movie && (
             <button className={classNames("flex relative group")}>
-                <div className="w-full h-full relative">
+                <div className="w-full h-full relativ overflow-hidden">
                     <img
                         className="group-hover:scale-105 transition duration-500 w-full h-full object-cover"
                         src={
@@ -110,7 +100,7 @@ const Theaters = () => {
                                     {"23 Mayıs"}
                                 </h1>
                                 <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
-                                    {genreIdsToNames(movie.genre_ids)}
+                                    {genreIdsToNamesForMovies(movie.genre_ids)}
                                 </h1>
                             </div>
                             <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full overflow-hidden whitespace-nowrap">
@@ -133,7 +123,7 @@ const Theaters = () => {
             <div className="w-full h-full relative max-sm:px-2">
                 <div
                     className={classNames(
-                        "grid grid-cols-3 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
+                        "grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
                     )}
                 >
                     {moviesToDisplay.map((movie, index) => (

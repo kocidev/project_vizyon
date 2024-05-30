@@ -16,11 +16,11 @@ class TmdbService
     /**
      * Get a list of movies that are currently in theatres.
      */
-    public function getMovieNowPlaying()
+    public function getMovieNowPlaying(int $page)
     {
         $response = $this->client->get('movie/now_playing', [
             'query' => [
-                'page' => 1,
+                'page' => $page,
                 'language' => 'tr',
                 'region' => 'tr',
             ],

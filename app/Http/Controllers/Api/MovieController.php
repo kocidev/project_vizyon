@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\TmdbService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
@@ -14,10 +15,16 @@ class MovieController extends Controller
     {
         $this->tmdbService = $tmdbService;
     }
-    
-    public function getTheaters(): JsonResponse
+
+    public function getTheaters(Request $request): JsonResponse
     {
-        // $movies = $this->tmdbService->getMovieNowPlaying();
+        // $page = $request->query('page', 1);
+        // $response = $this->tmdbService->getMovieNowPlaying($page);
+
+        /**
+         * Fake Response
+         */
+
         $movies = [
             [
                 "adult" => false,
@@ -411,6 +418,9 @@ class MovieController extends Controller
                 "vote_count" => 39
             ]
         ];
-        return response()->json($movies);
+        $response = [
+            "results" => $movies,
+        ];
+        return response()->json($response);
     }
 }

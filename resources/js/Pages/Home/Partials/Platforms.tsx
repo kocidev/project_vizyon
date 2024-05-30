@@ -3,22 +3,19 @@ import { PlatformType } from "@/types/basic.type";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 
+type tExtraPlatformType = PlatformType & { isLoad: boolean };
+
 const Platforms = () => {
-    const PLATFORMS = [
+    const [Platforms, setPlatforms] = useState<tExtraPlatformType[]>([
         { name: "amazon", label: "Amazon", contents: [], isLoad: false },
         { name: "netflix", label: "Netflix", contents: [], isLoad: false },
         { name: "disney", label: "Disney+", contents: [], isLoad: false },
         { name: "apple", label: "AppleTV", contents: [], isLoad: false },
-    ] as Array<PlatformType & { isLoad: boolean }>;
+    ]);
 
-    const [selectedPlatform, setSelectedPlatform] = useState<
-        PlatformType & { isLoad: boolean }
-    >({
-        name: "amazon",
-        label: "Amazon",
-        contents: [],
-        isLoad: false,
-    });
+    const [selectedPlatform, setSelectedPlatform] = useState<tExtraPlatformType>(
+        Platforms[0]
+    );
 
     useEffect(() => {
         if (!selectedPlatform.isLoad) {
@@ -31,16 +28,24 @@ const Platforms = () => {
         }
     }, []);
 
-    const handleChangePlatform = (
-        platform: PlatformType & { isLoad: boolean }
-    ) => {
-        if (!platform.isLoad) {
-            GetPlatformContent(platform.name).then((response) => {
-                setSelectedPlatform(() => ({
+    const handleChangePlatform = async (platformName: string) => {
+        const platform = Platforms.find((p) => p.name === platformName);
+        if (platform) {
+            setSelectedPlatform(platform);
+            if (!platform.isLoad) {
+                const response = await GetPlatformContent(platform.name);
+                const updatedPlatform = {
                     ...platform,
                     contents: response,
-                }));
-            });
+                    isLoad: true,
+                };
+                setPlatforms((prevPlatforms) =>
+                    prevPlatforms.map((p) =>
+                        p.name === platformName ? updatedPlatform : p
+                    )
+                );
+                setSelectedPlatform(updatedPlatform);
+            }
         }
     };
 
@@ -77,11 +82,11 @@ const Platforms = () => {
                             </h1>
                         </div>
                         <div className="z-[100] w-min overflow-auto scrollbar-hide flex items-center border rounded-3xl border-royal-500 dark:border-white/30">
-                            {PLATFORMS.map((platform, i) => (
+                            {Platforms.map((platform, i) => (
                                 <div
                                     key={i}
                                     onClick={() =>
-                                        handleChangePlatform(platform)
+                                        handleChangePlatform(platform.name)
                                     }
                                     className={classNames(
                                         "px-4 py-0.5 rounded-3xl cursor-pointer",
