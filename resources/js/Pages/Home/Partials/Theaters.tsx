@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { GetTheatersMovies } from "@/Services/Movie";
-import { iMoviesInTheaters } from "@/types/movie.type";
+import { iMovie } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
 import {
     formatDateToTurkishMonthDay,
@@ -10,17 +10,17 @@ import {
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
 
 interface MovieButtonProps {
-    movie: iMoviesInTheaters;
+    movie: iMovie;
 }
 interface MovieGridProps {
-    movies: iMoviesInTheaters[];
+    movies: iMovie[];
 }
 
 const Theaters = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const moviesPerPage = 4;
     const [page, setPage] = useState<number>(1);
-    const [vizyondakiler, setVizyondakiler] = useState<iMoviesInTheaters[]>([]);
+    const [vizyondakiler, setVizyondakiler] = useState<iMovie[]>([]);
 
     useEffect(() => {
         GetTheatersMovies(1).then((theaters) => {
@@ -168,7 +168,7 @@ const Theaters = () => {
     return (
         <>
             <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
-                <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-3xl sm:text-4xl">
+                <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
                     Vizyondakiler
                 </h1>
             </div>
