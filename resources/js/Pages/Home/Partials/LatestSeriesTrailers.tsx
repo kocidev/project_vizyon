@@ -25,7 +25,7 @@ const LatestSeriesTrailers = () => {
         !isLoading && (
             <>
                 <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-2 sm:mb-4">
-                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-3xl sm:text-4xl">
+                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
                         Son Fragmanlar
                     </h1>
                 </div>
