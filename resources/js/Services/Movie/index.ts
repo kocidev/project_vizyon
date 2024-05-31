@@ -1,7 +1,4 @@
-import {
-    iGetTheatersMoviesResponse,
-    iMoviesInTheaters,
-} from "@/types/movie.type";
+import { iGetTheatersMoviesResponse } from "@/types/movie.type";
 import apiClient from "@/Services";
 
 export const GetTheatersMovies = async (

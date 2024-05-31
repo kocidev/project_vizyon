@@ -1,25 +1,30 @@
-export interface iMoviesInTheaters {
-    id: number;
+export interface iMovie {
     adult: boolean;
     backdrop_path: string;
-    poster_path: string;
     genre_ids: number[];
+    id: number;
     original_language: string;
     original_title: string;
-    title: string;
-    video: string | boolean;
     overview: string;
     popularity: number;
+    poster_path: string;
     release_date: string;
+    title: string;
+    video: string | boolean;
     vote_average: number;
     vote_count: number;
 }
 
-export interface iGetTheatersMoviesResponse {
+export interface iMovieDiscoverResponse {
+    page: number;
+    results: iMovie[];
+    total_pages: number;
+    total_results: number;
+}
+
+export interface iGetTheatersMoviesResponse extends iMovieDiscoverResponse {
     dates: {
         maximum: string;
         minimum: string;
     };
-    page: number;
-    results: iMoviesInTheaters[];
 }
