@@ -4,6 +4,7 @@ import Theaters from "@/Pages/Home/Partials/Theaters";
 import LatestSeriesTrailers from "@/Pages/Home/Partials/LatestSeriesTrailers";
 import SearchDiv from "@/Pages/Home/Partials/SearchDiv";
 import PlatformContents from "@/Pages/Home/Partials/PlatformContents";
+import UpComing from "./Partials/UpComing";
 
 const Home = ({ auth }: PageProps) => {
     return (
@@ -20,6 +21,9 @@ const Home = ({ auth }: PageProps) => {
                 </section>
                 <section id="platform-contents">
                     <PlatformContents />
+                </section>
+                <section id="up-coming">
+                    <UpComing />
                 </section>
             </CoreLayout>
         </>
