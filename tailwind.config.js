@@ -102,11 +102,11 @@ export default {
                     "linear-gradient(to right, #0052d4, #4364f7, #6fb1fc)",
             },
             animation: {
-                "fade-in": "fadeIn 1s ease-in-out",
+                "fade-in": "fadeIn .5s ease-in-out",
             },
             keyframes: {
                 fadeIn: {
-                    "0%": { opacity: "25%" },
+                    "0%": { opacity: "75%" },
                     "100%": { opacity: "1" },
                 },
             },

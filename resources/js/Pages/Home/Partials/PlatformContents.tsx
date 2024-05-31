@@ -1,3 +1,4 @@
+import LazyLoadedImage from "@/Components/LazyLoadedImage";
 import { GetPlatformContent } from "@/Services/Platforms";
 import { PlatformType } from "@/types/basic.type";
 import classNames from "classnames";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 
 type tExtraPlatformType = PlatformType & { isLoad: boolean };
 
-const Platforms = () => {
+const PlatformContents = () => {
     const [Platforms, setPlatforms] = useState<tExtraPlatformType[]>([
         { name: "amazon", label: "Amazon", contents: [], isLoad: false },
         { name: "netflix", label: "Netflix", contents: [], isLoad: false },
@@ -13,9 +14,8 @@ const Platforms = () => {
         { name: "apple", label: "AppleTV", contents: [], isLoad: false },
     ]);
 
-    const [selectedPlatform, setSelectedPlatform] = useState<tExtraPlatformType>(
-        Platforms[0]
-    );
+    const [selectedPlatform, setSelectedPlatform] =
+        useState<tExtraPlatformType>(Platforms[0]);
 
     useEffect(() => {
         if (!selectedPlatform.isLoad) {
@@ -114,10 +114,11 @@ const Platforms = () => {
                                             (content, i) => (
                                                 <div key={i}>
                                                     <div className="w-72">
-                                                        <img
-                                                            className="rounded-lg shadow"
+                                                        <LazyLoadedImage
+                                                            height={160}
                                                             src={content.image}
                                                             alt="platform-content-image"
+                                                            imgClassName="rounded-lg shadow"
                                                         />
                                                     </div>
                                                     <div className="text-center mt-2 text-white dark:text-current">
@@ -143,4 +144,4 @@ const Platforms = () => {
         </>
     );
 };
-export default Platforms;
+export default PlatformContents;

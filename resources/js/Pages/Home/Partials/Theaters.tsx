@@ -3,7 +3,11 @@ import classNames from "classnames";
 import { GetTheatersMovies } from "@/Services/Movie";
 import { iMoviesInTheaters } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
-import { genreIdsToNamesForMovies } from "@/Utils/misc";
+import {
+    formatDateToTurkishMonthDay,
+    genreIdsToNamesForMovies,
+} from "@/Utils/misc";
+import LazyLoadedImage from "@/Components/LazyLoadedImage";
 
 interface MovieButtonProps {
     movie: iMoviesInTheaters;
@@ -59,7 +63,7 @@ const Theaters = () => {
                 </div>
                 <div className="absolute w-full h-full bg-black/25 top-0 left-0">
                     <div className="absolute bottom-2 left-2">
-                        <div className="h-2.5 bg-gray-200/50 rounded dark:bg-gray-700/50 w-24"></div>
+                        <div className="h-2.5 bg-gray-200/25 rounded dark:bg-gray-700/25 w-24"></div>
                     </div>
                 </div>
             </div>
@@ -67,10 +71,10 @@ const Theaters = () => {
     );
 
     const SkeletonMovieGrid: React.FC = () => (
-        <div className="w-full h-full relative max-sm:px-2">
+        <div className="w-full relative max-sm:px-2 min-h-[620px] md:min-h-[420px]">
             <div
                 className={classNames(
-                    "grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
+                    "h-full grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
                 )}
             >
                 <SkeletonMovieButton />
@@ -83,35 +87,36 @@ const Theaters = () => {
 
     const MovieButton: React.FC<MovieButtonProps> = ({ movie }) =>
         movie && (
-            <button className={classNames("flex relative group")}>
-                <div className="w-full h-full relativ overflow-hidden">
-                    <img
-                        className="group-hover:scale-105 transition duration-500 w-full h-full object-cover"
+            <div className={classNames("flex relative group")}>
+                <div className="w-full h-full relative overflow-hidden">
+                    <LazyLoadedImage
+                        className="w-full h-full group-hover:scale-105 transition duration-500"
                         src={
-                            "https://image.tmdb.org/t/p/w500/" +
+                            "https://image.tmdb.org/t/p/w780" +
                             movie.poster_path
                         }
                         alt={movie.title}
+                        height={420}
                     />
                     <div className="absolute w-full h-full bg-black/25 top-0 left-0">
-                        <div className="flex flex-col gap-1">
-                            <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
-                                    {"23 Mayıs"}
-                                </h1>
-                                <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
-                                    {genreIdsToNamesForMovies(movie.genre_ids)}
-                                </h1>
-                            </div>
-                            <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full overflow-hidden whitespace-nowrap">
-                                <h1 className="overflow-hidden w-min py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
-                                    {movie.title}
-                                </h1>
-                            </div>
+                        <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                                {formatDateToTurkishMonthDay(
+                                    movie.release_date
+                                )}
+                            </h1>
+                            <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
+                                {genreIdsToNamesForMovies(movie.genre_ids)}
+                            </h1>
+                        </div>
+                        <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full overflow-hidden whitespace-nowrap">
+                            <h1 className="overflow-hidden w-min py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                                {movie.title}
+                            </h1>
                         </div>
                     </div>
                 </div>
-            </button>
+            </div>
         );
 
     const MovieGrid: React.FC<MovieGridProps> = ({ movies }) => {
@@ -120,10 +125,10 @@ const Theaters = () => {
         const moviesToDisplay = movies.slice(startIndex, endIndex);
 
         return (
-            <div className="w-full h-full relative max-sm:px-2">
+            <div className="w-full relative max-sm:px-2 min-h-[620px] md:min-h-[420px]">
                 <div
                     className={classNames(
-                        "grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
+                        "h-full grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
                     )}
                 >
                     {moviesToDisplay.map((movie, index) => (

@@ -3,9 +3,9 @@ import CoreLayout from "@/Layouts/Core";
 import Theaters from "@/Pages/Home/Partials/Theaters";
 import LatestSeriesTrailers from "@/Pages/Home/Partials/LatestSeriesTrailers";
 import SearchDiv from "@/Pages/Home/Partials/SearchDiv";
-import Platforms from "@/Pages/Home/Partials/Platforms";
+import PlatformContents from "@/Pages/Home/Partials/PlatformContents";
 
-const Home = ({ auth, ziggy }: PageProps) => {
+const Home = ({ auth }: PageProps) => {
     return (
         <>
             <CoreLayout user={auth.user} title="Anasayfa">
@@ -18,8 +18,8 @@ const Home = ({ auth, ziggy }: PageProps) => {
                 <section id="latest-series-trailers">
                     <LatestSeriesTrailers />
                 </section>
-                <section id="platforms">
-                    <Platforms />
+                <section id="platform-contents">
+                    <PlatformContents />
                 </section>
             </CoreLayout>
         </>
