@@ -54,7 +54,7 @@ const PlatformContents = () => {
             <div
                 className={classNames(
                     "relative",
-                    "w-full min-h-80",
+                    "w-full",
                     "animate-fade-in",
                     "mt-10",
                     "bg-dbdbdb dark:bg-111216",
@@ -66,7 +66,7 @@ const PlatformContents = () => {
             >
                 <>
                     <div className="absolute inset-0 bg-royal-950/80 dark:bg-black/80 z-10"></div>
-                    <div className="absolute right-1 bottom-1">
+                    <div className="absolute right-10 bottom-2">
                         <img
                             width={52}
                             src={`assets/images/platforms/${selectedPlatform.name}/logo.png`}
@@ -74,7 +74,7 @@ const PlatformContents = () => {
                         />
                     </div>
                 </>
-                <div className="flex flex-col w-full h-full z-50 relative pl-8 py-4 justify-between">
+                <div className="relative w-full z-50 pl-8 py-4 flex flex-col justify-between min-h-[22rem]">
                     <div className="flex max-md:flex-col md:items-center gap-4 pr-4">
                         <div className="lg:mr-14">
                             <h1 className="text-xl font-semibold tracking-wide text-white">
@@ -106,35 +106,31 @@ const PlatformContents = () => {
                         </div>
                     </div>
                     {selectedPlatform.contents.length > 0 && (
-                        <div className="mt-6">
-                            <div className="edge_fade_blur after:bg-fade-royal dark:after:bg-fade-dark">
-                                <div className="w-full overflow-auto">
-                                    <div className="flex gap-4 items-center overflow-auto pr-8 pb-8">
-                                        {selectedPlatform.contents.map(
-                                            (content, i) => (
-                                                <div key={i}>
-                                                    <div className="w-72">
-                                                        <LazyLoadedImage
-                                                            height={160}
-                                                            src={content.image}
-                                                            alt="platform-content-image"
-                                                            imgClassName="rounded-lg shadow"
-                                                        />
-                                                    </div>
-                                                    <div className="text-center mt-2 text-white dark:text-current">
-                                                        <h1 className="text-xl font-semibold">
-                                                            {content.name}
-                                                        </h1>
-                                                        <h1 className="font-medium">
-                                                            {
-                                                                content.description
-                                                            }
-                                                        </h1>
-                                                    </div>
+                        <div className="edge_fade_blur after:bg-fade-royal dark:after:bg-fade-dark mt-4">
+                            <div className="w-full overflow-auto">
+                                <div className="flex gap-4 items-center overflow-auto pr-8 sm:pb-6 max-sm:scrollbar-hide">
+                                    {selectedPlatform.contents.map(
+                                        (content, i) => (
+                                            <div key={i}>
+                                                <div className="w-72">
+                                                    <LazyLoadedImage
+                                                        height={160}
+                                                        src={content.image}
+                                                        alt="platform-content-image"
+                                                        imgClassName="rounded-lg shadow"
+                                                    />
                                                 </div>
-                                            )
-                                        )}
-                                    </div>
+                                                <div className="text-center mt-2 text-white dark:text-current">
+                                                    <h1 className="text-xl font-semibold">
+                                                        {content.name}
+                                                    </h1>
+                                                    <h1 className="font-medium">
+                                                        {content.description}
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -98,8 +98,8 @@ const Theaters = () => {
                         alt={movie.title}
                         height={420}
                     />
-                    <div className="absolute w-full h-full bg-black/25 top-0 left-0">
-                        <div className="absolute top-1 flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute w-full h-full bg-black/25 top-0 left-0 flex flex-col justify-between">
+                        <div className="flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
                                 {formatDateToTurkishMonthDay(
                                     movie.release_date
@@ -109,8 +109,8 @@ const Theaters = () => {
                                 {genreIdsToNamesForMovies(movie.genre_ids)}
                             </h1>
                         </div>
-                        <div className="absolute bottom-0 left-0 flex flex-col gap-1 w-full overflow-hidden whitespace-nowrap">
-                            <h1 className="overflow-hidden w-min py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                        <div className="whitespace-nowrap max-w-full w-min">
+                            <h1 className="overflow-hidden text-ellipsis py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
                                 {movie.title}
                             </h1>
                         </div>
