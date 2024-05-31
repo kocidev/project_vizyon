@@ -14,7 +14,7 @@ class TmdbService
     }
 
     /**
-     * Get a list of movies that are currently in theatres.
+     * Get a list of movies that are currently in theaters.
      */
     public function getMovieNowPlaying(int $page)
     {
