@@ -24,7 +24,7 @@ const Theaters = () => {
 
     useEffect(() => {
         GetTheatersMovies(1).then((theaters) => {
-            setVizyondakiler(theaters.results);
+            setVizyondakiler(theaters);
             setIsLoading(false);
         });
     }, []);

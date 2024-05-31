@@ -30,10 +30,10 @@ class MovieController extends Controller
 
         try {
             $response = Cache::remember($cacheKey, $ttl, function () use ($page) {
-                $response = $this->tmdbService->getMovieNowPlaying($page);
-                if (isset($response['results'])) {
+                $service = $this->tmdbService->getMovieNowPlaying($page);
+                if (isset($service['results'])) {
                     Log::channel("tmdb")->info('Fetching:TMDbAPI:Movie:NowPlaying:Page:' . $page);
-                    return $response['results'];
+                    return $service['results'];
                 } else {
                     Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:NowPlaying->Invalid response format');
                     throw new \RuntimeException('Invalid response format.');
@@ -61,10 +61,10 @@ class MovieController extends Controller
 
         try {
             $response = Cache::remember($cacheKey, 86400, function () use ($page) {
-                Log::channel("tmdb")->info('Fetching:TMDbAPI:Movie:UpComing:Page:' . $page);
-                $response = $this->tmdbService->getMovieUpComing($page);
-                if (isset($response['results'])) {
-                    return $response['results'];
+                $service = $this->tmdbService->getMovieUpComing($page);
+                if (isset($service['results'])) {
+                    Log::channel("tmdb")->info('Fetching:TMDbAPI:Movie:UpComing:Page:' . $page);
+                    return $service['results'];
                 } else {
                     Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:UpComing->Invalid response format');
                     throw new \RuntimeException('Invalid response format.');
@@ -88,10 +88,10 @@ class MovieController extends Controller
         $cacheKey = "movie_{$movieId}_videos";
         try {
             $response = Cache::remember($cacheKey, $ttl, function () use ($movieId) {
-                Log::channel("tmdb")->info("Fetching:TMDbAPI:Movie:{$movieId}:Videos");
-                $response = $this->tmdbService->getMovieVideosById($movieId);
-                if (isset($response['results'])) {
-                    return $response['results'];
+                $service = $this->tmdbService->getMovieVideosById($movieId);
+                if (isset($service['results'])) {
+                    Log::channel("tmdb")->info("Fetching:TMDbAPI:Movie:{$movieId}:Videos");
+                    return $service['results'];
                 } else {
                     Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:UpComing->Invalid response format');
                     throw new \RuntimeException('Invalid response format.');

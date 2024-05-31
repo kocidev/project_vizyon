@@ -18,7 +18,7 @@ export const GetTheatersMovies = async (
         return result;
     } catch (error) {
         console.error("Fetch error:", error);
-        return {} as iGetTheatersMoviesResponse;
+        throw new Error("Services movie error.");
     }
 };
 
@@ -35,7 +35,7 @@ export const GetUpComingMovies = async (
         return result;
     } catch (error) {
         console.error("Fetch error:", error);
-        return {} as iGetUpComingMoviesResponse;
+        throw new Error("Services movie error.");
     }
 };
 
@@ -48,6 +48,6 @@ export const GetMovieVideos = async (
         return result;
     } catch (error) {
         console.error("Fetch error:", error);
-        return {} as iGetMovieVideosResponse;
+        throw new Error("Services movie error.");
     }
 };

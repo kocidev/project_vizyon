@@ -22,16 +22,9 @@ export interface iMovieDiscoverResponse {
     total_results: number;
 }
 
-export interface iGetTheatersMoviesResponse extends iMovieDiscoverResponse {
-    dates: {
-        maximum: string;
-        minimum: string;
-    };
-}
+export type iGetTheatersMoviesResponse = iMovie[];
 
-export interface iGetUpComingMoviesResponse extends iGetTheatersMoviesResponse {
-    //
-}
+export type iGetUpComingMoviesResponse = iMovie[];
 
 export type iGetMovieVideosResponse = {
     iso_639_1: string;

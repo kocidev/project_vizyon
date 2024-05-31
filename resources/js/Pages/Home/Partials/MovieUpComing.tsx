@@ -16,7 +16,7 @@ const MovieUpComing = () => {
 
     useEffect(() => {
         GetUpComingMovies(1).then((movies) => {
-            setUpComings(movies.results);
+            setUpComings(movies);
             setIsLoading(false);
         });
     }, []);
