@@ -1,4 +1,8 @@
-import { iGetTheatersMoviesResponse } from "@/types/movie.type";
+import {
+    iGetTheatersMoviesResponse,
+    iGetUpComingMoviesResponse,
+    iGetMovieVideosResponse,
+} from "@/types/movie.type";
 import apiClient from "@/Services";
 
 export const GetTheatersMovies = async (
@@ -15,5 +19,35 @@ export const GetTheatersMovies = async (
     } catch (error) {
         console.error("Fetch error:", error);
         return {} as iGetTheatersMoviesResponse;
+    }
+};
+
+export const GetUpComingMovies = async (
+    page: number
+): Promise<iGetUpComingMoviesResponse> => {
+    try {
+        const response = await apiClient.get("movie/upcoming", {
+            params: {
+                page: page,
+            },
+        });
+        const result: iGetUpComingMoviesResponse = response.data;
+        return result;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return {} as iGetUpComingMoviesResponse;
+    }
+};
+
+export const GetMovieVideos = async (
+    movieId: number
+): Promise<iGetMovieVideosResponse> => {
+    try {
+        const response = await apiClient.get(`movie/${movieId}/videos`);
+        const result: iGetMovieVideosResponse = response.data;
+        return result;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return {} as iGetMovieVideosResponse;
     }
 };

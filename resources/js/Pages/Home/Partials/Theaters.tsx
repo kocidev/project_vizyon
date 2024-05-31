@@ -91,10 +91,7 @@ const Theaters = () => {
                 <div className="w-full h-full relative overflow-hidden">
                     <LazyLoadedImage
                         className="w-full h-full group-hover:scale-105 transition duration-500"
-                        src={
-                            "https://image.tmdb.org/t/p/w780" +
-                            movie.poster_path
-                        }
+                        src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                         alt={movie.title}
                         height={420}
                     />
