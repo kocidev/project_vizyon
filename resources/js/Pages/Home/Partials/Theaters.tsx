@@ -125,7 +125,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                     <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
                         Vizyondakiler
                     </h1>
-                    <LuExternalLink className="w-5 h-5 mt-0.5" />
+                    <LuExternalLink className="w-5 h-5 mt-0.5 text-royal-950 dark:text-FFF2D7" />
                 </Link>
             </div>
             {theaters && theaters.length > 0 && <MovieGrid movies={theaters} />}

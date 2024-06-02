@@ -15,8 +15,8 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('movie')->group(function () {
     Route::get('/theaters', [MovieController::class, 'theaters'])->name("movie.theaters");
-    Route::get('/upcoming', [MovieController::class, 'upcoming']);
-    Route::get('/{movie}', [MovieController::class, 'show']);
+    Route::get('/upcoming', [MovieController::class, 'upcoming'])->name("movie.upcoming");
+    Route::get('/{movie}', [MovieController::class, 'show'])->name("movie.show");
 });
 
 require __DIR__ . '/auth.php';

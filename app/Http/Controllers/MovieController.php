@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TmdbService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 use Inertia\Inertia;
@@ -17,14 +18,27 @@ class MovieController extends Controller
         $this->tmdbService = $tmdbService;
     }
 
+    public function show(): JsonResponse
+    {
+        abort(404);
+    }
+
+
     /**
      * Display the movie theaters.
      */
     public function theaters(Request $request): Response
     {
-        $theaters = $this->tmdbService->getMovieNowPlaying(1);
+        $request->validate([
+            'page' => 'nullable|integer|min:1',
+        ]);
+        $page = $request->query('page', 1);
+        
+        $theaters = $this->tmdbService->getMovieNowPlaying($page);
+        $theatersData = $theaters->isSuccess ? $theaters->data : [];
+
         return Inertia::render('Movie/Theaters/index', [
-            'theaters' => $theaters
+            'theaters' => $theatersData
         ]);
     }
 }
