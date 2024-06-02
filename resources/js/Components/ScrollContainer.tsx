@@ -1,5 +1,5 @@
+import React, { useRef, useState, useEffect } from "react";
 import classNames from "classnames";
-import React, { useEffect, useRef, useState } from "react";
 
 const ScrollContainer: React.FC<{
     className?: string;
@@ -27,7 +27,7 @@ const ScrollContainer: React.FC<{
         const container = containerRef.current;
         if (container) {
             const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 1;
+            const walk = x - startX;
             container.scrollLeft = scrollLeft - walk;
         }
     };
@@ -66,18 +66,23 @@ const ScrollContainer: React.FC<{
         <div
             ref={containerRef}
             className={classNames(
-                "cursor-grab flex items-center overflow-auto select-none max-sm:scrollbar-hide pb-6 pr-10",
-                "relative",
+                "relative overflow-auto",
+                "cursor-grab",
+                "select-none pb-14 pr-10",
+                "max-sm:scrollbar-hide",
                 className
             )}
             onMouseDown={handleMouseDown}
         >
-            {React.Children.map(children, (child) =>
-                React.cloneElement(child as React.ReactElement<any>, {
-                    onMouseEnter: handleMouseEnterItem,
-                    onMouseLeave: handleMouseLeaveItem,
-                })
-            )}
+            {React.Children.map(children, (child) => (
+                <div
+                    className="scroll-container-parent cursor-default flex"
+                    onMouseEnter={handleMouseEnterItem}
+                    onMouseLeave={handleMouseLeaveItem}
+                >
+                    {child}
+                </div>
+            ))}
         </div>
     );
 };

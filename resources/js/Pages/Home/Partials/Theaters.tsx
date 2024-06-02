@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
-import { GetTheatersMovies } from "@/Services/Movie";
 import { iMovie } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
+import { LuExternalLink } from "react-icons/lu";
 import {
     formatDateToTurkishMonthDay,
     genreIdsToNamesForMovies,
 } from "@/Utils/misc";
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
+import { Link } from "@inertiajs/react";
 
 interface MovieButtonProps {
     movie: iMovie;
@@ -16,18 +17,14 @@ interface MovieGridProps {
     movies: iMovie[];
 }
 
-const Theaters = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+interface iTheatersPage {
+    theaters: iMovie[];
+}
+
+const Theaters = ({ theaters }: iTheatersPage) => {
     const moviesPerPage = 4;
     const [page, setPage] = useState<number>(1);
-    const [vizyondakiler, setVizyondakiler] = useState<iMovie[]>([]);
-
-    useEffect(() => {
-        GetTheatersMovies(1).then((theaters) => {
-            setVizyondakiler(theaters);
-            setIsLoading(false);
-        });
-    }, []);
+    const [vizyondakiler, ,] = useState<iMovie[]>(theaters);
 
     const handlePageClick = (
         e: React.MouseEvent<HTMLButtonElement>,
@@ -42,49 +39,6 @@ const Theaters = () => {
         }
     };
 
-    const SkeletonMovieButton: React.FC = () => (
-        <>
-            <div
-                role="status"
-                className={classNames(
-                    "flex overflow-hidden relative flex-col w-full h-[420px]"
-                )}
-            >
-                <div className="h-full flex items-center justify-center w-full animate-pulse bg-black/75">
-                    <svg
-                        className="w-10 h-10 text-gray-200/50 dark:text-gray-600/50"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 20 18"
-                    >
-                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-                    </svg>
-                </div>
-                <div className="absolute w-full h-full bg-black/25 top-0 left-0">
-                    <div className="absolute bottom-2 left-2">
-                        <div className="h-2.5 bg-gray-200/25 rounded dark:bg-gray-700/25 w-24"></div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-
-    const SkeletonMovieGrid: React.FC = () => (
-        <div className="w-full relative max-sm:px-2 min-h-[620px] md:min-h-[420px]">
-            <div
-                className={classNames(
-                    "h-full grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
-                )}
-            >
-                <SkeletonMovieButton />
-                <SkeletonMovieButton />
-                <SkeletonMovieButton />
-                <SkeletonMovieButton />
-            </div>
-        </div>
-    );
-
     const MovieButton: React.FC<MovieButtonProps> = ({ movie }) =>
         movie && (
             <div className={classNames("flex relative group")}>
@@ -95,7 +49,7 @@ const Theaters = () => {
                         alt={movie.title}
                         height={420}
                     />
-                    <div className="absolute w-full h-full bg-black/25 top-0 left-0 flex flex-col justify-between">
+                    <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-between">
                         <div className="flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
                                 {formatDateToTurkishMonthDay(
@@ -165,15 +119,17 @@ const Theaters = () => {
     return (
         <>
             <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
-                <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
-                    Vizyondakiler
-                </h1>
+                <Link
+                    href={route("movie.theaters")}
+                    className="flex items-center gap-2"
+                >
+                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
+                        Vizyondakiler
+                    </h1>
+                    <LuExternalLink className="w-5 h-5 mt-0.5" />
+                </Link>
             </div>
-            {isLoading ? (
-                <SkeletonMovieGrid />
-            ) : (
-                vizyondakiler.length > 0 && <MovieGrid movies={vizyondakiler} />
-            )}
+            {vizyondakiler.length > 0 && <MovieGrid movies={vizyondakiler} />}
         </>
     );
 };

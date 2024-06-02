@@ -22,8 +22,6 @@ export interface iMovieDiscoverResponse {
     total_results: number;
 }
 
-export type iGetTheatersMoviesResponse = iMovie[];
-
 export type iGetUpComingMoviesResponse = iMovie[];
 
 export type iGetMovieVideosResponse = {

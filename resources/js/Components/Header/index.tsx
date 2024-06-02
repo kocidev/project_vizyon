@@ -82,7 +82,7 @@ export default function Header({
                                 !item.isMobile && (
                                     <Link
                                         key={i}
-                                        href={item.href}
+                                        href={route(item.href)}
                                         className={classNames(
                                             "flex items-center gap-2 outline-none ring-0 border-b border-transparent transition-colors",
                                             "hover:border-white dark:hover:border-FFF2D7"
@@ -242,7 +242,7 @@ export default function Header({
                         {HeaderItems.map((item, i) => (
                             <ResponsiveNavLink
                                 key={i}
-                                href={route("register")}
+                                href={route(item.href)}
                                 className="border-l-2 border-royal-950 dark:border-lotus-700 flex items-center gap-2"
                             >
                                 <item.icon />

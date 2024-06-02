@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('movie')->group(function () {
-    Route::get('/theaters', [MovieController::class, 'getTheaters']);
     Route::get('/upcoming', [MovieController::class, 'getUpComing']);
     Route::get('/{movie}/videos', [MovieController::class, 'getVideosByMovieId']);
 });

@@ -1,17 +1,22 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home/index', []);
-})->name("home");
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::prefix('movie')->group(function () {
+    Route::get('/theaters', [MovieController::class, 'theaters'])->name("movie.theaters");
+    Route::get('/upcoming', [MovieController::class, 'upcoming']);
+    Route::get('/{movie}', [MovieController::class, 'show']);
 });
 
 require __DIR__ . '/auth.php';

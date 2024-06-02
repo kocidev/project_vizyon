@@ -4,8 +4,13 @@ import Theaters from "@/Pages/Home/Partials/Theaters";
 import SearchDiv from "@/Pages/Home/Partials/SearchDiv";
 import PlatformContents from "@/Pages/Home/Partials/PlatformContents";
 import MovieUpComing from "./Partials/MovieUpComing";
+import { iMovie } from "@/types/movie.type";
 
-const Home = ({ auth }: PageProps) => {
+interface HomeProps extends PageProps {
+    theaters: iMovie[];
+}
+
+const Home = ({ auth, theaters }: HomeProps) => {
     return (
         <>
             <CoreLayout user={auth.user} title="Anasayfa">
@@ -13,7 +18,7 @@ const Home = ({ auth }: PageProps) => {
                     <SearchDiv />
                 </section>
                 <section id="theaters">
-                    <Theaters />
+                    <Theaters theaters={theaters} />
                 </section>
                 <section id="up-coming">
                     <MovieUpComing />

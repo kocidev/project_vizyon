@@ -31,7 +31,7 @@ const LatestSeriesTrailers = () => {
                 </div>
                 <div className="max-sm:px-2 relative">
                     <div className="edge_fade_blur dark:after:bg-fade-dark">
-                        <ScrollContainer className="w-full pt-4 px-2 gap-6">
+                        <ScrollContainer className="w-full flex items-center pt-4 px-2 gap-6">
                             {lastSeries.map((serie, i) => (
                                 <div
                                     key={i}

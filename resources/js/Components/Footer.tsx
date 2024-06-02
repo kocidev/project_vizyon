@@ -25,7 +25,7 @@ export default function Footer() {
                     <a href="https://www.themoviedb.org/" target="_blank">
                         <img
                             className="w-40"
-                            src="assets/images/tmdb/alt-long.svg"
+                            src="/assets/images/tmdb/alt-long.svg"
                             alt="themoviedatabase"
                         />
                     </a>

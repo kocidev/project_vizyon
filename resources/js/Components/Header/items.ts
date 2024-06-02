@@ -18,28 +18,28 @@ export const HeaderItems: ItemType[] = [
         isMobile: true,
     },
     {
-        href: "#",
+        href: "movie.theaters",
         icon: RiCompassDiscoverLine,
         label: "Filmler",
     },
     {
-        href: "#",
+        href: "home",
         icon: RiCompassDiscoverLine,
         label: "Diziler",
     },
     {
-        href: "#",
+        href: "home",
         icon: RiCompassDiscoverLine,
         label: "Keşfet",
     },
     {
-        href: "#",
+        href: "home",
         icon: FaArrowTrendUp,
         label: "Trendler",
         isMobile: true,
     },
     {
-        href: "#",
+        href: "home",
         icon: MdMessage,
         label: "Tartışma",
     },
