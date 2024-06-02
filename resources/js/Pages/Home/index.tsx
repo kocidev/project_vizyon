@@ -8,9 +8,10 @@ import { iMovie } from "@/types/movie.type";
 
 interface HomeProps extends PageProps {
     theaters: iMovie[];
+    upComings: iMovie[];
 }
 
-const Home = ({ auth, theaters }: HomeProps) => {
+const Home = ({ auth, theaters, upComings }: HomeProps) => {
     return (
         <>
             <CoreLayout user={auth.user} title="Anasayfa">
@@ -21,7 +22,7 @@ const Home = ({ auth, theaters }: HomeProps) => {
                     <Theaters theaters={theaters} />
                 </section>
                 <section id="up-coming">
-                    <MovieUpComing />
+                    <MovieUpComing upComings={upComings} />
                 </section>
                 <section id="platform-contents">
                     <PlatformContents />

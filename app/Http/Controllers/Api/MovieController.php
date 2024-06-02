@@ -18,32 +18,33 @@ class MovieController extends Controller
         $this->tmdbService = $tmdbService;
     }
 
+    public function getTheaters(Request $request): JsonResponse
+    {
+        $request->validate([
+            'page' => 'nullable|integer|min:1',
+        ]);
+        $page = $request->query('page', 1);
+
+        $result = $this->tmdbService->getMovieNowPlaying($page);
+        if ($result->isSuccess) {
+            return response()->json($result->data);
+        } else {
+            return response()->json(['error' => $result->error], 500);
+        }
+    }
+
     public function getUpComing(Request $request): JsonResponse
     {
         $request->validate([
             'page' => 'nullable|integer|min:1',
         ]);
-
         $page = $request->query('page', 1);
-        $cacheKey = 'upcoming_movies_page_' . $page;
 
-        try {
-            $response = Cache::remember($cacheKey, 86400, function () use ($page) {
-                $service = $this->tmdbService->getMovieUpComing($page);
-                if (isset($service['results'])) {
-                    Log::channel("tmdb")->info('Fetching:TMDbAPI:Movie:UpComing:Page:' . $page);
-                    return $service['results'];
-                } else {
-                    Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:UpComing->Invalid response format');
-                    throw new \RuntimeException('Invalid response format.');
-                }
-            });
-            return response()->json($response);
-        } catch (\Exception $e) {
-            Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:UpComing-> ' . $e->getMessage());
-            return response()->json([
-                'error' => 'Failed to fetch data. Please try again later.'
-            ], 500);
+        $result = $this->tmdbService->getMovieUpComing($page);
+        if ($result->isSuccess) {
+            return response()->json($result->data);
+        } else {
+            return response()->json(['error' => $result->error], 500);
         }
     }
 
@@ -52,26 +53,11 @@ class MovieController extends Controller
         if (!is_numeric($movieId) || intval($movieId) != $movieId) {
             return response()->json(['error' => 'Invalid movie ID. It must be an integer.'], 400);
         }
-        $ttl = 86400;
-        $cacheKey = "movie_{$movieId}_videos";
-        try {
-            $response = Cache::remember($cacheKey, $ttl, function () use ($movieId) {
-                $service = $this->tmdbService->getMovieVideosById($movieId);
-                if (isset($service['results'])) {
-                    Log::channel("tmdb")->info("Fetching:TMDbAPI:Movie:{$movieId}:Videos");
-                    return $service['results'];
-                } else {
-                    Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:UpComing->Invalid response format');
-                    throw new \RuntimeException('Invalid response format.');
-                }
-            });
-            return response()->json($response);
-        } catch (\Exception $e) {
-            Log::channel("tmdb")->error('Error:Fetching:TMDbAPI:Movie:getVideosByMovieId-> ' . $e->getMessage());
-            return response()->json([
-                'error' => 'Failed to fetch data. Please try again later.'
-            ], 500);
+        $result = $this->tmdbService->getMovieVideosById($movieId);
+        if ($result->isSuccess) {
+            return response()->json($result->data);
+        } else {
+            return response()->json(['error' => $result->error], 500);
         }
-        return response()->json($response);
     }
 }

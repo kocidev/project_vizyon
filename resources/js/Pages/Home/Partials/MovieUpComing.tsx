@@ -1,26 +1,21 @@
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
 import Modal from "@/Components/Modal";
 import ScrollContainer from "@/Components/ScrollContainer";
-import { GetUpComingMovies, GetMovieVideos } from "@/Services/Movie";
+import { GetMovieVideos } from "@/Services/Movie";
 import { iMovie } from "@/types/movie.type";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactPlayer from "react-player";
 
-const MovieUpComing = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [upComings, setUpComings] = useState<iMovie[]>([]);
+interface iUpComingPage {
+    upComings: iMovie[];
+}
+
+const MovieUpComing = ({ upComings }: iUpComingPage) => {
     const [selectedTrailer, setSelectedTrailer] = useState<string | undefined>(
         undefined
     );
     const [fetchVideos, setFetchVideos] = useState<number | null>(null);
-
-    useEffect(() => {
-        GetUpComingMovies(1).then((movies) => {
-            setUpComings(movies);
-            setIsLoading(false);
-        });
-    }, []);
 
     const handleOpenTrailerFrame = (id: number) => {
         setFetchVideos(id);
@@ -87,41 +82,41 @@ const MovieUpComing = () => {
     );
 
     return (
-        !isLoading && (
-            <>
-                <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-2 sm:mb-4">
-                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
-                        Çok Yakında
-                    </h1>
-                </div>
-                <div className="w-full relative max-sm:px-2 sm:mb-20">
-                    <div className="edge_fade_blur dark:after:bg-fade-dark">
-                        <ScrollContainer className="flex gap-4 pt-2">
-                            {upComings
+        <>
+            <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-2 sm:mb-4">
+                <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
+                    Çok Yakında
+                </h1>
+            </div>
+            <div className="w-full relative max-sm:px-2 sm:mb-20">
+                <div className="edge_fade_blur dark:after:bg-fade-dark">
+                    <ScrollContainer className="flex gap-4 pt-2">
+                        {upComings &&
+                            upComings.length > 0 &&
+                            upComings
                                 .filter((movie) => movie.poster_path)
                                 .map((movie, index) => (
                                     <GridMember key={index} movie={movie} />
                                 ))}
-                        </ScrollContainer>
-                    </div>
+                    </ScrollContainer>
                 </div>
-                <>
-                    <Modal
-                        show={!!selectedTrailer}
-                        onClose={() => setSelectedTrailer(undefined)}
-                        closeable
-                        className="max-w-4xl"
-                    >
-                        <ReactPlayer
-                            width="100%"
-                            height="480px"
-                            url={`https://www.youtube.com/watch?v=${selectedTrailer}`}
-                            controls
-                        />
-                    </Modal>
-                </>
+            </div>
+            <>
+                <Modal
+                    show={!!selectedTrailer}
+                    onClose={() => setSelectedTrailer(undefined)}
+                    closeable
+                    className="max-w-4xl"
+                >
+                    <ReactPlayer
+                        width="100%"
+                        height="480px"
+                        url={`https://www.youtube.com/watch?v=${selectedTrailer}`}
+                        controls
+                    />
+                </Modal>
             </>
-        )
+        </>
     );
 };
 

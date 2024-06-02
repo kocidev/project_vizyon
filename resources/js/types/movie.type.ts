@@ -22,8 +22,6 @@ export interface iMovieDiscoverResponse {
     total_results: number;
 }
 
-export type iGetUpComingMoviesResponse = iMovie[];
-
 export type iGetMovieVideosResponse = {
     iso_639_1: string;
     iso_3166_1: string;

@@ -3,18 +3,14 @@ import ReactPlayer from "react-player";
 import Modal from "@/Components/Modal";
 import ScrollContainer from "@/Components/ScrollContainer";
 import { iUpComingSeries } from "@/types/serie.type";
-import { GetUpComingSeries } from "@/Services/Series";
 
 const LatestSeriesTrailers = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [lastSeries, setLastSeries] = useState<iUpComingSeries[]>([]);
+    const [lastSeries, ,] = useState<iUpComingSeries[]>([]);
     const [selectedTrailer, setSelectedTrailer] = useState<string | null>(null);
 
     useEffect(() => {
-        GetUpComingSeries().then((series) => {
-            setLastSeries(series);
-            setIsLoading(false);
-        });
+        setIsLoading(false);
     }, []);
 
     const OpenTrailerFrame = (url: string) => {

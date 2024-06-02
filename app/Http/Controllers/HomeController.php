@@ -17,17 +17,15 @@ class HomeController extends Controller
 
     public function index(): Response
     {
-        $result = $this->tmdbService->getMovieNowPlaying(1);
+        $theaters = $this->tmdbService->getMovieNowPlaying(1);
+        $upComings = $this->tmdbService->getMovieUpComing(1);
 
-        if (!$result->isSuccess) {
-            return Inertia::render('Home/index', [
-                'theaters' => [],
-                'error' => $result->error
-            ]);
-        }
+        $theatersData = $theaters->isSuccess ? $theaters->data : [];
+        $upComingsData = $upComings->isSuccess ? $upComings->data : [];
 
         return Inertia::render('Home/index', [
-            'theaters' => $result->data
+            'theaters' => $theatersData,
+            'upComings' => $upComingsData,
         ]);
     }
 }

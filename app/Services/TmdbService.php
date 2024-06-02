@@ -23,12 +23,9 @@ class TmdbService
     public function getMovieNowPlaying(int $page = 1): Result
     {
         $cacheKey = "now_playing_movies_page_{$page}";
+        $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
 
-        $now = Carbon::now();
-        $midnight = Carbon::tomorrow();
-        $ttl = $now->diffInSeconds($midnight);
-
-        return Cache::remember($cacheKey, $ttl, function () use ($page) {
+        $cachedData = Cache::remember($cacheKey, $ttl, function () use ($page) {
             try {
                 $response = $this->client->get('movie/now_playing', [
                     'query' => [
@@ -39,47 +36,96 @@ class TmdbService
                 ]);
 
                 if ($response->getStatusCode() !== 200) {
-                    Log::channel("tmdb")->error("Error fetching data from TMDB Service 'now_playing' page:{$page}");
-                    return Result::failure('Error fetching data from TMDB');
+                    Log::channel("tmdb")->error("Error fetching data from TMDB Service 'movie/now_playing' page:{$page}");
+                    return null;
                 }
 
                 $data = json_decode($response->getBody()->getContents(), true);
-
-                return Result::success($data['results']);
+                return $data['results'];
             } catch (\Exception $e) {
-                Log::channel("tmdb")->error("Exception occurred: " . $e->getMessage());
-                return Result::failure('Error fetching data from TMDB');
+                Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+                return null;
             }
         });
+
+        if ($cachedData === null) {
+            return Result::failure('Error fetching data from TMDB');
+        }
+
+        return Result::success($cachedData);
     }
 
     /**
      * Get a list of movies that are being released soon.
      */
-    public function getMovieUpComing(int $page)
+    public function getMovieUpComing(int $page): Result
     {
-        $response = $this->client->get('movie/upcoming', [
-            'query' => [
-                'page' => $page,
-                'language' => 'tr',
-                'region' => 'tr',
-            ],
-        ]);
+        $cacheKey = "upcoming_movies_page_{$page}";
+        $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
 
-        return json_decode($response->getBody(), true);
+        $cachedData = Cache::remember($cacheKey, $ttl, function () use ($page) {
+            try {
+                $response = $this->client->get('movie/upcoming', [
+                    'query' => [
+                        'page' => $page,
+                        'language' => 'tr',
+                        'region' => 'tr',
+                    ],
+                ]);
+
+                if ($response->getStatusCode() !== 200) {
+                    Log::channel("tmdb")->error("Error fetching data from TMDB Service 'movie/upcoming' page:{$page}");
+                    return null;
+                }
+
+                $data = json_decode($response->getBody()->getContents(), true);
+                return $data['results'];
+            } catch (\Exception $e) {
+                Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+                return null;
+            }
+        });
+
+        if ($cachedData === null) {
+            return Result::failure('Error fetching data from TMDB');
+        }
+
+        return Result::success($cachedData);
     }
 
     /**
      * Get movie videos by movie id.
      */
-    public function getMovieVideosById(int $movideId)
+    public function getMovieVideosById(int $movieId)
     {
-        $response = $this->client->get("movie/{$movideId}/videos", [
-            'query' => [
-                'language' => 'tr',
-            ],
-        ]);
+        $cacheKey = "movie_{$movieId}_videos";
+        $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
 
-        return json_decode($response->getBody(), true);
+        $cachedData = Cache::remember($cacheKey, $ttl, function () use ($movieId) {
+            try {
+                $response = $this->client->get("movie/{$movieId}/videos", [
+                    'query' => [
+                        'language' => 'tr',
+                    ],
+                ]);
+
+                if ($response->getStatusCode() !== 200) {
+                    Log::channel("tmdb")->error("Error fetching data from TMDB Service 'Movie/{$movieId}/videos'");
+                    return null;
+                }
+
+                $data = json_decode($response->getBody()->getContents(), true);
+                return $data['results'];
+            } catch (\Exception $e) {
+                Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+                return null;
+            }
+        });
+
+        if ($cachedData === null) {
+            return Result::failure('Error fetching data from TMDB');
+        }
+
+        return Result::success($cachedData);
     }
 }

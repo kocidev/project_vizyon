@@ -24,14 +24,13 @@ interface iTheatersPage {
 const Theaters = ({ theaters }: iTheatersPage) => {
     const moviesPerPage = 4;
     const [page, setPage] = useState<number>(1);
-    const [vizyondakiler, ,] = useState<iMovie[]>(theaters);
 
     const handlePageClick = (
         e: React.MouseEvent<HTMLButtonElement>,
         forward: boolean
     ) => {
         e.preventDefault();
-        const totalPages = Math.ceil(vizyondakiler.length / moviesPerPage);
+        const totalPages = Math.ceil(theaters.length / moviesPerPage);
         if (forward) {
             setPage(page === totalPages ? 1 : page + 1);
         } else {
@@ -129,7 +128,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                     <LuExternalLink className="w-5 h-5 mt-0.5" />
                 </Link>
             </div>
-            {vizyondakiler.length > 0 && <MovieGrid movies={vizyondakiler} />}
+            {theaters && theaters.length > 0 && <MovieGrid movies={theaters} />}
         </>
     );
 };
