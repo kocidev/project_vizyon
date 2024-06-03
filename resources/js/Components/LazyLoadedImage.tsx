@@ -6,29 +6,30 @@ import "react-loading-skeleton/dist/skeleton.css";
 interface LazyLoadedImageProps extends LazyLoadProps {
     src: string | undefined;
     alt: string;
-    height: number;
     imgClassName?: string;
+    skeletonClassName?: string;
 }
 
 const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
     src,
     alt,
-    height,
     imgClassName,
+    skeletonClassName,
     ...lazyLoadProps
 }) => {
     const { theme } = useTheme();
 
     return (
         <LazyLoad
+            debounce
             offset={100}
             placeholder={
                 <>
                     <Skeleton
                         baseColor={theme == "dark" ? "#111216" : "white"}
-                        highlightColor={theme == "dark" ? "black" : "#dbdbdb"}
-                        height={height}
+                        highlightColor={theme == "dark" ? "#27272a" : "#dbdbdb"}
                         borderRadius={0}
+                        className={skeletonClassName}
                     />
                 </>
             }
