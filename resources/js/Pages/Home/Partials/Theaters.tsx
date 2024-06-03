@@ -46,7 +46,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                         className="w-full h-full group-hover:scale-105 transition duration-500"
                         src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                         alt={movie.title}
-                        height={420}
+                        skeletonClassName="h-[420px]"
                     />
                     <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-between">
                         <div className="flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -120,7 +120,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
             <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
                 <Link
                     href={route("movie.theaters")}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 w-min"
                 >
                     <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
                         Vizyondakiler

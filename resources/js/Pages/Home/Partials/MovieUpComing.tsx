@@ -43,7 +43,7 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
                 className="w-full h-full"
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                 alt={movie.title}
-                height={420}
+                skeletonClassName="h-[240px] rounded-lg"
                 imgClassName="rounded-lg"
             />
             {movie.backdrop_path && (

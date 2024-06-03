@@ -114,10 +114,10 @@ const PlatformContents = () => {
                                             <div key={i}>
                                                 <div className="w-72">
                                                     <LazyLoadedImage
-                                                        height={160}
                                                         src={content.image}
                                                         alt="platform-content-image"
                                                         imgClassName="rounded-lg shadow"
+                                                        skeletonClassName="h-[160px]"
                                                     />
                                                 </div>
                                                 <div className="text-center mt-2 text-white dark:text-current">
