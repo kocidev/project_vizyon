@@ -27,14 +27,9 @@ class MovieController extends Controller
     /**
      * Display the movie theaters.
      */
-    public function theaters(Request $request): Response
+    public function theaters(): Response
     {
-        $request->validate([
-            'page' => 'nullable|integer|min:1',
-        ]);
-        $page = $request->query('page', 1);
-        
-        $theaters = $this->tmdbService->getMovieNowPlaying($page);
+        $theaters = $this->tmdbService->getMovieNowPlaying(1);
         $theatersData = $theaters->isSuccess ? $theaters->data : [];
 
         return Inertia::render('Movie/Theaters/index', [
