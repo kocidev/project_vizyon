@@ -112,7 +112,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
                                         "dark:bg-lotus-700 dark:hover:bg-lotus-600 dark:focus:bg-lotus-600"
                                     )}
                                 >
-                                    <h1 className="text-white dark:text-FFF2D7">
+                                    <h1 className="text-white dark:text-FFF2D7 font-bold">
                                         Daha Fazla Yükle
                                     </h1>
                                 </button>

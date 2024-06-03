@@ -5,7 +5,7 @@ export const GetUpComingSeries = async (
     page?: number
 ): Promise<iUpComingSeries[]> => {
     try {
-        const response = await apiClient.get("series/upcoming", {
+        const response = await apiClient.get("series/upcomings", {
             params: {
                 page: page,
             },
