@@ -93,35 +93,64 @@ class TmdbService
         $cacheKey = "upcoming_movies_page_{$page}";
         $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
 
-        $cachedData = Cache::remember($cacheKey, $ttl, function () use ($page) {
-            try {
-                $queryParams = [
-                    'page' => $page,
-                    'language' => 'tr',
-                    'region' => 'tr',
-                ];
-                $response = $this->client->get('movie/upcoming', [
-                    'query' => $queryParams,
-                ]);
+        $cachedData = null;
+        if (!$this->onBeforeMovieUpComing($page)) {
+            $cachedData = [];
+        } else {
+            $cachedData = Cache::remember($cacheKey, $ttl, function () use ($page) {
+                try {
+                    $queryParams = [
+                        'page' => $page,
+                        'language' => 'tr',
+                        'region' => 'tr',
+                    ];
+                    $response = $this->client->get('movie/upcoming', [
+                        'query' => $queryParams,
+                    ]);
 
-                if ($response->getStatusCode() !== 200) {
-                    Log::channel("tmdb")->error("Error fetching data from TMDB Service 'movie/upcoming'", $queryParams);
+                    if ($response->getStatusCode() !== 200) {
+                        Log::channel("tmdb")->error("Error fetching data from TMDB Service 'movie/upcoming'", $queryParams);
+                        return null;
+                    }
+                    Log::channel("tmdb")->info("Fetching data from TMDB Service 'movie/upcoming'", $queryParams);
+                    $data = json_decode($response->getBody()->getContents(), true);
+                    $this->onFetchingMovieUpComing($data);
+                    return $data['results'];
+                } catch (\Exception $e) {
+                    Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
                     return null;
                 }
-                Log::channel("tmdb")->info("Fetching data from TMDB Service 'movie/upcoming'", $queryParams);
-                $data = json_decode($response->getBody()->getContents(), true);
-                return $data['results'];
-            } catch (\Exception $e) {
-                Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
-                return null;
-            }
-        });
+            });
+        }
 
         if ($cachedData === null) {
             return Result::failure('Error fetching data from TMDB');
         }
 
         return Result::success($cachedData);
+    }
+    protected function onBeforeMovieUpComing($page): bool
+    {
+        $cacheKey = "upcoming_movies_detail";
+        $value = Cache::get($cacheKey);
+        return !$value || ($value['total_pages'] && intval($value['total_pages']) >= $page);
+    }
+    protected function onFetchingMovieUpComing($response): bool
+    {
+        $cacheKey = "upcoming_movies_detail";
+        if (Cache::has($cacheKey)) {
+            return true;
+        }
+
+        $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
+
+        if (isset($response['results'])) {
+            unset($response['results']);
+        }
+        if (isset($response['page'])) {
+            unset($response['page']);
+        }
+        return Cache::put($cacheKey, $response, $ttl);
     }
 
     /**

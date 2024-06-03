@@ -1,22 +1,21 @@
 import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
 import { iMovie } from "@/types/movie.type";
-
-import { Title, SelectTabs } from "@/Pages/Movie/Partials";
+import { SelectTabs, Title } from "../Partials";
 import classNames from "classnames";
-import CircularProgressBar from "@/Components/CircularProgressBar";
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
-import { useState } from "react";
-import { GetMovieTheaters } from "@/Services/Movie";
+import CircularProgressBar from "@/Components/CircularProgressBar";
 import LoadingDot from "@/Components/LoadingDot";
+import { useState } from "react";
+import { GetMovieUpComings } from "@/Services/Movie";
 
-interface TheaterProps extends PageProps {
-    theaters: iMovie[];
+interface UpComingsProps extends PageProps {
+    upComings: iMovie[];
 }
 
-const Theaters = ({ auth, theaters }: TheaterProps) => {
+const UpComings = ({ auth, upComings }: UpComingsProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [movies, setMovies] = useState<iMovie[]>(theaters);
+    const [movies, setMovies] = useState<iMovie[]>(upComings);
     const [page, setPage] = useState<number>(1);
 
     const handleClickMore = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,7 +23,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
         setIsLoading(true);
         const newPage = page + 1;
 
-        GetMovieTheaters(newPage)
+        GetMovieUpComings(newPage)
             .then((newMovies) => {
                 if (newMovies.length > 0) {
                     setMovies((prevMovies) => [...prevMovies, ...newMovies]);
@@ -33,6 +32,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
             })
             .finally(() => setIsLoading(false));
     };
+
     return (
         <>
             <CoreLayout user={auth.user} title="Vizyondakiler">
@@ -128,5 +128,4 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
         </>
     );
 };
-
-export default Theaters;
+export default UpComings;

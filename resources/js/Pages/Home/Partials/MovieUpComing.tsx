@@ -3,8 +3,10 @@ import Modal from "@/Components/Modal";
 import ScrollContainer from "@/Components/ScrollContainer";
 import { GetMovieVideos } from "@/Services/Movie";
 import { iMovie } from "@/types/movie.type";
+import { Link } from "@inertiajs/react";
 import classNames from "classnames";
 import { useState } from "react";
+import { LuExternalLink } from "react-icons/lu";
 import ReactPlayer from "react-player";
 
 interface iUpComingPage {
@@ -84,9 +86,15 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
     return (
         <>
             <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-2 sm:mb-4">
-                <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
-                    Çok Yakında
-                </h1>
+                <Link
+                    href={route("movie.upcomings")}
+                    className="flex items-center gap-2 w-min whitespace-nowrap"
+                >
+                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
+                        Çok Yakında
+                    </h1>
+                    <LuExternalLink className="w-5 h-5 mt-0.5 text-royal-950 dark:text-FFF2D7" />
+                </Link>
             </div>
             <div className="w-full relative max-sm:px-2 sm:mb-20">
                 <div className="edge_fade_blur dark:after:bg-fade-dark">

@@ -23,6 +23,7 @@ export interface iMovieDiscoverResponse {
 }
 
 export type iGetMovieTheatersResponse = iMovie[];
+export type iGetMovieUpComingsResponse = iGetMovieTheatersResponse;
 
 export type iGetMovieVideosResponse = {
     iso_639_1: string;

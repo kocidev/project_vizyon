@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 
 class SeriesController extends Controller
 {
-    public function getUpComing(): JsonResponse
+    public function getUpComings(): JsonResponse
     {
         return response()->json([]);
     }
