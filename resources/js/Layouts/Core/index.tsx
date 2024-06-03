@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { User } from "@/types";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
+import ScrollToTopButton from "@/Components/ScrollToTop";
 
 const CoreLayout = ({
     user,
@@ -15,11 +16,13 @@ const CoreLayout = ({
             <div
                 className={classNames(
                     "w-full mb-8 mx-auto mt-16",
-                    "xl:w-3/5 lg:w-3/4 sm:w-11/12"
+                    "xl:w-3/5 lg:w-3/4 sm:w-11/12",
+                    "relative"
                 )}
             >
                 <div className="w-full h-full">{children}</div>
             </div>
+            <ScrollToTopButton />
             <Footer />
         </>
     );

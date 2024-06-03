@@ -5,6 +5,7 @@ import SearchDiv from "@/Pages/Home/Partials/SearchDiv";
 import PlatformContents from "@/Pages/Home/Partials/PlatformContents";
 import MovieUpComing from "./Partials/MovieUpComing";
 import { iMovie } from "@/types/movie.type";
+import ScrollToTopButton from "@/Components/ScrollToTop";
 
 interface HomeProps extends PageProps {
     theaters: iMovie[];

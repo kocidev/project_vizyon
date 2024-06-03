@@ -113,7 +113,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
                                     )}
                                 >
                                     <h1 className="text-white dark:text-FFF2D7 font-bold">
-                                        Daha Fazla Yükle
+                                        Daha fazla yükle...
                                     </h1>
                                 </button>
                             ) : (
