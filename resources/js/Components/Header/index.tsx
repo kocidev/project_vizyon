@@ -98,9 +98,9 @@ export default function Header({
                     <div className="ml-auto flex items-center gap-4 w-min whitespace-nowrap">
                         <button className="w-5 group" onClick={toggleTheme}>
                             {theme == "dark" ? (
-                                <MdDarkMode className="text-white dark:text-current w-full h-full transition-transform duration-[1.5s] group-hover:rotate-[360deg] group-focus:rotate-[360deg]" />
+                                <MdDarkMode className="text-white dark:text-current w-full h-full transition-transform duration-[1.5s] group-hover:rotate-[360deg]" />
                             ) : (
-                                <MdLightMode className="text-white dark:text-FFF2D7 w-full h-full transition-transform duration-[1.5s] group-hover:rotate-180 group-focus:rotate-180" />
+                                <MdLightMode className="text-white dark:text-FFF2D7 w-full h-full transition-transform duration-[1.5s] group-hover:rotate-180" />
                             )}
                         </button>
                         {user && (
