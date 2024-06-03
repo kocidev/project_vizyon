@@ -36,4 +36,17 @@ class MovieController extends Controller
             'theaters' => $theatersData
         ]);
     }
+
+    /**
+     * Display the movie upcomings.
+     */
+    public function upcomings(): Response
+    {
+        $upComings = $this->tmdbService->getMovieUpComing(1);
+        $upComingsData = $upComings->isSuccess ? $upComings->data : [];
+
+        return Inertia::render('Movie/UpComings/index', [
+            'upComings' => $upComingsData
+        ]);
+    }
 }

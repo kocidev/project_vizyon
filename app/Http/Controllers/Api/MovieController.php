@@ -31,7 +31,7 @@ class MovieController extends Controller
         }
     }
 
-    public function getUpComing(Request $request): JsonResponse
+    public function getUpComings(Request $request): JsonResponse
     {
         $request->validate([
             'page' => 'nullable|integer|min:1',
