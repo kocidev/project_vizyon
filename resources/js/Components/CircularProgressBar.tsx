@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CircularProgressBarProps {
-    value?: number | null;
+    value?: number;
 }
 
 const getColor = (value: number): string => {
@@ -35,23 +35,18 @@ const getBackgroundColor = (value: number): string => {
 };
 
 const CircularProgressBar: React.FC<CircularProgressBarProps> = ({ value }) => {
-    const percentage =
-        value !== undefined && value !== null ? Math.round(value) * 10 : 0;
+    const percentage = value !== undefined && value !== null ? value * 10 : 0;
 
     const circleStyle = {
         strokeDasharray: "100 100",
         strokeDashoffset: 100 - percentage,
         strokeLinecap: "round" as const,
     };
-    const pathColor =
-        percentage > 0 ? getColor(Math.round(percentage)) : "#9ca3af";
+    const pathColor = percentage > 0 ? getColor(percentage) : "#9ca3af";
     const strokeColor =
-        percentage > 0
-            ? getStrokeColor(Math.round(percentage))
-            : "rgba(255,255,255,0.25)";
+        percentage > 0 ? getStrokeColor(percentage) : "rgba(255,255,255,0.25)";
 
-    const bgColor =
-        percentage > 0 ? getBackgroundColor(Math.round(percentage)) : "#18181b";
+    const bgColor = percentage > 0 ? getBackgroundColor(percentage) : "#18181b";
 
     return (
         <div className="relative flex items-center justify-center w-10 h-10">
@@ -78,7 +73,7 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({ value }) => {
                 />
             </svg>
             <div className="absolute text-white text-xs font-bold">
-                {percentage > 0 ? Math.round(percentage) + "%" : "NA"}
+                {percentage > 0 ? percentage.toFixed() + "%" : "NA"}
             </div>
         </div>
     );

@@ -58,4 +58,34 @@ class MovieController extends Controller
             return response()->json(['error' => $result->error], 500);
         }
     }
+
+    public function getPopular(Request $request): JsonResponse
+    {
+        $request->validate([
+            'page' => 'nullable|integer|min:1|max:10',
+        ]);
+        $page = $request->query('page', 1);
+
+        $result = $this->tmdbService->getMoviePopular($page);
+        if ($result->isSuccess) {
+            return response()->json($result->data);
+        } else {
+            return response()->json(['error' => $result->error], 500);
+        }
+    }
+
+    public function getGOAT(Request $request): JsonResponse
+    {
+        $request->validate([
+            'page' => 'nullable|integer|min:1|max:10',
+        ]);
+        $page = $request->query('page', 1);
+
+        $result = $this->tmdbService->getMovieGOAT($page);
+        if ($result->isSuccess) {
+            return response()->json($result->data);
+        } else {
+            return response()->json(['error' => $result->error], 500);
+        }
+    }
 }

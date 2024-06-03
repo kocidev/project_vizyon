@@ -85,32 +85,6 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                         <MovieButton key={index} movie={movie} />
                     ))}
                 </div>
-                <>
-                    <div className="flex items-center gap-2 absolute top-2 right-2">
-                        <button
-                            onClick={(e) => handlePageClick(e, false)}
-                            className={classNames(
-                                "p-1 border-2 rounded-full",
-                                "hover:bg-royal-950 dark:hover:bg-lotus-700",
-                                "border-white hover:border-royal-950 dark:hover:border-lotus-700",
-                                "text-white"
-                            )}
-                        >
-                            <MdArrowForwardIos className="rotate-180" />
-                        </button>
-                        <button
-                            onClick={(e) => handlePageClick(e, true)}
-                            className={classNames(
-                                "p-1 border-2 rounded-full",
-                                "hover:bg-royal-950 dark:hover:bg-lotus-700",
-                                "border-white hover:border-royal-950 dark:hover:border-lotus-700",
-                                "text-white"
-                            )}
-                        >
-                            <MdArrowForwardIos />
-                        </button>
-                    </div>
-                </>
             </div>
         );
     };
@@ -118,15 +92,39 @@ const Theaters = ({ theaters }: iTheatersPage) => {
     return (
         <>
             <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
-                <Link
-                    href={route("movie.theaters")}
-                    className="flex items-center gap-2 w-min"
-                >
-                    <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
-                        Vizyondakiler
-                    </h1>
-                    <LuExternalLink className="w-5 h-5 mt-0.5 text-royal-950 dark:text-FFF2D7" />
-                </Link>
+                <div className="flex items-center justify-between">
+                    <Link
+                        href={route("movie.theaters")}
+                        className="flex items-center gap-2 w-min"
+                    >
+                        <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
+                            Vizyondakiler
+                        </h1>
+                        <LuExternalLink className="w-5 h-5 mt-0.5 text-royal-950 dark:text-FFF2D7" />
+                    </Link>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={(e) => handlePageClick(e, false)}
+                            className={classNames(
+                                "p-1.5 rounded-full",
+                                "bg-royal-900 hover:bg-royal-950 dark:bg-lotus-700/50 dark:hover:bg-lotus-700",
+                                "text-white dark:text-FFF2D7"
+                            )}
+                        >
+                            <MdArrowForwardIos className="rotate-180" />
+                        </button>
+                        <button
+                            onClick={(e) => handlePageClick(e, true)}
+                            className={classNames(
+                                "p-1.5 rounded-full",
+                                "bg-royal-900 hover:bg-royal-950 dark:bg-lotus-700/50 dark:hover:bg-lotus-700",
+                                "text-white dark:text-FFF2D7"
+                            )}
+                        >
+                            <MdArrowForwardIos />
+                        </button>
+                    </div>
+                </div>
             </div>
             {theaters && theaters.length > 0 && <MovieGrid movies={theaters} />}
         </>

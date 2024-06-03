@@ -16,6 +16,8 @@ Route::middleware('auth')->group(function () {
 Route::prefix('movie')->group(function () {
     Route::get('/theaters', [MovieController::class, 'theaters'])->name("movie.theaters");
     Route::get('/upcomings', [MovieController::class, 'upcomings'])->name("movie.upcomings");
+    Route::get('/popular', [MovieController::class, 'popular'])->name("movie.popular");
+    Route::get('/goat', [MovieController::class, 'goat'])->name("movie.goat");
     Route::get('/{movie}', [MovieController::class, 'show'])->name("movie.show");
 });
 

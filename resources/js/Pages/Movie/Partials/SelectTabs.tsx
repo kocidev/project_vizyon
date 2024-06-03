@@ -10,7 +10,8 @@ export default function SelectTabs() {
     const Items: iItem[] = [
         { label: "Vizyondakiler", href: "movie.theaters" },
         { label: "Çok Yakında", href: "movie.upcomings" },
-        { label: "Popüler", href: "home" },
+        { label: "Son Trendler", href: "movie.popular" },
+        { label: "En İyiler", href: "movie.goat" },
     ];
 
     return (

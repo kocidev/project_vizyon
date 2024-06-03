@@ -2,6 +2,7 @@ import {
     iGetMovieVideosResponse,
     iGetMovieTheatersResponse,
     iGetMovieUpComingsResponse,
+    iGetMoviePopularResponse,
 } from "@/types/movie.type";
 import apiClient from "@/Services";
 
@@ -41,6 +42,36 @@ export const GetMovieVideos = async (
     try {
         const response = await apiClient.get(`movie/${movieId}/videos`);
         const result: iGetMovieVideosResponse = response.data;
+        return result;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        throw new Error("Services movie error.");
+    }
+};
+
+export const GetMoviePopular = async (
+    page: number
+): Promise<iGetMoviePopularResponse> => {
+    try {
+        const response = await apiClient.get("movie/popular", {
+            params: { page },
+        });
+        const result: iGetMoviePopularResponse = response.data;
+        return result;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        throw new Error("Services movie error.");
+    }
+};
+
+export const GetMovieGOAT = async (
+    page: number
+): Promise<iGetMoviePopularResponse> => {
+    try {
+        const response = await apiClient.get("movie/goat", {
+            params: { page },
+        });
+        const result: iGetMoviePopularResponse = response.data;
         return result;
     } catch (error) {
         console.error("Fetch error:", error);

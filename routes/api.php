@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('movie')->group(function () {
     Route::get('/theaters', [MovieController::class, 'getTheaters']);
     Route::get('/upcomings', [MovieController::class, 'getUpComings']);
+    Route::get('/popular', [MovieController::class, 'getPopular']);
+    Route::get('/goat', [MovieController::class, 'getGOAT']);
     Route::get('/{movie}/videos', [MovieController::class, 'getVideosByMovieId']);
 });
 

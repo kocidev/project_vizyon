@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\TmdbService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 use Inertia\Inertia;
 use Inertia\Response;
@@ -47,6 +46,32 @@ class MovieController extends Controller
 
         return Inertia::render('Movie/UpComings/index', [
             'upComings' => $upComingsData
+        ]);
+    }
+
+    /**
+     * Display the movie popular.
+     */
+    public function popular(): Response
+    {
+        $popular = $this->tmdbService->getMoviePopular(1);
+        $popularData = $popular->isSuccess ? $popular->data : [];
+
+        return Inertia::render('Movie/Popular/index', [
+            'popular' => $popularData
+        ]);
+    }
+
+    /**
+     * Display the movie goat.
+     */
+    public function goat(): Response
+    {
+        $goat = $this->tmdbService->getMovieGOAT(1);
+        $goatData = $goat->isSuccess ? $goat->data : [];
+
+        return Inertia::render('Movie/GOAT/index', [
+            'goat' => $goatData
         ]);
     }
 }

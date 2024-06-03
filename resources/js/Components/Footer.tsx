@@ -24,7 +24,7 @@ export default function Footer() {
                 <div className="ml-auto">
                     <a href="https://www.themoviedb.org/" target="_blank">
                         <img
-                            className="w-40"
+                            className="w-32 sm:w-40"
                             src="/assets/images/tmdb/alt-long.svg"
                             alt="themoviedatabase"
                         />
