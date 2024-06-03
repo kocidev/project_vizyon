@@ -35,9 +35,19 @@ return [
         ],
     ],
 
+    /**
+     * Custom Services
+     */
+
     'tmdb' => [
         'api_key' => env('TMDB_API_KEY'),
         'access_key' => env('TMDB_ACCESS_KEY'),
         'base_uri' => env('TMDB_BASE_URI', 'https://api.themoviedb.org/3/'),
+    ],
+
+    'streamingAvailability' => [
+        'api_key' => env('STREAMING_AVAILABILITY_API_KEY'),
+        'host' => env('STREAMING_AVAILABILITY_HOST', "streaming-availability.p.rapidapi.com"),
+        'base_uri' => env('STREAMING_AVAILABILITY_BASE_URI', 'https://streaming-availability.p.rapidapi.com'),
     ],
 ];
