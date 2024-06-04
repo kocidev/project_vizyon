@@ -19,7 +19,7 @@ class MovieController extends Controller
     public function getTheaters(Request $request): JsonResponse
     {
         $request->validate([
-            'page' => 'nullable|integer|min:1',
+            'page' => 'nullable|integer|min:1|max:50',
         ]);
         $page = $request->query('page', 1);
 
@@ -34,7 +34,7 @@ class MovieController extends Controller
     public function getUpComings(Request $request): JsonResponse
     {
         $request->validate([
-            'page' => 'nullable|integer|min:1',
+            'page' => 'nullable|integer|min:1|max:50',
         ]);
         $page = $request->query('page', 1);
 

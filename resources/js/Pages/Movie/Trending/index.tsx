@@ -1,30 +1,31 @@
 import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
 import { iMovie } from "@/types";
-
-import { Title, SelectTabs } from "@/Pages/Movie/Partials";
+import { SelectTabs, Title } from "../Partials";
 import classNames from "classnames";
-import CircularProgressBar from "@/Components/CircularProgressBar";
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
-import { useState } from "react";
-import { GetMovieTheaters } from "@/Services/Movie";
 import LoadingDot from "@/Components/LoadingDot";
+import { useState } from "react";
+import { IoIosStats } from "react-icons/io";
+import { GetTrendingMovie } from "@/Services/Trending";
+import CircularProgressBar from "@/Components/CircularProgressBar";
 
-interface TheaterProps extends PageProps {
-    theaters: iMovie[];
+interface TrendingProps extends PageProps {
+    trending: iMovie[];
 }
 
-const Theaters = ({ auth, theaters }: TheaterProps) => {
+const Trending = ({ auth, trending }: TrendingProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [movies, setMovies] = useState<iMovie[]>(theaters);
+    const [movies, setMovies] = useState<iMovie[]>(trending);
     const [page, setPage] = useState<number>(1);
 
     const handleClickMore = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        setIsLoading(true);
         const newPage = page + 1;
+        if (newPage > 10) return;
 
-        GetMovieTheaters(newPage)
+        setIsLoading(true);
+        GetTrendingMovie(newPage, "week")
             .then((newMovies) => {
                 if (newMovies.length > 0) {
                     setMovies((prevMovies) => [...prevMovies, ...newMovies]);
@@ -33,6 +34,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
             })
             .finally(() => setIsLoading(false));
     };
+
     return (
         <>
             <CoreLayout user={auth.user} title="Vizyondakiler">
@@ -52,7 +54,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
                                         key={i}
                                         className={classNames(
                                             "w-full rounded-3xl relative flex cursor-pointer overflow-hidden items-center justify-center",
-                                            "group"
+                                            "group shadow"
                                         )}
                                     >
                                         <LazyLoadedImage
@@ -78,21 +80,34 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
                                             <span className="text-sm font-medium text-gray-500">
                                                 {movie.release_date}
                                             </span>
-                                            <div className="absolute top-0 left-2 -translate-y-1/2 max-sm:hidden">
-                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                    <CircularProgressBar
-                                                        value={
-                                                            movie.vote_average
-                                                        }
-                                                    />
+                                            <div className="absolute top-0 left-0 -translate-y-1/2 max-sm:hidden w-full">
+                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
+                                                    <div className="flex items-center justify-between">
+                                                        <div>
+                                                            <CircularProgressBar
+                                                                value={
+                                                                    movie.vote_average
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="text-royal-950 bg-white shadow p-1 px-2 rounded flex items-center gap-1">
+                                                            <IoIosStats />
+                                                            <h1 className="text-xs font-bold">
+                                                                {movie.popularity.toFixed()}
+                                                            </h1>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <>
-                                            <div className="sm:hidden absolute bottom-1 right-1 z-50">
-                                                <CircularProgressBar
-                                                    value={movie.vote_average}
-                                                />
+                                            <div className="sm:hidden absolute bottom-2 right-3 z-50">
+                                                <div className="text-royal-950 bg-white shadow p-1 px-2 rounded flex items-center gap-1">
+                                                    <IoIosStats />
+                                                    <h1 className="text-xs font-bold">
+                                                        {movie.popularity.toFixed()}
+                                                    </h1>
+                                                </div>
                                             </div>
                                         </>
                                     </div>
@@ -129,4 +144,4 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
     );
 };
 
-export default Theaters;
+export default Trending;

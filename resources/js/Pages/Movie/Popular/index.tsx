@@ -1,6 +1,6 @@
 import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
-import { iMovie } from "@/types/movie.type";
+import { iMovie } from "@/types";
 import { SelectTabs, Title } from "../Partials";
 import classNames from "classnames";
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
@@ -92,7 +92,7 @@ const UpComings = ({ auth, popular }: PopularProps) => {
                                         </div>
                                         <>
                                             <div className="sm:hidden absolute bottom-2 right-3 z-50">
-                                                <div className="bg-white p-1 rounded flex gap-1 items-center">
+                                                <div className="text-royal-950 bg-white shadow p-1 px-2 rounded flex items-center gap-1">
                                                     <IoIosStats />
                                                     <h1 className="text-xs font-bold">
                                                         {movie.popularity.toFixed()}

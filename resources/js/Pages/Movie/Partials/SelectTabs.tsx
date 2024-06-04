@@ -10,14 +10,15 @@ export default function SelectTabs() {
     const Items: iItem[] = [
         { label: "Vizyondakiler", href: "movie.theaters" },
         { label: "Çok Yakında", href: "movie.upcomings" },
-        { label: "Son Trendler", href: "movie.popular" },
+        { label: "Popüler", href: "movie.popular" },
+        { label: "Son Trendler", href: "movie.trending" },
         { label: "En İyiler", href: "movie.goat" },
     ];
 
     return (
         <div className="relative flex items-center">
             <ul
-                className="relative flex flex-wrap p-1 list-none rounded bg-shark-200 dark:bg-[#0F0E0E]"
+                className="relative flex flex-wrap items-center p-1 list-none rounded bg-shark-200 dark:bg-[#0F0E0E]"
                 data-tabs="tabs"
                 role="list"
             >

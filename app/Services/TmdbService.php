@@ -191,6 +191,49 @@ class TmdbService
     }
 
     /**
+     * Get movie trending.
+     * 
+     * @param string $type "movie" or "tv".
+     * @param int $page for pagination.
+     * @param string $window "day" or "week". Defaults to "week".
+     */
+    public function getTrending(string $type, string $window = "week", int $page)
+    {
+        $cacheKey = "trending_{$type}_{$window}_{$page}";
+        $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
+        $cachedData = null;
+
+        $cachedData = Cache::remember($cacheKey, $ttl, function () use ($type, $window, $page) {
+            try {
+                $queryParams = [
+                    'page' => $page,
+                    'language' => 'tr',
+                ];
+                $response = $this->client->get("trending/{$type}/{$window}", [
+                    'query' => $queryParams,
+                ]);
+
+                if ($response->getStatusCode() !== 200) {
+                    Log::channel("tmdb")->error("Error fetching data from TMDB Service 'trending/movie/{$window}'");
+                    return null;
+                }
+                Log::channel("tmdb")->info("Fetching data from TMDB Service 'trending/movie/{$window}'", $queryParams);
+                $data = json_decode($response->getBody()->getContents(), true);
+                return $data['results'];
+            } catch (\Exception $e) {
+                Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+                return null;
+            }
+        });
+
+        if ($cachedData === null) {
+            return Result::failure('Error fetching data from TMDB');
+        }
+
+        return Result::success($cachedData);
+    }
+
+    /**
      * Get movie popular.
      */
     public function getMoviePopular(int $page)

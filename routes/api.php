@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\PlatformController;
 use App\Http\Controllers\Api\SeriesController;
-
+use App\Http\Controllers\Api\TrendingControllerr;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('movie')->group(function () {
@@ -12,6 +12,10 @@ Route::prefix('movie')->group(function () {
     Route::get('/popular', [MovieController::class, 'getPopular']);
     Route::get('/goat', [MovieController::class, 'getGOAT']);
     Route::get('/{movie}/videos', [MovieController::class, 'getVideosByMovieId']);
+});
+
+Route::prefix('trending')->group(function () {
+    Route::get('/{type}/{window}', [TrendingControllerr::class, 'getTrending']);
 });
 
 Route::prefix('series')->group(function () {

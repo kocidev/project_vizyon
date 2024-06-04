@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
-import { iMovie } from "@/types/movie.type";
+import { iMovie } from "@/types";
 import { MdArrowForwardIos } from "react-icons/md";
 import { LuExternalLink } from "react-icons/lu";
 import {

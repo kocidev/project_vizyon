@@ -1,19 +1,4 @@
-export interface iMovie {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: string | boolean;
-    vote_average: number;
-    vote_count: number;
-}
+import { iMovie } from "@/types";
 
 export interface iMovieDiscoverResponse {
     page: number;

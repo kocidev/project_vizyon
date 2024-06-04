@@ -52,6 +52,19 @@ class MovieController extends Controller
     /**
      * Display the movie popular.
      */
+    public function trending(): Response
+    {
+        $trending = $this->tmdbService->getTrending("movie", "week", 1);
+        $trendingData = $trending->isSuccess ? $trending->data : [];
+
+        return Inertia::render('Movie/Trending/index', [
+            'trending' => $trendingData
+        ]);
+    }
+
+    /**
+     * Display the movie popular.
+     */
     public function popular(): Response
     {
         $popular = $this->tmdbService->getMoviePopular(1);
