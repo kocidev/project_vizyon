@@ -2,7 +2,7 @@ import LazyLoadedImage from "@/Components/LazyLoadedImage";
 import Modal from "@/Components/Modal";
 import ScrollContainer from "@/Components/ScrollContainer";
 import { GetMovieVideos } from "@/Services/Movie";
-import { iMovie } from "@/types";
+import { iMovie } from "@/types/movie.type";
 import { Link } from "@inertiajs/react";
 import classNames from "classnames";
 import { useState } from "react";
