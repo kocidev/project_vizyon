@@ -1,15 +1,21 @@
 import apiClient from "@/Services";
-import { iPlatformContent, PlatformTypes } from "@/types/platform.type";
+import { iPlatform, PlatformTypes } from "@/types/platform.type";
 
 export const GetPlatformContent = async (
-    platform: PlatformTypes
-): Promise<iPlatformContent[]> => {
+    platformName: PlatformTypes,
+    cursor?: string
+): Promise<iPlatform> => {
     try {
-        const response = await apiClient.get(`platform/${platform}/content`);
-        const result: iPlatformContent[] = response.data;
+        const response = await apiClient.get(
+            `platform/${platformName}/popular`,
+            {
+                params: { cursor },
+            }
+        );
+        const result: iPlatform = response.data;
         return result;
     } catch (error) {
         console.error("Fetch error:", error);
-        return [];
+        return {} as iPlatform;
     }
 };
