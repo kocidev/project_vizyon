@@ -1,6 +1,6 @@
 import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
-import { iMovie } from "@/types";
+import { iMovie } from "@/types/movie.type";
 
 import { Title, SelectTabs } from "@/Pages/Movie/Partials";
 import classNames from "classnames";
