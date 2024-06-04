@@ -128,6 +128,14 @@ return [
             'days' => env('LOG_DAILY_DAYS', 7),
             'replace_placeholders' => true,
         ],
+
+        'rapidapi' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/rapidapi/info.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => env('LOG_DAILY_DAYS', 7),
+            'replace_placeholders' => true,
+        ],
     ],
 
 ];

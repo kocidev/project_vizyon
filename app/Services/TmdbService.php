@@ -12,9 +12,15 @@ class TmdbService
 {
     protected $client;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->client = $client;
+        $this->client = new Client([
+            'base_uri' => config("services.tmdb.base_uri"),
+            'headers' => [
+                'Authorization' => 'Bearer' . ' ' . config("services.tmdb.access_key"),
+                'accept' => 'application/json',
+            ],
+        ]);
     }
 
     /**
@@ -156,7 +162,7 @@ class TmdbService
     /**
      * Get movie videos by movie id.
      */
-    public function getMovieVideosById(int $movieId)
+    public function getMovieVideosById(int $movieId): Result
     {
         $cacheKey = "movie_{$movieId}_videos";
         $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
@@ -197,7 +203,7 @@ class TmdbService
      * @param int $page for pagination.
      * @param string $window "day" or "week". Defaults to "week".
      */
-    public function getTrending(string $type, string $window = "week", int $page)
+    public function getTrending(string $type, string $window = "week", int $page): Result
     {
         $cacheKey = "trending_{$type}_{$window}_{$page}";
         $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
@@ -236,7 +242,7 @@ class TmdbService
     /**
      * Get movie popular.
      */
-    public function getMoviePopular(int $page)
+    public function getMoviePopular(int $page): Result
     {
         $cacheKey = "popular_movies_{$page}";
         $ttl = Carbon::now()->diffInSeconds(Carbon::tomorrow());
@@ -276,7 +282,7 @@ class TmdbService
     /**
      * Get movie videos GOAT.
      */
-    public function getMovieGOAT(int $page)
+    public function getMovieGOAT(int $page): Result
     {
         $cacheKey = "goat_movies_{$page}";
         $cachedData = null;
