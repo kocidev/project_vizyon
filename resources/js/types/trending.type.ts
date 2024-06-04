@@ -1,3 +1,3 @@
-import { iMovie } from "@/types";
+import { iMovie } from "./movie.type";
 
 export type iGetTrendingMovieResponse = iMovie[];
