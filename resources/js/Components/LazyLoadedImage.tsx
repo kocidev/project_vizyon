@@ -19,7 +19,7 @@ const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
 }) => {
     const { theme } = useTheme();
 
-    return (
+    return src ? (
         <LazyLoad
             debounce
             offset={100}
@@ -42,6 +42,13 @@ const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
                 className={imgClassName}
             />
         </LazyLoad>
+    ) : (
+        <Skeleton
+            baseColor={theme == "dark" ? "#111216" : "white"}
+            highlightColor={theme == "dark" ? "#27272a" : "#dbdbdb"}
+            borderRadius={0}
+            className={skeletonClassName}
+        />
     );
 };
 
