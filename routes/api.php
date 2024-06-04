@@ -23,5 +23,5 @@ Route::prefix('series')->group(function () {
 });
 
 Route::prefix('platform')->group(function () {
-    Route::get('/{platform}/content', [PlatformController::class, 'getPlatformContent']);
+    Route::get('/{platform}/popular', [PlatformController::class, 'getPlatformPopular']);
 });
