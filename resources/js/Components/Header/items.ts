@@ -28,7 +28,7 @@ export const HeaderItems: ItemType[] = [
         label: "Diziler",
     },
     {
-        href: "home",
+        href: "discover",
         icon: RiCompassDiscoverLine,
         label: "Keşfet",
     },

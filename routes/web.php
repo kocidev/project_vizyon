@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
@@ -22,6 +23,6 @@ Route::prefix('film')->group(function () {
     Route::get('/{movie}', [MovieController::class, 'show'])->name("movie.show");
 });
 
-Route::get('/kesfet', [HomeController::class, 'index'])->name('discover');
+Route::get('/kesfet', [DiscoverController::class, 'show'])->name('discover');
 
 require __DIR__ . '/auth.php';

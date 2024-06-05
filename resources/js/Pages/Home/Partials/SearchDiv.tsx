@@ -1,5 +1,6 @@
 import Loading from "@/Components/Loading";
 import TextInput from "@/Components/TextInput";
+import { router } from "@inertiajs/react";
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
@@ -11,8 +12,13 @@ const SearchDiv = () => {
         const query = searchQuery.trim().toLowerCase();
         if (isLoading || query.length < 3) return;
         setIsLoading(true);
-        const url = route("discover", { search: query });
-        window.location.href = url;
+        const url = route("discover");
+        router.visit(url, {
+            method: "get",
+            data: { s: query },
+            onFinish: () => setIsLoading(false),
+            onError: () => setIsLoading(false),
+        });
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
