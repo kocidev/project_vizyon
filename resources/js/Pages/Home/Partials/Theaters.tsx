@@ -2,7 +2,6 @@ import { useState } from "react";
 import classNames from "classnames";
 import { iMovie } from "@/types/movie.type";
 import { MdArrowForwardIos } from "react-icons/md";
-import { LuExternalLink } from "react-icons/lu";
 import {
     formatDateToTurkishMonthDay,
     genreIdsToNamesForMovies,
@@ -40,28 +39,31 @@ const Theaters = ({ theaters }: iTheatersPage) => {
 
     const MovieButton: React.FC<MovieButtonProps> = ({ movie }) =>
         movie && (
-            <div className={classNames("flex relative group")}>
-                <div className="w-full h-full relative overflow-hidden">
+            <div className={classNames("flex relative group cursor-pointer")}>
+                <div className="flex w-full h-full relative overflow-hidden">
                     <LazyLoadedImage
-                        className="w-full h-full group-hover:scale-105 transition duration-500"
+                        className="w-full h-full group-hover:scale-[1.025] transition duration-500"
                         src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                         alt={movie.title}
                         skeletonClassName="h-[420px]"
                     />
-                    <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-between">
-                        <div className="flex-col gap-1 w-full flex opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
+                    <div
+                        className={classNames(
+                            "absolute w-full h-full inset-0",
+                            "flex flex-col justify-between",
+                            "transition -translate-x-full duration-500",
+                            "opacity-0",
+                            "group-hover:translate-x-0 group-hover:opacity-100"
+                        )}
+                    >
+                        <div className="mt-4 flex-col gap-1 w-full flex">
+                            <h1 className="w-min whitespace-nowrap py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-800 dark:bg-copper-rose-700/75 text-white font-bold">
                                 {formatDateToTurkishMonthDay(
                                     movie.release_date
                                 )}
                             </h1>
-                            <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/50 text-white overflow-hidden max-w-[75%] text-ellipsis">
+                            <h1 className="w-min whitespace-nowrap p-1 text-xs border-l-2 border-111216 bg-111216/75 text-white overflow-hidden max-w-[75%] text-ellipsis">
                                 {genreIdsToNamesForMovies(movie.genre_ids)}
-                            </h1>
-                        </div>
-                        <div className="whitespace-nowrap max-w-full w-min">
-                            <h1 className="overflow-hidden text-ellipsis py-0.5 px-1 text-sm border-l-2 border-royal-950 bg-royal-950/75 dark:border-copper-rose-600 dark:bg-copper-rose-600/75 text-white font-bold">
-                                {movie.title}
                             </h1>
                         </div>
                     </div>
@@ -78,7 +80,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
             <div className="w-full relative max-sm:px-2 min-h-[620px] md:min-h-[420px]">
                 <div
                     className={classNames(
-                        "h-full grid grid-cols-2 md:grid-cols-4 border-2 border-royal-950 dark:border-lotus-700/75 animate-fade-in"
+                        "h-full grid grid-cols-2 md:grid-cols-4 animate-fade-in overflow-hidden rounded-2xl"
                     )}
                 >
                     {moviesToDisplay.map((movie, index) => (
@@ -93,14 +95,10 @@ const Theaters = ({ theaters }: iTheatersPage) => {
         <>
             <div className="px-2 sm:px-0 mt-4 sm:mt-6 mb-4">
                 <div className="flex items-center justify-between">
-                    <Link
-                        href={route("movie.theaters")}
-                        className="flex items-center gap-2 w-min"
-                    >
+                    <Link href={route("movie.theaters")}>
                         <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-2xl">
                             Vizyondakiler
                         </h1>
-                        <LuExternalLink className="w-5 h-5 mt-0.5 text-royal-950 dark:text-FFF2D7" />
                     </Link>
                     <div className="flex items-center gap-2">
                         <button

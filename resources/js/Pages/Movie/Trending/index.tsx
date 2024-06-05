@@ -100,16 +100,6 @@ const Trending = ({ auth, trending }: TrendingProps) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <>
-                                            <div className="sm:hidden absolute bottom-2 right-3 z-50">
-                                                <div className="text-royal-950 bg-white shadow p-1 px-2 rounded flex items-center gap-1">
-                                                    <IoIosStats />
-                                                    <h1 className="text-xs font-bold">
-                                                        {movie.popularity.toFixed()}
-                                                    </h1>
-                                                </div>
-                                            </div>
-                                        </>
                                     </div>
                                 ))}
                         </div>

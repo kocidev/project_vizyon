@@ -18,16 +18,19 @@ export default function SelectTabs() {
     return (
         <div className="relative flex items-center">
             <ul
-                className="relative flex flex-wrap items-center p-1 list-none rounded bg-shark-200 dark:bg-[#0F0E0E]"
+                className="relative max-sm:w-full flex max-sm:flex-col flex-wrap items-center p-1 list-none rounded max-sm:rounded-xl bg-shark-200 dark:bg-[#0F0E0E]"
                 data-tabs="tabs"
                 role="list"
             >
                 {Items.map((item, i) => (
-                    <li key={i} className="z-30 flex-auto text-center">
+                    <li
+                        key={i}
+                        className="z-30flex-auto text-center max-sm:w-5/6"
+                    >
                         <Link
                             href={route(item.href)}
                             className={classNames(
-                                "w-min",
+                                "max-sm:w-full sm:w-min",
                                 "z-30",
                                 "flex items-center justify-center",
                                 "px-2 py-1.5",

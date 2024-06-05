@@ -6,7 +6,6 @@ import { iMovie } from "@/types/movie.type";
 import { Link } from "@inertiajs/react";
 import classNames from "classnames";
 import { useState } from "react";
-import { LuExternalLink } from "react-icons/lu";
 import ReactPlayer from "react-player";
 
 interface iUpComingPage {
@@ -37,16 +36,16 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
     const GridMember: React.FC<{ movie: iMovie }> = ({ movie }) => (
         <div
             className={classNames(
-                "relative min-w-40 max-w-40 group hover:-translate-y-2 transition duration-500 z-20",
+                "flex",
+                "relative min-w-48 max-w-48 group hover:-translate-y-2 transition duration-500 z-20",
                 "cursor-pointer"
             )}
         >
             <LazyLoadedImage
-                className="w-full h-full"
+                className="w-full h-full rounded-2xl overflow-hidden"
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                 alt={movie.title}
-                skeletonClassName="h-[240px] rounded-lg"
-                imgClassName="rounded-lg"
+                skeletonClassName="h-[240px]"
             />
             {movie.backdrop_path && (
                 <div
@@ -57,7 +56,7 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
                         "flex justify-center items-center",
                         "transition duration-500",
                         "group-hover:opacity-10 hover:!opacity-100",
-                        "z-0"
+                        "z-10"
                     )}
                 >
                     <div
@@ -93,7 +92,6 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
                     <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
                         Çok Yakında
                     </h1>
-                    <LuExternalLink className="w-5 h-5 mt-0.5 text-royal-950 dark:text-FFF2D7" />
                 </Link>
             </div>
             <div className="w-full relative max-sm:px-2 sm:mb-20">
