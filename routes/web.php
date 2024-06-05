@@ -13,13 +13,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('movie')->group(function () {
-    Route::get('/theaters', [MovieController::class, 'theaters'])->name("movie.theaters");
-    Route::get('/upcomings', [MovieController::class, 'upcomings'])->name("movie.upcomings");
-    Route::get('/trending', [MovieController::class, 'trending'])->name("movie.trending");
-    Route::get('/popular', [MovieController::class, 'popular'])->name("movie.popular");
-    Route::get('/goat', [MovieController::class, 'goat'])->name("movie.goat");
+Route::prefix('film')->group(function () {
+    Route::get('/vizyondakiler', [MovieController::class, 'theaters'])->name("movie.theaters");
+    Route::get('/cok-yakinda', [MovieController::class, 'upcomings'])->name("movie.upcomings");
+    Route::get('/trendler', [MovieController::class, 'trending'])->name("movie.trending");
+    Route::get('/populer', [MovieController::class, 'popular'])->name("movie.popular");
+    Route::get('/en-iyiler', [MovieController::class, 'goat'])->name("movie.goat");
     Route::get('/{movie}', [MovieController::class, 'show'])->name("movie.show");
 });
+
+Route::get('/kesfet', [HomeController::class, 'index'])->name('discover');
 
 require __DIR__ . '/auth.php';

@@ -18,6 +18,7 @@ export default {
                 111216: "#111216",
                 F7F2EB: "#F7F2EB",
                 FFF2D7: "#FFF2D7",
+                FF3D00: "#FF3D00",
                 lotus: {
                     50: "#fbf5f5",
                     100: "#f7e9e9",

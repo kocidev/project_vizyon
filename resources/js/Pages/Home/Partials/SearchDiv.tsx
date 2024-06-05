@@ -1,7 +1,26 @@
+import Loading from "@/Components/Loading";
 import TextInput from "@/Components/TextInput";
+import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
 const SearchDiv = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [searchQuery, setSearchQuery] = useState<string>("");
+
+    const handleSearch = () => {
+        const query = searchQuery.trim().toLowerCase();
+        if (isLoading || query.length < 3) return;
+        setIsLoading(true);
+        const url = route("discover", { search: query });
+        window.location.href = url;
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    };
+
     return (
         <div className="w-full flex gap-4 relative overflow-hidden px-4 sm:px-10 pt-20 pb-20 sm:pb-40">
             <>
@@ -28,9 +47,19 @@ const SearchDiv = () => {
                         className="w-full sm:w-2/3 py-3 px-4 !ring-0 !outline-none !rounded-l-xl !rounded-r-none !border-none focus:!border-none dark:!bg-lotus-800 dark:placeholder:text-white focus:placeholder:text-transparent dark:focus:placeholder:text-transparent"
                         placeholder="Aklından neler geçiyor ?"
                         autoComplete="off"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
                     />
-                    <button className="p-3 bg-white text-royal-600 dark:text-FFF2D7 dark:!bg-lotus-800 border-l-2 rounded-r-xl dark:border-FFF2D7/50 hover:text-royal-950 dark:hover:text-lotus-500">
-                        <IoSearchSharp className="w-6 h-6" />
+                    <button
+                        onClick={handleSearch}
+                        className="p-3 bg-white text-royal-600 dark:text-FFF2D7 dark:!bg-lotus-800 border-l-2 rounded-r-xl dark:border-FFF2D7/50 hover:text-royal-950 dark:hover:text-lotus-500"
+                    >
+                        {!isLoading ? (
+                            <IoSearchSharp className="w-6 h-6" />
+                        ) : (
+                            <Loading w={24} />
+                        )}
                     </button>
                 </div>
             </div>
