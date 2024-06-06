@@ -44,7 +44,7 @@ const Trigger = ({ children }: PropsWithChildren) => {
 
             {open && (
                 <div
-                    className="fixed inset-0 z-40"
+                    className="fixed inset-0 z-[101]"
                     onClick={() => setOpen(false)}
                 ></div>
             )}
@@ -55,11 +55,11 @@ const Trigger = ({ children }: PropsWithChildren) => {
 const Content = ({
     align = "right",
     width = "48",
-    contentClasses = "bg-royal-900 dark:bg-lotus-800",
+    contentClasses = "",
     children,
 }: PropsWithChildren<{
     align?: "left" | "right";
-    width?: "48";
+    width?: "48" | "w-full" | string;
     contentClasses?: string;
 }>) => {
     const { open, setOpen } = useContext(DropDownContext);
@@ -76,6 +76,8 @@ const Content = ({
 
     if (width === "48") {
         widthClasses = "w-48";
+    } else {
+        widthClasses = width;
     }
 
     return (
@@ -92,7 +94,7 @@ const Content = ({
             >
                 <div
                     className={classNames(
-                        "absolute z-50 mt-2 rounded-md shadow-lg",
+                        "absolute z-[101] mt-2 shadow-lg",
                         alignmentClasses,
                         widthClasses
                     )}
@@ -101,6 +103,7 @@ const Content = ({
                     <div
                         className={classNames(
                             "rounded-md ring-0",
+                            "bg-white dark:bg-0F0E0E border dark:border-0F0E0E py-2",
                             contentClasses
                         )}
                     >
@@ -121,9 +124,10 @@ const DropdownLink = ({
         <Link
             {...props}
             className={classNames(
-                "block w-full px-4 py-2",
-                "text-start text-sm leading-5 text-white dark:text-FFF2D7",
-                "hover:bg-white/25 dark:hover:bg-lotus-700/60 rounded",
+                "block w-full px-3 py-2",
+                "text-start text-sm leading-5",
+                "hover:bg-royal-950 dark:hover:bg-lotus-700",
+                "hover:text-white dark:text-white",
                 "focus:outline-none",
                 "transition duration-150 ease-in-out",
                 className

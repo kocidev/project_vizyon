@@ -64,7 +64,7 @@ export const GetMoviePopular = async (
     }
 };
 
-export const GetMovieGOAT = async (
+export const GetMovieGoat = async (
     page: number
 ): Promise<iGetMoviePopularResponse> => {
     try {

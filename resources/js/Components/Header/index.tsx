@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Head, Link } from "@inertiajs/react";
 import classNames from "classnames";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
+import { AiOutlineUser } from "react-icons/ai";
 import { User } from "@/types";
 import useTheme from "@/Hooks/theme/useTheme";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
@@ -134,7 +134,7 @@ export default function Header({
                                                 href={route("profile.edit")}
                                             >
                                                 <div className="flex items-center gap-1">
-                                                    <FaUser className="w-4 h-4" />
+                                                    <AiOutlineUser className="w-4 h-4" />
                                                     <h1>Profil</h1>
                                                 </div>
                                             </Dropdown.Link>
@@ -207,7 +207,7 @@ export default function Header({
                                     href={route("profile.edit")}
                                     className="border-l-2 border-royal-950 dark:border-lotus-700 flex items-center gap-1"
                                 >
-                                    <FaUser />
+                                    <AiOutlineUser />
                                     <h1>Profil</h1>
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink

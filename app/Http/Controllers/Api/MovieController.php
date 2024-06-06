@@ -74,14 +74,14 @@ class MovieController extends Controller
         }
     }
 
-    public function getGOAT(Request $request): JsonResponse
+    public function getGoat(Request $request): JsonResponse
     {
         $request->validate([
             'page' => 'nullable|integer|min:1|max:10',
         ]);
         $page = $request->query('page', 1);
 
-        $result = $this->tmdbService->getMovieGOAT($page);
+        $result = $this->tmdbService->getMovieGoat($page);
         if ($result->isSuccess) {
             return response()->json($result->data);
         } else {

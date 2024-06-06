@@ -16,6 +16,7 @@ export default {
             colors: {
                 dbdbdb: "#dbdbdb",
                 111216: "#111216",
+                "0F0E0E": "#0F0E0E",
                 F7F2EB: "#F7F2EB",
                 FFF2D7: "#FFF2D7",
                 FF3D00: "#FF3D00",

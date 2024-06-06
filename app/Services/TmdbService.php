@@ -280,9 +280,9 @@ class TmdbService
     }
 
     /**
-     * Get movie videos GOAT.
+     * Get movie videos Goat.
      */
-    public function getMovieGOAT(int $page): Result
+    public function getMovieGoat(int $page): Result
     {
         $cacheKey = "goat_movies_{$page}";
         $cachedData = null;

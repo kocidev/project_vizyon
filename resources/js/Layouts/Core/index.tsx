@@ -17,7 +17,7 @@ const CoreLayout = ({
             <div
                 className={classNames("w-full mb-8 mx-auto mt-16", "relative", {
                     "xl:w-3/5 lg:w-3/4 sm:w-11/12": !big,
-                    "max-w-screen-2xl": big,
+                    "max-w-screen-xl": big,
                 })}
             >
                 <div className="w-full h-full">{children}</div>

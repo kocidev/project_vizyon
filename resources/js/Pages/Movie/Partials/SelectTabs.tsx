@@ -18,7 +18,7 @@ export default function SelectTabs() {
     return (
         <div className="relative flex items-center">
             <ul
-                className="relative max-sm:w-full flex max-sm:flex-col flex-wrap items-center p-1 list-none rounded max-sm:rounded-xl bg-shark-200 dark:bg-[#0F0E0E]"
+                className="relative max-sm:w-full flex max-sm:flex-col flex-wrap items-center p-1 list-none rounded max-sm:rounded-xl bg-shark-200 dark:bg-0F0E0E"
                 data-tabs="tabs"
                 role="list"
             >

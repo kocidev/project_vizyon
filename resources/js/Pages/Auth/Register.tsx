@@ -6,6 +6,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Link, useForm } from "@inertiajs/react";
 import classNames from "classnames";
+import Loading from "@/Components/Loading";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -118,13 +119,14 @@ export default function Register() {
                                 className="mt-2"
                             />
                         </div>
-                        <div className="flex items-center justify-end mt-4">
+                        <div className="flex items-center justify-end mt-4 gap-2">
                             <PrimaryButton
                                 className="ms-4"
                                 disabled={processing}
                             >
                                 Kayıt Ol
                             </PrimaryButton>
+                            {processing && <Loading />}
                         </div>
                     </form>
                 </div>

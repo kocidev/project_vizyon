@@ -31,7 +31,7 @@ class MovieController extends Controller
         $theaters = $this->tmdbService->getMovieNowPlaying(1);
         $theatersData = $theaters->isSuccess ? $theaters->data : [];
 
-        return Inertia::render('Movie/Theaters/index', [
+        return Inertia::render('Movie/Theaters', [
             'theaters' => $theatersData
         ]);
     }
@@ -44,7 +44,7 @@ class MovieController extends Controller
         $upComings = $this->tmdbService->getMovieUpComing(1);
         $upComingsData = $upComings->isSuccess ? $upComings->data : [];
 
-        return Inertia::render('Movie/UpComings/index', [
+        return Inertia::render('Movie/UpComings', [
             'upComings' => $upComingsData
         ]);
     }
@@ -57,7 +57,7 @@ class MovieController extends Controller
         $trending = $this->tmdbService->getTrending("movie", "week", 1);
         $trendingData = $trending->isSuccess ? $trending->data : [];
 
-        return Inertia::render('Movie/Trending/index', [
+        return Inertia::render('Movie/Trending', [
             'trending' => $trendingData
         ]);
     }
@@ -70,7 +70,7 @@ class MovieController extends Controller
         $popular = $this->tmdbService->getMoviePopular(1);
         $popularData = $popular->isSuccess ? $popular->data : [];
 
-        return Inertia::render('Movie/Popular/index', [
+        return Inertia::render('Movie/Popular', [
             'popular' => $popularData
         ]);
     }
@@ -80,10 +80,10 @@ class MovieController extends Controller
      */
     public function goat(): Response
     {
-        $goat = $this->tmdbService->getMovieGOAT(1);
+        $goat = $this->tmdbService->getMovieGoat(1);
         $goatData = $goat->isSuccess ? $goat->data : [];
 
-        return Inertia::render('Movie/GOAT/index', [
+        return Inertia::render('Movie/Goat', [
             'goat' => $goatData
         ]);
     }

@@ -1,12 +1,12 @@
 import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
 import { iMovie } from "@/types/movie.type";
-import { SelectTabs, Title } from "../Partials";
+import { SelectTabs, Title } from "./Partials";
 import classNames from "classnames";
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
 import LoadingDot from "@/Components/LoadingDot";
 import { useState } from "react";
-import { GetMovieGOAT } from "@/Services/Movie";
+import { GetMovieGoat } from "@/Services/Movie";
 import CircularProgressBar from "@/Components/CircularProgressBar";
 
 interface GoatProps extends PageProps {
@@ -24,7 +24,7 @@ const UpComings = ({ auth, goat }: GoatProps) => {
         if (newPage > 10) return;
 
         setIsLoading(true);
-        GetMovieGOAT(newPage)
+        GetMovieGoat(newPage)
             .then((newMovies) => {
                 if (newMovies.length > 0) {
                     setMovies((prevMovies) => [...prevMovies, ...newMovies]);
