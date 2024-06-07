@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Modal from "@/Components/Modal";
 import ScrollContainer from "@/Components/ScrollContainer";
-import { iUpComingSeries } from "@/types/serie.type";
+import { iUpComingSeries } from "@/types/series.type";
 
 const LatestSeriesTrailers = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);

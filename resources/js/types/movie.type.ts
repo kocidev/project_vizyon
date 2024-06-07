@@ -15,7 +15,7 @@ export interface iMovie {
     vote_count: number;
 }
 
-export interface iMovieDiscoverResponse {
+export interface iServiceMovieDiscoverResponse {
     page: number;
     results: iMovie[];
     total_pages: number;
@@ -23,8 +23,8 @@ export interface iMovieDiscoverResponse {
 }
 
 export type iGetMovieTheatersResponse = iMovie[];
-export type iGetMovieUpComingsResponse = iGetMovieTheatersResponse;
-export type iGetMoviePopularResponse = iGetMovieTheatersResponse;
+export type iGetMovieUpComingsResponse = iMovie[];
+export type iGetMoviePopularResponse = iMovie[];
 
 export type iGetMovieVideosResponse = {
     iso_639_1: string;

@@ -12,7 +12,7 @@ const Discover = ({ auth }: PageProps) => {
                             Keşfet
                         </h1>
                     </div>
-                    <div className="flex items-start mt-8">
+                    <div className="flex items-start mt-4">
                         <div>
                             <FilterBar />
                         </div>

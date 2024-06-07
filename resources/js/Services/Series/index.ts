@@ -1,4 +1,4 @@
-import { iUpComingSeries } from "@/types/serie.type";
+import { iUpComingSeries } from "@/types/series.type";
 import apiClient from "@/Services";
 
 export const GetUpComingSeries = async (
