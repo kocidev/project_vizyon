@@ -1,7 +1,4 @@
-export interface iGenre {
-    id: number;
-    name: string;
-}
+import { iGenre } from "@/types/movie.type";
 
 export const movieGenres: iGenre[] = [
     { id: 28, name: "Aksiyon" },

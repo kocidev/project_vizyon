@@ -1,3 +1,8 @@
+export interface iGenre {
+    id: number;
+    name: string;
+}
+
 export interface iMovie {
     adult: boolean;
     backdrop_path: string;

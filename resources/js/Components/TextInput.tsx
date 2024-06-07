@@ -36,8 +36,8 @@ export default forwardRef(function TextInput(
                 "rounded-md shadow-sm",
                 "border-gray-300 dark:border-gray-700",
                 "dark:bg-shark-950",
-                "dark:text-gray-100 focus:border-royal-950 dark:focus:border-lotus-600",
-                "focus:ring-royal-950 dark:focus:ring-lotus-600",
+                "dark:text-gray-100 focus:border-indigo-500",
+                "focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500",
                 className
             )}
             ref={localRef}
