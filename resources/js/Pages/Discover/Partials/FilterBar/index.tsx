@@ -392,6 +392,13 @@ const FilterBar = () => {
                     </>
                 </div>
             </div>
+            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 shadow z-10 opacity-10 hover:opacity-100 transition-opacity duration-300">
+                <button className="flex items-center justify-center w-full py-4">
+                    <h1 className="text-white text-xl font-extrabold uppercase">
+                        Ara
+                    </h1>
+                </button>
+            </div>
         </>
     );
 };
