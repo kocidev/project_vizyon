@@ -70,7 +70,7 @@ const FilterBar = () => {
         <>
             <div className="pr-4 flex flex-col gap-4 w-56">
                 <div id="filter_sort_by">
-                    <h1 className="font-medium mb-1">Sıralama Ölçütü</h1>
+                    <h1 className="font-medium mb-2">Sıralama Ölçütü</h1>
                     <SelectMenu
                         label="Select an option"
                         options={[
@@ -111,8 +111,8 @@ const FilterBar = () => {
                     />
                 </div>
                 <div id="filter_vote_average">
-                    <h1 className="font-medium mb-1">Puanı</h1>
-                    <div className="relative">
+                    <h1 className="font-medium">Puanı</h1>
+                    <div className="relative mt-2">
                         <MultiRangeSlider
                             min={0}
                             max={10}
@@ -120,11 +120,11 @@ const FilterBar = () => {
                                 handleChangeFilterVoteAverage(min, max)
                             }
                         />
-                        <div className="flex justify-between mt-0 text-sm text-gray-500 dark:text-gray-400">
-                            <span>0</span>
-                            <span>5</span>
-                            <span>10</span>
-                        </div>
+                    </div>
+                    <div className="mt-4 flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>0</span>
+                        <span>5</span>
+                        <span>10</span>
                     </div>
                 </div>
             </div>

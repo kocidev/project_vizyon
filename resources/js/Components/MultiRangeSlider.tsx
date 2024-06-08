@@ -1,3 +1,5 @@
+import "../../css/multiRangeSlider.css";
+import classNames from "classnames";
 import { useState, useRef, useEffect, useCallback } from "react";
 
 interface MultiRangeSliderProps {
@@ -13,8 +15,8 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
 }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
-    const minValRef = useRef(min);
-    const maxValRef = useRef(max);
+    const minValRef = useRef<HTMLInputElement>(null);
+    const maxValRef = useRef<HTMLInputElement>(null);
     const range = useRef<HTMLDivElement>(null);
 
     // Convert to percentage
@@ -25,11 +27,11 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
 
     // Set width of the range to decrease from the left side
     useEffect(() => {
-        if (maxValRef.current !== null) {
+        if (maxValRef.current) {
             const minPercent = getPercent(minVal);
-            const maxPercent = getPercent(maxValRef.current);
+            const maxPercent = getPercent(+maxValRef.current.value);
 
-            if (range.current !== null) {
+            if (range.current) {
                 range.current.style.left = `${minPercent}%`;
                 range.current.style.width = `${maxPercent - minPercent}%`;
             }
@@ -38,11 +40,11 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
 
     // Set width of the range to decrease from the right side
     useEffect(() => {
-        if (minValRef.current !== null) {
-            const minPercent = getPercent(minValRef.current);
+        if (minValRef.current) {
+            const minPercent = getPercent(+minValRef.current.value);
             const maxPercent = getPercent(maxVal);
 
-            if (range.current !== null) {
+            if (range.current) {
                 range.current.style.width = `${maxPercent - minPercent}%`;
             }
         }
@@ -54,53 +56,38 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
     }, [minVal, maxVal, onChange]);
 
     return (
-        <div className="relative w-full">
+        <div className="relative w-full" id="multi-range-slider">
             <input
                 type="range"
                 min={min}
                 max={max}
                 value={minVal}
+                ref={minValRef}
                 onChange={(event) => {
-                    const value = Math.min(
-                        Number(event.target.value),
-                        maxVal - 1
-                    );
+                    const value = Math.min(+event.target.value, maxVal - 1);
                     setMinVal(value);
-                    minValRef.current = value;
+                    event.target.value = value.toString();
                 }}
-                className="absolute w-full h-2 appearance-none bg-transparent accent-white/0"
-                style={{ zIndex: minVal > max - 100 ? "5" : "1" }}
+                className={classNames("thumb thumb--zindex-3", {
+                    "thumb--zindex-5": minVal > max - 100,
+                })}
             />
             <input
                 type="range"
                 min={min}
                 max={max}
                 value={maxVal}
+                ref={maxValRef}
                 onChange={(event) => {
-                    const value = Math.max(
-                        Number(event.target.value),
-                        minVal + 1
-                    );
+                    const value = Math.max(+event.target.value, minVal + 1);
                     setMaxVal(value);
-                    maxValRef.current = value;
+                    event.target.value = value.toString();
                 }}
-                className="absolute w-full h-2 appearance-none bg-transparent accent-white/0"
+                className="thumb thumb--zindex-4"
             />
-
-            <div className="relative h-2">
-                <div className="absolute z-10 left-0 right-0 bottom-0 bg-gray-300 h-2" />
-                <div
-                    ref={range}
-                    className="absolute z-30 left-0 bottom-0 bg-indigo-500 h-2"
-                />
-                <div
-                    className="absolute z-30 w-3 h-3 bg-indigo-500 rounded-full top-0 transform -translate-x-1/2"
-                    style={{ left: `${getPercent(minVal)}%` }}
-                />
-                <div
-                    className="absolute z-30 w-3 h-3 bg-indigo-500 rounded-full top-0 transform -translate-x-1/2"
-                    style={{ left: `${getPercent(maxVal)}%` }}
-                />
+            <div className="slider">
+                <div className="slider__track bg-dbdbdb dark:bg-gray-600" />
+                <div ref={range} className="slider__range bg-indigo-500" />
             </div>
         </div>
     );
