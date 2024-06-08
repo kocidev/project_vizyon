@@ -104,7 +104,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                         <button
                             onClick={(e) => handlePageClick(e, false)}
                             className={classNames(
-                                "p-1.5 rounded-full",
+                                "p-1.5 rounded-lg",
                                 "bg-royal-900 hover:bg-royal-950 dark:bg-lotus-700/50 dark:hover:bg-lotus-700",
                                 "text-white dark:text-FFF2D7"
                             )}
@@ -114,7 +114,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                         <button
                             onClick={(e) => handlePageClick(e, true)}
                             className={classNames(
-                                "p-1.5 rounded-full",
+                                "p-1.5 rounded-lg",
                                 "bg-royal-900 hover:bg-royal-950 dark:bg-lotus-700/50 dark:hover:bg-lotus-700",
                                 "text-white dark:text-FFF2D7"
                             )}

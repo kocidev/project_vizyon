@@ -96,7 +96,7 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
             </div>
             <div className="w-full relative max-sm:px-2 sm:mb-20">
                 <div className="edge_fade_blur dark:after:bg-fade-dark">
-                    <ScrollContainer className="flex gap-4 pt-2">
+                    <ScrollContainer className="flex gap-4 pt-2 pb-14">
                         {upComings &&
                             upComings.length > 0 &&
                             upComings

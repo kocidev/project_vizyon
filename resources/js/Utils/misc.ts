@@ -1,6 +1,6 @@
 import { iGenre } from "@/types/movie.type";
 
-export const movieGenres: iGenre[] = [
+export const Tmdb_MovieGenres: iGenre[] = [
     { id: 28, name: "Aksiyon" },
     { id: 12, name: "Macera" },
     { id: 16, name: "Animasyon" },
@@ -22,7 +22,7 @@ export const movieGenres: iGenre[] = [
     { id: 37, name: "Western" },
 ];
 
-export const tvGenres: iGenre[] = [
+export const Tmdb_TvGenres: iGenre[] = [
     { id: 10759, name: "Aksiyon & Macera" },
     { id: 16, name: "Animasyon" },
     { id: 35, name: "Komedi" },
@@ -42,12 +42,12 @@ export const tvGenres: iGenre[] = [
 ];
 
 export function genreIdsToNamesForMovies(genreIds: number[]): string {
-    const genreNames: iGenre[] = genreIds.map((id) => movieGenres[id]);
+    const genreNames: iGenre[] = genreIds.map((id) => Tmdb_MovieGenres[id]);
     return genreNames.join(", ");
 }
 
 export function genreIdsToNamesForTV(genreIds: number[]): string {
-    const genreNames: iGenre[] = genreIds.map((id) => tvGenres[id]);
+    const genreNames: iGenre[] = genreIds.map((id) => Tmdb_TvGenres[id]);
     return genreNames.join(", ");
 }
 

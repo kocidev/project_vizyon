@@ -6,12 +6,14 @@ interface MultiRangeSliderProps {
     min: number;
     max: number;
     onChange: ({ min, max }: { min: number; max: number }) => void;
+    step?: number;
 }
 
 const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
     min,
     max,
     onChange,
+    step = 1.0,
 }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
@@ -63,6 +65,7 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
                 max={max}
                 value={minVal}
                 ref={minValRef}
+                step={step}
                 onChange={(event) => {
                     const value = Math.min(+event.target.value, maxVal - 1);
                     setMinVal(value);
@@ -78,6 +81,7 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
                 max={max}
                 value={maxVal}
                 ref={maxValRef}
+                step={step}
                 onChange={(event) => {
                     const value = Math.max(+event.target.value, minVal + 1);
                     setMaxVal(value);
@@ -87,7 +91,10 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
             />
             <div className="slider">
                 <div className="slider__track bg-dbdbdb dark:bg-gray-600" />
-                <div ref={range} className="slider__range bg-indigo-500" />
+                <div
+                    ref={range}
+                    className="slider__range bg-indigo-500 dark:bg-gray-400"
+                />
             </div>
         </div>
     );

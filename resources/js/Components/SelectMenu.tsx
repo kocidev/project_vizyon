@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 
 interface SelectMenuProps {
@@ -22,12 +22,12 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
 
     const handleOptionClick = (option: { value: string; label: string }) => {
         setSelectedOption(option);
-        onChange(option.value);
+        onChange(option?.value);
         setIsOpen(false);
     };
 
     return (
-        <div className="relative inline-block w-64">
+        <div className="relative inline-block w-full">
             <label className="block text-sm font-medium text-gray-700 sr-only">
                 {label}
             </label>

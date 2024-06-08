@@ -68,7 +68,7 @@ const ScrollContainer: React.FC<{
             className={classNames(
                 "relative overflow-auto",
                 "cursor-grab",
-                "select-none pb-14 pr-10",
+                "select-none pr-10",
                 "max-sm:scrollbar-hide",
                 className
             )}

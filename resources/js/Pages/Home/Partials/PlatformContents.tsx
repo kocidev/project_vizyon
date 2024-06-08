@@ -74,7 +74,7 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                 }}
             >
                 <>
-                    <div className="absolute inset-0 bg-royal-950/80 dark:bg-black/80 z-10"></div>
+                    <div className="absolute inset-0 bg-royal-950/70 dark:bg-black/50 z-10"></div>
                     <div className="absolute right-10 bottom-2">
                         <img
                             width={52}
@@ -83,7 +83,7 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                         />
                     </div>
                 </>
-                <div className="relative w-full z-50 pl-8 py-4 flex flex-col justify-between min-h-[22rem]">
+                <div className="relative w-full z-50 pl-4 py-4 flex flex-col justify-between min-h-[24rem]">
                     <div className="flex max-md:flex-col md:items-center gap-4 pr-4">
                         <div className="lg:mr-14">
                             <h1 className="text-xl font-semibold tracking-wide text-white">
@@ -116,7 +116,7 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                     {sPlatform.shows.length > 0 && (
                         <div className="edge_fade_blur after:bg-fade-royal dark:after:bg-fade-dark mt-4">
                             <div className="w-full overflow-auto">
-                                <ScrollContainer className="flex gap-4 pt-2">
+                                <ScrollContainer className="flex gap-4 pt-2 pb-8">
                                     {sPlatform.shows.map((content, i) => {
                                         const imageSet =
                                             content.imageSet
