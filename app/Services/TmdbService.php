@@ -318,4 +318,47 @@ class TmdbService
 
         return Result::success($cachedData);
     }
+
+    /**
+     * Find shows using filters and sort options.
+     */
+    public function discoverByType($type, $filters, $page): Result
+    {
+        Log::channel("tmdb")->info("filters", $filters);
+
+        try {
+            // Boş olmayan değerleri filtrele
+            $queryParams = array_filter([
+                'page' => $page,
+                'language' => 'tr',
+                'region' => 'tr',
+                'sort_by' => $filters['sort_by'] ?? null,
+                'primary_release_date.gte' => $filters['primary_release_date_year_min'] ?? null,
+                'primary_release_date.lte' => $filters['primary_release_date_year_max'] ?? null,
+                'with_genres' => $filters['with_genres'] ?? null,
+                'with_original_language' => $filters['with_original_language'] ?? null,
+                'vote_average.gte' => $filters['vote_average_min'] ?? null,
+                'vote_average.lte' => $filters['vote_average_max'] ?? null,
+            ]);
+
+            Log::channel("tmdb")->info("Fetching data from TMDB Service 'discover/{$type}'", $queryParams);
+
+            $response = $this->client->get("discover/{$type}", [
+                'query' => $queryParams,
+            ]);
+
+            if ($response->getStatusCode() !== 200) {
+                Log::channel("tmdb")->error("Error fetching data from TMDB Service 'discover/{$type}', status code: " . $response->getStatusCode());
+                return Result::failure('Error fetching data from TMDB');
+            }
+
+            $data = json_decode($response->getBody()->getContents(), true);
+            $results = $data['results'] ?? null;
+
+            return Result::success($results);
+        } catch (\Exception $e) {
+            Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+            return Result::failure('Exception occurred: ' . $e->getMessage());
+        }
+    }
 }

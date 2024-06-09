@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DiscoverController;
 use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\PlatformController;
 use App\Http\Controllers\Api\SeriesController;
@@ -24,4 +25,8 @@ Route::prefix('series')->group(function () {
 
 Route::prefix('platform')->group(function () {
     Route::get('/{platform}/popular', [PlatformController::class, 'getPlatformPopular']);
+});
+
+Route::prefix('discover')->group(function () {
+    Route::get('/{type}', [DiscoverController::class, 'getShows']);
 });

@@ -2,9 +2,15 @@ import classNames from "classnames";
 import React, { useState, useEffect } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 
-interface SelectMenuProps {
-    options: { value: string; label: string }[];
+interface iSelectedO {
+    value: string;
     label: string;
+}
+
+interface SelectMenuProps {
+    options: iSelectedO[];
+    label: string;
+    autoSelect?: boolean;
     onChange: (selectedOption: string) => void;
 }
 
@@ -12,11 +18,11 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
     options,
     label,
     onChange,
+    autoSelect = false,
 }) => {
-    const [selectedOption, setSelectedOption] = useState<{
-        value: string;
-        label: string;
-    }>();
+    const [selectedOption, setSelectedOption] = useState<iSelectedO>(
+        autoSelect ? options[0] : ({} as iSelectedO)
+    );
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 

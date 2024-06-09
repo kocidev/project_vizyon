@@ -8,6 +8,7 @@ interface LazyLoadedImageProps extends LazyLoadProps {
     alt: string;
     imgClassName?: string;
     skeletonClassName?: string;
+    isExist?: boolean;
 }
 
 const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
@@ -15,11 +16,12 @@ const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
     alt,
     imgClassName,
     skeletonClassName,
+    isExist,
     ...lazyLoadProps
 }) => {
     const { theme } = useTheme();
 
-    return src ? (
+    return isExist != null && isExist ? (
         <LazyLoad
             debounce
             offset={100}
@@ -43,12 +45,7 @@ const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
             />
         </LazyLoad>
     ) : (
-        <Skeleton
-            baseColor={theme == "dark" ? "#111216" : "white"}
-            highlightColor={theme == "dark" ? "#27272a" : "#dbdbdb"}
-            borderRadius={0}
-            className={skeletonClassName}
-        />
+        <></>
     );
 };
 

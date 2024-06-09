@@ -3,12 +3,17 @@ import SelectMenu from "@/Components/SelectMenu";
 import { Tmdb_MovieGenres, Tmdb_TvGenres } from "@/Utils/misc";
 import {
     iFilterGenres,
+    iFilterKeys,
     iFilterOriginalLanguage,
     iFilterSortBy,
 } from "@/types/discover.type";
 import { iGenre } from "@/types/movie.type";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
+
+interface iFilterBar {
+    onSubmit: (filter: iFilterKeys) => void;
+}
 
 const _t_sort_by = (key: iFilterSortBy) => {
     switch (key) {
@@ -33,8 +38,8 @@ const _t_sort_by = (key: iFilterSortBy) => {
     }
 };
 
-const FilterBar = () => {
-    const [show_type, setShowType] = useState<"movie" | "series">("movie");
+const FilterBar: React.FC<iFilterBar> = ({ onSubmit }) => {
+    const [show_type, setShowType] = useState<"movie" | "tv">("movie");
     const [genres, setGenres] = useState<iGenre[]>(Tmdb_MovieGenres);
     const [sort_by, setSortBy] = useState<iFilterSortBy>("popularity.desc");
 
@@ -45,9 +50,8 @@ const FilterBar = () => {
 
     const [with_genres, setWithGenres] = useState<iFilterGenres[]>([]);
 
-    const [with_original_language, setWithOriginalLanguage] = useState<
-        iFilterOriginalLanguage[]
-    >([]);
+    const [with_original_language, setWithOriginalLanguage] =
+        useState<iFilterOriginalLanguage>();
 
     const [vote_average_min, setVoteAverageMin] = useState<number>(0);
     const [vote_average_max, setVoteAverageMax] = useState<number>(10);
@@ -94,10 +98,27 @@ const FilterBar = () => {
         handleChangeFilterValue(new_g, setWithGenres);
     };
 
+    const handleSubmitFilter = () => {
+        const _filter: iFilterKeys = {
+            show_type,
+            sort_by,
+            primary_release_date_year_min,
+            primary_release_date_year_max,
+            with_genres,
+            with_original_language,
+            vote_average_min,
+            vote_average_max,
+        };
+        onSubmit(_filter);
+    };
+
     return (
         <>
-            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 shadow z-10 opacity-10 hover:opacity-100 transition-opacity duration-300">
-                <button className="flex items-center justify-center w-full py-4">
+            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 shadow z-10 opacity-25 hover:opacity-100 transition-opacity duration-300">
+                <button
+                    onClick={handleSubmitFilter}
+                    className="flex items-center justify-center w-full py-4"
+                >
                     <h1 className="text-white text-xl font-extrabold uppercase">
                         Ara
                     </h1>
@@ -123,14 +144,14 @@ const FilterBar = () => {
                                 Film
                             </button>
                             <button
-                                onClick={() => setShowType("series")}
+                                onClick={() => setShowType("tv")}
                                 className={classNames(
                                     "w-full border p-2 border-shark-200 dark:border-gray-700",
                                     "rounded-r",
                                     "transition",
                                     {
                                         "bg-shark-200 dark:bg-gray-700":
-                                            show_type == "series",
+                                            show_type == "tv",
                                     }
                                 )}
                             >
@@ -143,6 +164,7 @@ const FilterBar = () => {
                     <>
                         <h1 className="font-medium mb-2">Sıralama Ölçütü</h1>
                         <SelectMenu
+                            autoSelect
                             label="Select an option"
                             options={[
                                 {
@@ -378,11 +400,11 @@ const FilterBar = () => {
                                 <button
                                     key={i}
                                     className={classNames(
-                                        "px-2.5 py-1 border rounded-full",
+                                        "px-2.5 py-1 border rounded-full border-indigo-500",
                                         {
-                                            "bg-indigo-500 text-white border-indigo-500":
+                                            "bg-indigo-500 text-white":
                                                 with_genres.includes(genre.id),
-                                            "bg-white dark:bg-111216 text-black dark:text-gray-300 border-indigo-500":
+                                            "bg-white dark:bg-111216 text-black dark:text-gray-300":
                                                 !with_genres.includes(genre.id),
                                         }
                                     )}

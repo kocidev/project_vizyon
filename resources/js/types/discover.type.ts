@@ -1,3 +1,6 @@
+import { iMovie } from "./movie.type";
+import { iSeries } from "./series.type";
+
 export type iFilterSortBy =
     | "popularity.asc"
     | "popularity.desc"
@@ -6,7 +9,7 @@ export type iFilterSortBy =
     | "title.asc"
     | "title.desc"
     | "vote_average.asc"
-    | "vote_average.desc"
+    | "vote_average.desc";
 
 export type iFilterOriginalLanguage =
     | "en" // English
@@ -42,3 +45,16 @@ export type iFilterOriginalLanguage =
     | null;
 
 export type iFilterGenres = number;
+
+export interface iFilterKeys {
+    show_type: "movie" | "tv";
+    sort_by: iFilterSortBy;
+    primary_release_date_year_min: number;
+    primary_release_date_year_max: number;
+    with_genres: iFilterGenres[];
+    with_original_language: iFilterOriginalLanguage | undefined;
+    vote_average_min: number;
+    vote_average_max: number;
+}
+
+export interface iGetDiscoverResponse extends iMovie, iSeries {}
