@@ -4,7 +4,6 @@ import { FilterBar, ShowList } from "@/Pages/Discover/Partials";
 import TextInput from "@/Components/TextInput";
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import { router } from "@inertiajs/react";
 
 const Discover = ({ auth }: PageProps) => {
     const [searchQuery, setSearchQuery] = useState<string>(
