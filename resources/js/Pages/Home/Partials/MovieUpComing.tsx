@@ -33,21 +33,24 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
         });
     };
 
-    const GridMember: React.FC<{ movie: iMovie }> = ({ movie }) => (
-        <div
-            className={classNames(
-                "flex",
-                "relative min-w-48 max-w-48 group hover:-translate-y-2 transition duration-500 z-20",
-                "cursor-pointer"
-            )}
-        >
-            <LazyLoadedImage
-                className="w-full h-full rounded-2xl overflow-hidden"
-                src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-                alt={movie.title}
-                skeletonClassName="h-[240px]"
-            />
-            {movie.backdrop_path && (
+    const GridMember: React.FC<{ movie: iMovie }> = ({ movie }) => {
+        const image = movie.backdrop_path ?? movie.poster_path;
+        
+        return (
+            <div
+                className={classNames(
+                    "flex",
+                    "relative min-w-48 max-w-48 group hover:-translate-y-2 transition duration-500 z-20",
+                    "cursor-pointer"
+                )}
+            >
+                <LazyLoadedImage
+                    className="w-full h-full rounded-2xl overflow-hidden"
+                    src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
+                    alt={movie.title}
+                    skeletonClassName="h-[264px]"
+                    isExist={!!movie.poster_path}
+                />
                 <div
                     onClick={() => handleOpenTrailerFrame(movie.id)}
                     className={classNames(
@@ -73,14 +76,14 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
                     <div className="rounded-full w-16 sm:w-20 h-16 sm:h-20 overflow-hidden border border-transparent z-10">
                         <img
                             className="w-full h-full object-cover"
-                            src={`https://image.tmdb.org/t/p/w200/${movie.backdrop_path}`}
+                            src={`https://image.tmdb.org/t/p/w200/${image}`}
                             alt="movie-poster"
                         />
                     </div>
                 </div>
-            )}
-        </div>
-    );
+            </div>
+        );
+    };
 
     return (
         <>
@@ -90,7 +93,7 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
                     className="flex items-center gap-2 w-min whitespace-nowrap"
                 >
                     <h1 className="text-royal-950 dark:text-FFF2D7 drop-shadow-sm font-extrabold text-2xl sm:text-3xl">
-                        Çok Yakında
+                        Yakın Zamandakiler
                     </h1>
                 </Link>
             </div>

@@ -16,12 +16,12 @@ const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
     alt,
     imgClassName,
     skeletonClassName,
-    isExist,
+    isExist = true,
     ...lazyLoadProps
 }) => {
     const { theme } = useTheme();
 
-    return isExist != null && isExist ? (
+    return isExist ? (
         <LazyLoad
             debounce
             offset={100}

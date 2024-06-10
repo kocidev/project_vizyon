@@ -119,8 +119,7 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                                 <ScrollContainer className="flex gap-4 pt-2 pb-8">
                                     {sPlatform.shows.map((content, i) => {
                                         const imageSet =
-                                            content.imageSet
-                                                ?.horizontalBackdrop;
+                                            content.imageSet?.horizontalPoster;
                                         let image = undefined;
 
                                         if (imageSet) {
@@ -140,14 +139,11 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                                             >
                                                 <div className="w-72 rounded-lg overflow-hidden shadow">
                                                     <LazyLoadedImage
-                                                        src={
-                                                            content.imageSet
-                                                                .horizontalPoster
-                                                                .w720
-                                                        }
+                                                        src={image}
                                                         alt="platform-content-image"
                                                         skeletonClassName="h-40"
                                                         className="h-40"
+                                                        isExist={!!image}
                                                     />
                                                 </div>
                                                 <div className="mt-2 text-white dark:text-current text-center">

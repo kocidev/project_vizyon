@@ -46,6 +46,7 @@ const Theaters = ({ theaters }: iTheatersPage) => {
                         src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                         alt={movie.title}
                         skeletonClassName="h-[420px]"
+                        isExist={!!movie.poster_path}
                     />
                     <div
                         className={classNames(

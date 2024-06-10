@@ -64,6 +64,7 @@ const Trending = ({ auth, trending }: TrendingProps) => {
                                             className="w-full h-full"
                                             src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                                             alt="movie-poster"
+                                            isExist={!!movie.poster_path}
                                         />
                                         <div
                                             className={classNames(
