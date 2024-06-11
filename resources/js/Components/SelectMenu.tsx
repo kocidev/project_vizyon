@@ -65,7 +65,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
                 </div>
             </button>
             {isOpen && (
-                <ul className="absolute z-[101] mt-1 w-full bg-white dark:bg-shark-950 shadow-lg max-h-60 rounded-md py-1 ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none text-sm">
+                <ul className="absolute z-[99] mt-1 w-full bg-white dark:bg-shark-950 shadow-lg max-h-60 rounded-md py-1 ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none text-sm">
                     {options.map((option, index) => (
                         <li
                             key={index}

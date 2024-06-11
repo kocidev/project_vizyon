@@ -23,7 +23,6 @@ const LazyLoadedImage: React.FC<LazyLoadedImageProps> = ({
 
     return isExist ? (
         <LazyLoad
-            debounce
             offset={100}
             placeholder={
                 <>

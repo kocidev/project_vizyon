@@ -90,7 +90,7 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                                 Son Zamanlarda {sPlatform.label}
                             </h1>
                         </div>
-                        <div className="z-[100] w-min overflow-auto scrollbar-hide flex items-center border rounded-3xl border-royal-500 dark:border-white/30">
+                        <div className="z-[99] w-min overflow-auto scrollbar-hide flex items-center border rounded-3xl border-royal-500 dark:border-white/30">
                             {Platforms.map((platform, i) => (
                                 <div
                                     key={i}
