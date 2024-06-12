@@ -51,7 +51,7 @@ export default function Modal({
                 >
                     <Dialog.Panel
                         className={classNames(
-                            "bg-white dark:bg-gray-800",
+                            "bg-white dark:bg-shark-950",
                             "rounded-lg",
                             "overflow-hidden",
                             "shadow-xl",

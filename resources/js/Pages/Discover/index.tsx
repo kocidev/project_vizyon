@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { iMovie } from "@/types/movie.type";
 import { iSeries } from "@/types/series.type";
-import { iFilterKeys } from "@/types/discover.type";
+import { iFilterKeys, iShow } from "@/types/discover.type";
 import { DiscoverNewThings, SearchNewThings } from "@/Services/Discover";
 import classNames from "classnames";
 import LoadingDot from "@/Components/LoadingDot";
 import { deepEqual } from "@/Utils/misc";
-
-interface iShow extends iMovie, iSeries {}
+import Modal from "@/Components/Modal";
+import LazyLoadedImage from "@/Components/LazyLoadedImage";
 
 interface DiscoverProps extends PageProps {
     shows: iShow[];
@@ -23,6 +23,8 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isMoreLoading, setMoreIsLoading] = useState<boolean>(false);
     const [isDiff, setIsDiff] = useState<boolean>(false);
+    const [selectedShow, setSelectedShow] = useState<iShow>({} as iShow);
+    const [isModalShow, setIsModalShow] = useState<boolean>(false);
 
     const FIRST_VALUES: iFilterKeys = {
         show_type: "movie",
@@ -97,6 +99,11 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
         }
     };
 
+    const handleOnSelectShow = (show: iShow) => {
+        setSelectedShow(show);
+        setIsModalShow((p) => !p);
+    };
+
     return (
         <>
             <CoreLayout user={auth.user} title="Vizyondakiler" big>
@@ -133,7 +140,11 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                             <FilterBar onChange={setFilterValues} />
                         </div>
                         <div className="ml-8 flex-1">
-                            <ShowList isLoading={isLoading} shows={Shows} />
+                            <ShowList
+                                isLoading={isLoading}
+                                shows={Shows}
+                                onSelect={handleOnSelectShow}
+                            />
                             <div
                                 className={classNames("mt-16", {
                                     flex: !isLoading,
@@ -178,6 +189,35 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                         )}
                     </div>
                 </div>
+                {isModalShow && (
+                    <Modal
+                        closeable
+                        show={isModalShow}
+                        onClose={() => setIsModalShow(false)}
+                        className="max-w-2xl"
+                    >
+                        <div className="w-full h-full flex">
+                            <div className="w-60 overflow-hidden shadow border-r dark:border-gray-700">
+                                <img
+                                    className={
+                                        "h-[300px] sm:h-[320px] md:h-[340px] lg:h-[360px]"
+                                    }
+                                    src={`https://image.tmdb.org/t/p/w780/${selectedShow?.poster_path}`}
+                                    alt="movie-poster"
+                                />
+                            </div>
+                            <div className="ml-4 py-2">
+                                <button className="text-lg font-extrabold dark:text-white">
+                                    {selectedShow.title || selectedShow.name}
+                                </button>
+                                <h1 className="dark:text-white">
+                                    {selectedShow.release_date ||
+                                        selectedShow.first_air_date}
+                                </h1>
+                            </div>
+                        </div>
+                    </Modal>
+                )}
             </CoreLayout>
         </>
     );

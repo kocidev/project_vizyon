@@ -58,3 +58,4 @@ export interface iFilterKeys {
 }
 
 export interface iGetDiscoverResponse extends iMovie, iSeries {}
+export interface iShow extends iMovie, iSeries {}
