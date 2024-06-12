@@ -127,7 +127,7 @@ const FilterBar: React.FC<iFilterBar> = ({ onChange }) => {
 
     return (
         <>
-            <div className="flex flex-col gap-6 w-60">
+            <div className="flex flex-col gap-6 sm:w-40 md:w-52 lg:w-60">
                 <div id="filter_show_type">
                     <>
                         <h1 className="font-medium mb-2">Tür Seç</h1>

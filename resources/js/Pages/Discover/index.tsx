@@ -109,8 +109,8 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
     return (
         <>
             <CoreLayout user={auth.user} title="Vizyondakiler" big>
-                <div className="w-full h-full flex flex-col mt-8">
-                    <div className="w-full border-b pb-8 max-xl:px-6 border-gray-200 dark:border-white/5">
+                <div className="w-full h-full flex flex-col mt-6">
+                    <div className="w-full border-b pb-8 max-xl:px-2 border-gray-200 dark:border-white/5">
                         <div className="w-full flex items-center justify-between">
                             <h1 className="text-7xl font-extrabold tracking-wide select-none">
                                 Keşfet
@@ -138,10 +138,10 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                         </div>
                     </div>
                     <div className="flex items-start">
-                        <div className="border-r border-gray-200 dark:border-white/5 pt-4 max-xl:px-6 pr-8">
+                        <div className="max-sm:hidden border-r border-gray-200 dark:border-white/5 pt-4 max-xl:px-2 md:pr-4 lg:pr-6">
                             <FilterBar onChange={setFilterValues} />
                         </div>
-                        <div className="ml-8 flex-1">
+                        <div className="px-4 xl:pr-0">
                             <ShowList
                                 isLoading={isLoading}
                                 shows={Shows}
@@ -191,13 +191,13 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                         )}
                     </div>
                 </div>
-                {selectedShow && (
-                    <Modal
-                        closeable
-                        show={isModalShow}
-                        onClose={() => setIsModalShow(false)}
-                        className="max-w-2xl"
-                    >
+                <Modal
+                    closeable
+                    show={isModalShow}
+                    onClose={() => setIsModalShow(false)}
+                    className="max-w-2xl"
+                >
+                    {selectedShow && (
                         <div className="w-full h-full flex">
                             <div className="min-w-60 max-w-60 w-full overflow-hidden shadow">
                                 <img
@@ -248,8 +248,8 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                 </div>
                             </div>
                         </div>
-                    </Modal>
-                )}
+                    )}
+                </Modal>
             </CoreLayout>
         </>
     );
