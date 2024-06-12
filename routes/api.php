@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\DiscoverController;
 use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\PlatformController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\TrendingControllerr;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,8 @@ Route::prefix('platform')->group(function () {
 
 Route::prefix('discover')->group(function () {
     Route::get('/{type}', [DiscoverController::class, 'getShows']);
+});
+
+Route::prefix('search')->group(function () {
+    Route::get('/{type}', [SearchController::class, 'getShows']);
 });
