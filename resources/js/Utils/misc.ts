@@ -43,6 +43,7 @@ export const Tmdb_TvGenres: iGenre[] = [
 ];
 
 export function genreIdsToNamesForMovies(genreIds: number[]): string {
+    if (!genreIds) return "";
     const genreNames: string[] = genreIds
         .map((id) => Tmdb_MovieGenres.find((v) => v.id === id)?.name)
         .filter((name) => name !== undefined) as string[];
@@ -50,6 +51,7 @@ export function genreIdsToNamesForMovies(genreIds: number[]): string {
 }
 
 export function genreIdsToNamesForTV(genreIds: number[]): string {
+    if (!genreIds) return "";
     const genreNames: string[] = genreIds
         .map((id) => Tmdb_TvGenres.find((v) => v.id === id)?.name)
         .filter((name) => name !== undefined) as string[];

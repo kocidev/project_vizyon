@@ -401,7 +401,7 @@ const FilterBar: React.FC<iFilterBar> = ({ onChange }) => {
                     <>
                         <h1 className="font-medium mb-4">Türlere Göre</h1>
                         <div className="flex flex-wrap gap-2">
-                            {genres.map((genre, i) => (
+                            {genres?.map((genre, i) => (
                                 <button
                                     key={i}
                                     className={classNames(

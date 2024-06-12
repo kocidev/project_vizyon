@@ -13,6 +13,6 @@ export const GetTrendingMovie = async (
         return result;
     } catch (error) {
         console.error("Fetch error:", error);
-        throw new Error("Services movie error.");
+        throw new Error("Services trending error.");
     }
 };
