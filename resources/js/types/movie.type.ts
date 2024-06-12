@@ -1,3 +1,5 @@
+import { iFilterOriginalLanguage } from "./discover.type";
+
 export interface iGenre {
     id: number;
     name: string;
@@ -8,7 +10,7 @@ export interface iMovie {
     backdrop_path: string;
     genre_ids: number[];
     id: number;
-    original_language: string;
+    original_language: iFilterOriginalLanguage;
     original_title: string;
     overview: string;
     popularity: number;

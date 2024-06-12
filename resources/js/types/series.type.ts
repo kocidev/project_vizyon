@@ -1,3 +1,5 @@
+import { iFilterOriginalLanguage } from "./discover.type";
+
 export interface iSeries {
     backdrop_path: string;
     first_air_date: string;
@@ -5,7 +7,7 @@ export interface iSeries {
     id: number;
     name: string;
     origin_country: string[];
-    original_language: string;
+    original_language: iFilterOriginalLanguage;
     original_name: string;
     overview: string;
     popularity: number;

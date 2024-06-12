@@ -1,3 +1,4 @@
+import { iFilterOriginalLanguage } from "@/types/discover.type";
 import { iGenre } from "@/types/movie.type";
 
 export const Tmdb_MovieGenres: iGenre[] = [
@@ -78,6 +79,51 @@ export function formatDateToTurkishMonthDay(date: string): string {
     const monthName = monthNames[monthIndex];
 
     return `${day} ${monthName}`;
+}
+
+export function getLanguageInTurkish(
+    languageCode: iFilterOriginalLanguage
+): string {
+    if (languageCode === null) {
+        return "Geçersiz dil kodu";
+    }
+
+    const languageMap: {
+        [key in Exclude<iFilterOriginalLanguage, null>]: string;
+    } = {
+        en: "İngilizce",
+        fr: "Fransızca",
+        es: "İspanyolca",
+        de: "Almanca",
+        it: "İtalyanca",
+        ja: "Japonca",
+        ko: "Korece",
+        zh: "Çince",
+        pt: "Portekizce",
+        ru: "Rusça",
+        hi: "Hintçe",
+        ar: "Arapça",
+        bn: "Bengalce",
+        cs: "Çekçe",
+        da: "Danca",
+        el: "Yunanca",
+        he: "İbranice",
+        hu: "Macarca",
+        id: "Endonezce",
+        ms: "Malayca",
+        nl: "Flemenkçe",
+        no: "Norveççe",
+        pl: "Lehçe",
+        ro: "Romence",
+        sv: "İsveççe",
+        ta: "Tamilce",
+        th: "Tayca",
+        tr: "Türkçe",
+        uk: "Ukraynaca",
+        vi: "Vietnamca",
+    };
+
+    return languageMap[languageCode];
 }
 
 export const deepEqual = (obj1: any, obj2: any): boolean => {

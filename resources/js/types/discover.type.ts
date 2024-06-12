@@ -57,5 +57,4 @@ export interface iFilterKeys {
     vote_average_max: number;
 }
 
-export interface iGetDiscoverResponse extends iMovie, iSeries {}
 export interface iShow extends iMovie, iSeries {}

@@ -66,7 +66,7 @@ const ShowList = ({ isLoading, shows, onSelect }: ShowListProps) => {
                                             <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
                                                 {title}
                                             </h1>
-                                            <span className="text-sm font-medium text-gray-500">
+                                            <span className="text-xs font-medium text-gray-500">
                                                 {release_date}
                                             </span>
                                             <div className="absolute top-0 left-0 -translate-y-1/2 max-sm:hidden w-full">
