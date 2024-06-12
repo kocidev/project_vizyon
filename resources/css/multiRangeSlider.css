@@ -60,6 +60,9 @@
     pointer-events: all;
     position: relative;
 }
+.dark #multi-range-slider .thumb::-webkit-slider-thumb {
+    background-color: #343846;
+}
 
 #multi-range-slider .thumb::-moz-range-thumb {
     background-color: #3356c2;
@@ -71,4 +74,8 @@
     margin-top: 4px;
     pointer-events: all;
     position: relative;
+}
+
+.dark#multi-range-slider .thumb::-moz-range-thumb {
+    background-color: #343846;
 }

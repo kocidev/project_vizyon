@@ -2,43 +2,70 @@ import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
 import { FilterBar, ShowList } from "@/Pages/Discover/Partials";
 import TextInput from "@/Components/TextInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { iMovie } from "@/types/movie.type";
 import { iSeries } from "@/types/series.type";
 import { iFilterKeys } from "@/types/discover.type";
-import { FindNewThings } from "@/Services/Discover";
+import { DiscoverNewThings, SearchNewThings } from "@/Services/Discover";
 import classNames from "classnames";
 import LoadingDot from "@/Components/LoadingDot";
+import { deepEqual } from "@/Utils/misc";
 
 interface iShow extends iMovie, iSeries {}
 
-const Discover = ({ auth }: PageProps) => {
+interface DiscoverProps extends PageProps {
+    shows: iShow[];
+}
+
+const Discover = ({ auth, shows }: DiscoverProps) => {
     const [page, setPage] = useState<number>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isMoreLoading, setMoreIsLoading] = useState<boolean>(false);
+    const [isDiff, setIsDiff] = useState<boolean>(false);
 
-    const [_, setLastFilters] = useState<iFilterKeys>({
+    const FIRST_VALUES: iFilterKeys = {
         show_type: "movie",
         sort_by: "popularity.desc",
-    } as iFilterKeys);
+        primary_release_date_year_min: 1900,
+        primary_release_date_year_max: 2024,
+        with_genres: [] as number[],
+        vote_average_min: 0,
+        vote_average_max: 10,
+        with_original_language: undefined,
+    };
 
-    const [Shows, setShows] = useState<iShow[]>([]);
+    const [FilterValues, setFilterValues] = useState<iFilterKeys>(FIRST_VALUES);
+
+    const [lastFilters, setLastFilters] = useState<iFilterKeys>(FIRST_VALUES);
+
+    const [Shows, setShows] = useState<iShow[]>(shows);
 
     const [searchQuery, setSearchQuery] = useState<string>(
-        route().params?.s as string
+        (route().params?.s as string) || ""
     );
+
+    useEffect(() => {
+        if (lastFilters && FilterValues) {
+            setIsDiff(!deepEqual(lastFilters, FilterValues));
+        }
+    }, [lastFilters, FilterValues]);
 
     const handleSearch = () => {
         const query = searchQuery.trim().toLowerCase();
         if (query.length < 3) return;
-        // TODO api isteği at ve filmleri çek.
+        setIsLoading(true);
+        SearchNewThings(FilterValues.show_type, query, 1)
+            .then((newShows) => {
+                setShows(newShows);
+            })
+            .finally(() => setIsLoading(false));
     };
 
-    const handleSubmit = (filter: iFilterKeys) => {
-        setLastFilters(filter);
+    const handleSubmit = () => {
+        setLastFilters(FilterValues);
         setIsLoading(true);
-        FindNewThings(filter, 1)
+        DiscoverNewThings(FilterValues, 1)
             .then((newShows) => {
                 setShows(newShows);
             })
@@ -67,8 +94,8 @@ const Discover = ({ auth }: PageProps) => {
                                     id="search"
                                     type="text"
                                     name="search"
-                                    className="w-96 py-3 px-4 rounded-xl mr-2 dark:bg-shark-950 dark:placeholder:text-white focus:placeholder:text-transparent dark:focus:placeholder:text-transparent"
-                                    placeholder="Aklında ki içerik?"
+                                    className="border-2 border-gray-200 w-96 py-2.5 px-4 rounded-xl mr-2 dark:bg-shark-950 dark:placeholder:text-white focus:placeholder:text-transparent dark:focus:placeholder:text-transparent"
+                                    placeholder="Aklında ki içerik ?"
                                     autoComplete="off"
                                     value={searchQuery}
                                     onChange={(e) =>
@@ -77,7 +104,7 @@ const Discover = ({ auth }: PageProps) => {
                                 />
                                 <button
                                     onClick={handleSearch}
-                                    className="p-3 bg-white text-royal-600 dark:text-white dark:bg-shark-950 border rounded-xl dark:border-gray-700 hover:text-royal-950 dark:hover:text-lotus-500"
+                                    className="p-2.5 bg-white dark:text-white dark:bg-shark-950 border-2 border-gray-200 rounded-xl dark:border-gray-700 text-indigo-500 hover:border-indigo-500 dark:hover:border-indigo-500"
                                 >
                                     <IoSearchSharp className="w-6 h-6" />
                                 </button>
@@ -85,8 +112,8 @@ const Discover = ({ auth }: PageProps) => {
                         </div>
                     </div>
                     <div className="flex items-start">
-                        <div className="border-r pt-4 max-xl:px-6 pr-8">
-                            <FilterBar onSubmit={handleSubmit} />
+                        <div className="border-r border-gray-200 dark:border-white/5 pt-4 max-xl:px-6 pr-8">
+                            <FilterBar onChange={setFilterValues} />
                         </div>
                         <div className="ml-8 flex-1">
                             <ShowList isLoading={isLoading} shows={Shows} />
@@ -120,6 +147,18 @@ const Discover = ({ auth }: PageProps) => {
                                 )}
                             </div>
                         </div>
+                        {isDiff && (
+                            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 dark:bg-shark-950 shadow z-10 opacity-25 hover:opacity-100 transition-opacity duration-300">
+                                <button
+                                    onClick={handleSubmit}
+                                    className="flex items-center justify-center w-full py-4"
+                                >
+                                    <h1 className="text-white text-xl font-extrabold uppercase">
+                                        Ara
+                                    </h1>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </CoreLayout>

@@ -12,7 +12,7 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 
 interface iFilterBar {
-    onSubmit: (filter: iFilterKeys) => void;
+    onChange: (filter: iFilterKeys) => void;
 }
 
 const _t_sort_by = (key: iFilterSortBy) => {
@@ -38,7 +38,7 @@ const _t_sort_by = (key: iFilterSortBy) => {
     }
 };
 
-const FilterBar: React.FC<iFilterBar> = ({ onSubmit }) => {
+const FilterBar: React.FC<iFilterBar> = ({ onChange }) => {
     const [show_type, setShowType] = useState<"movie" | "tv">("movie");
     const [genres, setGenres] = useState<iGenre[]>(Tmdb_MovieGenres);
     const [sort_by, setSortBy] = useState<iFilterSortBy>("popularity.desc");
@@ -60,6 +60,28 @@ const FilterBar: React.FC<iFilterBar> = ({ onSubmit }) => {
         if (show_type == "movie") setGenres(Tmdb_MovieGenres);
         else setGenres(Tmdb_TvGenres);
     }, [show_type]);
+
+    useEffect(() => {
+        onChange({
+            show_type,
+            sort_by,
+            primary_release_date_year_min,
+            primary_release_date_year_max,
+            with_genres,
+            with_original_language,
+            vote_average_min,
+            vote_average_max,
+        });
+    }, [
+        show_type,
+        sort_by,
+        primary_release_date_year_min,
+        primary_release_date_year_max,
+        with_genres,
+        with_original_language,
+        vote_average_min,
+        vote_average_max,
+    ]);
 
     const handleChangeFilterValue = (
         value: any,
@@ -98,45 +120,27 @@ const FilterBar: React.FC<iFilterBar> = ({ onSubmit }) => {
         handleChangeFilterValue(new_g, setWithGenres);
     };
 
-    const handleSubmitFilter = () => {
-        const _filter: iFilterKeys = {
-            show_type,
-            sort_by,
-            primary_release_date_year_min,
-            primary_release_date_year_max,
-            with_genres,
-            with_original_language,
-            vote_average_min,
-            vote_average_max,
-        };
-        onSubmit(_filter);
+    const handleChangeFilterShowType = (type: "movie" | "tv") => {
+        handleChangeFilterValue(type, setShowType);
     };
 
     return (
         <>
-            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 shadow z-10 opacity-25 hover:opacity-100 transition-opacity duration-300">
-                <button
-                    onClick={handleSubmitFilter}
-                    className="flex items-center justify-center w-full py-4"
-                >
-                    <h1 className="text-white text-xl font-extrabold uppercase">
-                        Ara
-                    </h1>
-                </button>
-            </div>
             <div className="flex flex-col gap-6 w-60">
                 <div id="filter_show_type">
                     <>
                         <h1 className="font-medium mb-2">Tür Seç</h1>
                         <div className="flex items-center justify-between">
                             <button
-                                onClick={() => setShowType("movie")}
+                                onClick={() =>
+                                    handleChangeFilterShowType("movie")
+                                }
                                 className={classNames(
-                                    "w-full border p-2 border-shark-200 dark:border-gray-700",
+                                    "w-full border p-2 border-shark-200 dark:border-shark-800",
                                     "rounded-l",
                                     "transition",
                                     {
-                                        "bg-shark-200 dark:bg-gray-700":
+                                        "bg-shark-200 dark:bg-shark-800":
                                             show_type == "movie",
                                     }
                                 )}
@@ -144,13 +148,13 @@ const FilterBar: React.FC<iFilterBar> = ({ onSubmit }) => {
                                 Film
                             </button>
                             <button
-                                onClick={() => setShowType("tv")}
+                                onClick={() => handleChangeFilterShowType("tv")}
                                 className={classNames(
-                                    "w-full border p-2 border-shark-200 dark:border-gray-700",
+                                    "w-full border p-2 border-shark-200 dark:border-shark-800",
                                     "rounded-r",
                                     "transition",
                                     {
-                                        "bg-shark-200 dark:bg-gray-700":
+                                        "bg-shark-200 dark:bg-shark-800":
                                             show_type == "tv",
                                     }
                                 )}
@@ -400,9 +404,9 @@ const FilterBar: React.FC<iFilterBar> = ({ onSubmit }) => {
                                 <button
                                     key={i}
                                     className={classNames(
-                                        "px-2.5 py-1 border rounded-full border-indigo-500",
+                                        "px-2.5 py-1 border rounded-full border-indigo-500 dark:border-shark-900",
                                         {
-                                            "bg-indigo-500 text-white":
+                                            "bg-indigo-500 dark:bg-shark-900 text-white":
                                                 with_genres.includes(genre.id),
                                             "bg-white dark:bg-111216 text-black dark:text-gray-300":
                                                 !with_genres.includes(genre.id),

@@ -55,7 +55,7 @@ const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({
     // Get min and max values when their state changes
     useEffect(() => {
         onChange({ min: minVal, max: maxVal });
-    }, [minVal, maxVal, onChange]);
+    }, [minVal, maxVal]);
 
     return (
         <div className="relative w-full" id="multi-range-slider">

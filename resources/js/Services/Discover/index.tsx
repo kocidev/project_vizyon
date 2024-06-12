@@ -2,7 +2,7 @@ import apiClient from "@/Services";
 import { iFilterKeys } from "@/types/discover.type";
 import { iGetDiscoverResponse } from "@/types/discover.type";
 
-export const FindNewThings = async (
+export const DiscoverNewThings = async (
     filters: iFilterKeys,
     page: number = 1
 ): Promise<iGetDiscoverResponse[]> => {
@@ -20,6 +20,26 @@ export const FindNewThings = async (
                 with_original_language: filters.with_original_language,
                 vote_average_max: filters.vote_average_max,
                 vote_average_min: filters.vote_average_min,
+            },
+        });
+        const result: iGetDiscoverResponse[] = response.data;
+        return result;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        throw new Error("Services movie error.");
+    }
+};
+
+export const SearchNewThings = async (
+    type: "movie" | "tv",
+    query: string,
+    page: number = 1
+): Promise<iGetDiscoverResponse[]> => {
+    try {
+        const response = await apiClient.get(`/search/${type}`, {
+            params: {
+                page,
+                query,
             },
         });
         const result: iGetDiscoverResponse[] = response.data;
