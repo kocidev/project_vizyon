@@ -77,7 +77,24 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
         const newPage = page + 1;
         if (newPage > 10) return;
         setMoreIsLoading(true);
-        // TODO api isteği at ve filmleri çek.
+        if (searchQuery.trim().toLowerCase().length >= 3) {
+            SearchNewThings(
+                FilterValues.show_type,
+                searchQuery.trim().toLowerCase(),
+                newPage
+            )
+                .then((newShows) => {
+                    setShows(newShows);
+                })
+                .finally(() => setMoreIsLoading(false));
+        } else {
+            DiscoverNewThings(FilterValues, newPage)
+                .then((newShows) => {
+                    setShows((prevShows) => [...prevShows, ...newShows]);
+                    setPage((prevPage) => prevPage + 1);
+                })
+                .finally(() => setMoreIsLoading(false));
+        }
     };
 
     return (

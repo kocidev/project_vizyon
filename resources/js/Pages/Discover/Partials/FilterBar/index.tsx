@@ -59,6 +59,7 @@ const FilterBar: React.FC<iFilterBar> = ({ onChange }) => {
     useEffect(() => {
         if (show_type == "movie") setGenres(Tmdb_MovieGenres);
         else setGenres(Tmdb_TvGenres);
+        setWithGenres([]);
     }, [show_type]);
 
     useEffect(() => {

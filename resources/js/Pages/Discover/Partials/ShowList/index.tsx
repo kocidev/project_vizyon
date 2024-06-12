@@ -4,11 +4,10 @@ import LoadingDot from "@/Components/LoadingDot";
 import { iMovie } from "@/types/movie.type";
 import { iSeries } from "@/types/series.type";
 import classNames from "classnames";
-import { IoIosStats } from "react-icons/io";
 
 type ShowListProps = {
     isLoading: boolean;
-    shows: iMovie[] & iSeries[];
+    shows: iMovie[] | iSeries[];
 };
 
 const ShowList = ({ isLoading, shows }: ShowListProps) => {
@@ -27,52 +26,62 @@ const ShowList = ({ isLoading, shows }: ShowListProps) => {
                         {!isLoading &&
                             shows &&
                             shows.length > 0 &&
-                            shows.map((show, i) => (
-                                <div
-                                    key={i}
-                                    className={classNames(
-                                        "w-full rounded-3xl relative flex cursor-pointer overflow-hidden items-center justify-center",
-                                        "group shadow"
-                                    )}
-                                >
-                                    <LazyLoadedImage
-                                        skeletonClassName={
-                                            "h-[300px] sm:h-[320px] md:h-[340px] lg:h-[360px]"
-                                        }
-                                        className="w-full h-full"
-                                        src={`https://image.tmdb.org/t/p/w780/${show.poster_path}`}
-                                        alt="movie-poster"
-                                        isExist={!!show.poster_path}
-                                    />
+                            shows.map((show, i) => {
+                                const title = (
+                                    "title" in show ? show.title : show.name
+                                ) as string;
+                                const release_date = (
+                                    "release_date" in show
+                                        ? show.release_date
+                                        : show.first_air_date
+                                ) as string;
+                                return (
                                     <div
+                                        key={i}
                                         className={classNames(
-                                            "absolute bottom-0 w-full px-4 pb-2 pt-4 sm:pt-6",
-                                            "bg-white",
-                                            "transition-[transform,opacity] duration-300",
-                                            "translate-y-full group-hover:translate-y-0",
-                                            "opacity-0 group-hover:opacity-100"
+                                            "w-full rounded-3xl relative flex cursor-pointer overflow-hidden items-center justify-center",
+                                            "group shadow"
                                         )}
                                     >
-                                        <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
-                                            {show.title}
-                                        </h1>
-                                        <span className="text-sm font-medium text-gray-500">
-                                            {show.release_date}
-                                        </span>
-                                        <div className="absolute top-0 left-0 -translate-y-1/2 max-sm:hidden w-full">
-                                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
-                                                <div>
-                                                    <CircularProgressBar
-                                                        value={
-                                                            show.vote_average
-                                                        }
-                                                    />
+                                        <LazyLoadedImage
+                                            skeletonClassName={
+                                                "h-[300px] sm:h-[320px] md:h-[340px] lg:h-[360px]"
+                                            }
+                                            className="w-full h-full"
+                                            src={`https://image.tmdb.org/t/p/w780/${show.poster_path}`}
+                                            alt="movie-poster"
+                                            isExist={!!show.poster_path}
+                                        />
+                                        <div
+                                            className={classNames(
+                                                "absolute bottom-0 w-full px-4 pb-2 pt-4 sm:pt-6",
+                                                "bg-white",
+                                                "transition-[transform,opacity] duration-300",
+                                                "translate-y-full group-hover:translate-y-0",
+                                                "opacity-0 group-hover:opacity-100"
+                                            )}
+                                        >
+                                            <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
+                                                {title}
+                                            </h1>
+                                            <span className="text-sm font-medium text-gray-500">
+                                                {release_date}
+                                            </span>
+                                            <div className="absolute top-0 left-0 -translate-y-1/2 max-sm:hidden w-full">
+                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
+                                                    <div>
+                                                        <CircularProgressBar
+                                                            value={
+                                                                show.vote_average
+                                                            }
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                     </div>
                 </>
             </div>
