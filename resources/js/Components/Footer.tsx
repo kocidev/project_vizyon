@@ -8,7 +8,7 @@ export default function Footer() {
             className={classNames(
                 "w-full mt-auto p-6 md:p-10",
                 "text-sm text-white",
-                "bg-royal-950 dark:bg-black",
+                "bg-royal-950 dark:bg-0F0E0E",
                 "h-40"
             )}
         >

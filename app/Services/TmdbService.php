@@ -324,8 +324,6 @@ class TmdbService
      */
     public function discoverByType($type, $filters, $page): Result
     {
-        Log::channel("tmdb")->info("filters", $filters);
-
         try {
             // Boş olmayan değerleri filtrele
             $queryParams = array_filter([
@@ -349,6 +347,42 @@ class TmdbService
 
             if ($response->getStatusCode() !== 200) {
                 Log::channel("tmdb")->error("Error fetching data from TMDB Service 'discover/{$type}', status code: " . $response->getStatusCode());
+                return Result::failure('Error fetching data from TMDB');
+            }
+
+            $data = json_decode($response->getBody()->getContents(), true);
+            $results = $data['results'] ?? null;
+
+            return Result::success($results);
+        } catch (\Exception $e) {
+            Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+            return Result::failure('Exception occurred: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Find shows using filters and sort options.
+     */
+    public function searchWithParams($type, $filters, $page): Result
+    {
+        try {
+            $queryParams = array_filter([
+                'query' => $filters['query'] ?? null,
+                'page' => $page,
+                'language' => 'tr',
+                'region' => 'tr',
+                'primary_release_year' => $filters['year'] ?? null,
+                'first_air_date_year' => $filters['year'] ?? null,
+            ]);
+
+            Log::channel("tmdb")->info("Fetching data from TMDB Service 'search/{$type}'", $queryParams);
+
+            $response = $this->client->get("search/{$type}", [
+                'query' => $queryParams,
+            ]);
+
+            if ($response->getStatusCode() !== 200) {
+                Log::channel("tmdb")->error("Error fetching data from TMDB Service 'search/{$type}', status code: " . $response->getStatusCode());
                 return Result::failure('Error fetching data from TMDB');
             }
 
