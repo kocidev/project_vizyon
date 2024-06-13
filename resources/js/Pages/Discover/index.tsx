@@ -155,6 +155,26 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                 }
                             )}
                         >
+                            <div className="flex items-center mb-4">
+                                <TextInput
+                                    id="search"
+                                    type="text"
+                                    name="search"
+                                    className="border-2 border-gray-200 w-96 py-2.5 px-4 mr-2 dark:bg-shark-950 dark:placeholder:text-white focus:placeholder:text-transparent dark:focus:placeholder:text-transparent"
+                                    placeholder="Aklında ki içerik ?"
+                                    autoComplete="off"
+                                    value={searchQuery}
+                                    onChange={(e) =>
+                                        setSearchQuery(e.target.value)
+                                    }
+                                />
+                                <button
+                                    onClick={handleSearch}
+                                    className="p-2.5 bg-white dark:text-white dark:bg-shark-950 border-2 border-gray-200 dark:border-gray-700 text-indigo-500 hover:border-indigo-500 dark:hover:border-indigo-500"
+                                >
+                                    <IoSearchSharp className="w-6 h-6" />
+                                </button>
+                            </div>
                             <FilterBar onChange={setFilterValues} />
                         </div>
                     </div>
@@ -162,7 +182,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                         <div className="max-md:hidden border-r border-gray-200 dark:border-white/5 pt-4 max-xl:px-2 md:pr-4 lg:pr-6">
                             <FilterBar onChange={setFilterValues} />
                         </div>
-                        <div className="px-4 xl:pr-0 mt-4">
+                        <div className="px-4 xl:pr-0 mt-4 w-full">
                             <ShowList
                                 isLoading={isLoading}
                                 shows={Shows}
@@ -192,14 +212,14 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                         </h1>
                                     </button>
                                 ) : (
-                                    <div className="h-12 flex w-full items-center">
+                                    <div className="h-12 flex w-full items-center justify-center">
                                         <LoadingDot />
                                     </div>
                                 )}
                             </div>
                         </div>
                         {isDiff && (
-                            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 dark:bg-shark-950 shadow z-10 opacity-25 hover:opacity-100 transition-opacity duration-300">
+                            <div className="fixed bottom-0 left-0 w-full bg-indigo-500 dark:bg-shark-950 shadow z-[51] sm:opacity-25 hover:opacity-100 transition-opacity duration-300">
                                 <button
                                     onClick={handleSubmit}
                                     className="flex items-center justify-center w-full py-4"
