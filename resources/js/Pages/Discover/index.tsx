@@ -216,7 +216,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                     closeable
                     show={isModalShow}
                     onClose={() => setIsModalShow(false)}
-                    className="max-w-2xl"
+                    className="max-w-xl"
                 >
                     {selectedShow && (
                         <div className="w-full h-full flex">
@@ -236,7 +236,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                             selectedShow.name}
                                     </button>
                                 </div>
-                                <div className="ml-2 flex items-center dark:text-white text-sm">
+                                <div className="ml-2 flex dark:text-white text-sm">
                                     <h1 className="text-gray-500 mr-1">Tür:</h1>
                                     <h1>
                                         {selectedShow.title
