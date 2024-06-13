@@ -4,6 +4,7 @@ import { FilterBar, ShowList } from "@/Pages/Discover/Partials";
 import TextInput from "@/Components/TextInput";
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
+import { HiBars3 } from "react-icons/hi2";
 import { iFilterKeys, iShow } from "@/types/discover.type";
 import { DiscoverNewThings, SearchNewThings } from "@/Services/Discover";
 import classNames from "classnames";
@@ -20,29 +21,27 @@ interface DiscoverProps extends PageProps {
     shows: iShow[];
 }
 
+const FIRST_VALUES: iFilterKeys = {
+    show_type: "movie",
+    sort_by: "popularity.desc",
+    primary_release_date_year_min: 1900,
+    primary_release_date_year_max: 2024,
+    with_genres: [] as number[],
+    vote_average_min: 0,
+    vote_average_max: 10,
+    with_original_language: undefined,
+};
+
 const Discover = ({ auth, shows }: DiscoverProps) => {
     const [page, setPage] = useState<number>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isMoreLoading, setMoreIsLoading] = useState<boolean>(false);
     const [isDiff, setIsDiff] = useState<boolean>(false);
-    const [selectedShow, setSelectedShow] = useState<iShow>({} as iShow);
     const [isModalShow, setIsModalShow] = useState<boolean>(false);
-
-    const FIRST_VALUES: iFilterKeys = {
-        show_type: "movie",
-        sort_by: "popularity.desc",
-        primary_release_date_year_min: 1900,
-        primary_release_date_year_max: 2024,
-        with_genres: [] as number[],
-        vote_average_min: 0,
-        vote_average_max: 10,
-        with_original_language: undefined,
-    };
-
+    const [isMobileActive, setMobile] = useState<boolean>(false);
+    const [selectedShow, setSelectedShow] = useState<iShow>({} as iShow);
     const [FilterValues, setFilterValues] = useState<iFilterKeys>(FIRST_VALUES);
-
     const [lastFilters, setLastFilters] = useState<iFilterKeys>(FIRST_VALUES);
-
     const [Shows, setShows] = useState<iShow[]>(shows);
 
     const [searchQuery, setSearchQuery] = useState<string>(
@@ -109,13 +108,13 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
     return (
         <>
             <CoreLayout user={auth.user} title="Vizyondakiler" big>
-                <div className="w-full h-full flex flex-col mt-6">
-                    <div className="w-full border-b pb-8 max-xl:px-2 border-gray-200 dark:border-white/5">
+                <div className="w-full h-full flex flex-col">
+                    <div className="z-[51] w-full border-b pt-6 pb-8 max-xl:px-2 bg-F7F2EB dark:bg-111216 border-gray-200 dark:border-white/5">
                         <div className="w-full flex items-center justify-between">
-                            <h1 className="text-7xl font-extrabold tracking-wide select-none">
+                            <h1 className="text-5xl sm:text-7xl font-extrabold tracking-wide select-none">
                                 Keşfet
                             </h1>
-                            <div className="flex items-center max-sm:hidden">
+                            <div className="flex items-center max-md:hidden">
                                 <TextInput
                                     id="search"
                                     type="text"
@@ -135,13 +134,35 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                     <IoSearchSharp className="w-6 h-6" />
                                 </button>
                             </div>
+                            <div className="md:hidden h-8 sm:h-10">
+                                <button
+                                    onClick={() => setMobile(!isMobileActive)}
+                                >
+                                    <HiBars3 className="w-8 h-8 sm:h-10 sm:w-10" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={classNames("relative md:hidden z-50")}>
+                        <div
+                            className={classNames(
+                                "absolute w-full p-6 bg-F7F2EB dark:bg-0F0E0E transition",
+                                "shadow border-b transition-[opacity,transform] ease-in-out duration-200",
+                                {
+                                    "opacity-0 -translate-y-full":
+                                        !isMobileActive,
+                                    "opacity-100 translate-y-0": isMobileActive,
+                                }
+                            )}
+                        >
+                            <FilterBar onChange={setFilterValues} />
                         </div>
                     </div>
                     <div className="flex items-start">
-                        <div className="max-sm:hidden border-r border-gray-200 dark:border-white/5 pt-4 max-xl:px-2 md:pr-4 lg:pr-6">
+                        <div className="max-md:hidden border-r border-gray-200 dark:border-white/5 pt-4 max-xl:px-2 md:pr-4 lg:pr-6">
                             <FilterBar onChange={setFilterValues} />
                         </div>
-                        <div className="px-4 xl:pr-0">
+                        <div className="px-4 xl:pr-0 mt-4">
                             <ShowList
                                 isLoading={isLoading}
                                 shows={Shows}
