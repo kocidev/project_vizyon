@@ -59,7 +59,7 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({ value }) => {
                     cy="50%"
                     r="45%"
                     stroke={strokeColor}
-                    strokeWidth="2.5"
+                    strokeWidth="4"
                     fill="transparent"
                 />
                 <circle
@@ -67,7 +67,7 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({ value }) => {
                     cy="50%"
                     r="45%"
                     stroke={pathColor}
-                    strokeWidth="2.5"
+                    strokeWidth="4"
                     fill="transparent"
                     style={circleStyle}
                 />

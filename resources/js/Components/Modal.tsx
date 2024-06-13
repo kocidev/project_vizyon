@@ -37,7 +37,7 @@ export default function Modal({
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="absolute inset-0 bg-gray-500/75 dark:bg-gray-900/75" />
+                    <div className="absolute inset-0 bg-gray-500/75 dark:bg-shark-950/90" />
                 </Transition.Child>
 
                 <Transition.Child
@@ -51,7 +51,7 @@ export default function Modal({
                 >
                     <Dialog.Panel
                         className={classNames(
-                            "bg-white dark:bg-shark-950",
+                            "bg-white dark:bg-0F0E0E",
                             "rounded-lg",
                             "overflow-hidden",
                             "shadow-xl",
