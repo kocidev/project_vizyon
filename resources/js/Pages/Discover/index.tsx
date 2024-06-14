@@ -237,15 +237,13 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                     closeable
                     show={isModalShow}
                     onClose={() => setIsModalShow(false)}
-                    className="max-w-xl"
+                    className="sm:max-w-2xl"
                 >
                     {selectedShow && (
-                        <div className="w-full h-full flex max-sm:flex-col max-sm:items-center">
-                            <div className="sm:min-w-60 sm:max-w-60 overflow-hidden shadow relative">
+                        <div className="flex max-sm:flex-col max-sm:items-center">
+                            <div className="sm:min-w-72 sm:max-w-72 overflow-hidden shadow relative">
                                 <img
-                                    className={
-                                        "h-[300px] sm:h-[320px] md:h-[340px] lg:h-[360px]"
-                                    }
+                                    className={"w-full"}
                                     src={`https://image.tmdb.org/t/p/w780/${selectedShow?.poster_path}`}
                                     alt="movie-poster"
                                 />
@@ -256,9 +254,11 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                         {selectedShow.title ||
                                             selectedShow.name}
                                     </button>
-                                    <h1 className="px-2 py-2 text-xs font-medium my-2 text-gray-700 dark:text-gray-300">
-                                        {selectedShow.overview}
-                                    </h1>
+                                    <div className="max-h-40 flex overflow-auto w-full">
+                                        <h1 className="px-2 py-2 text-xs font-medium my-2 text-gray-700 dark:text-gray-300">
+                                            {selectedShow.overview}
+                                        </h1>
+                                    </div>
                                 </div>
                                 <div className="ml-2 flex flex-col text-gray-700 dark:text-gray-300 text-sm">
                                     <h1>
