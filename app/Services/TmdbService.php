@@ -325,7 +325,6 @@ class TmdbService
     public function discoverByType($type, $filters, $page): Result
     {
         try {
-            // Boş olmayan değerleri filtrele
             $queryParams = array_filter([
                 'page' => $page,
                 'language' => 'tr',
@@ -338,22 +337,33 @@ class TmdbService
                 'vote_average.gte' => $filters['vote_average_min'] ?? null,
                 'vote_average.lte' => $filters['vote_average_max'] ?? null,
             ]);
+            $serialize_query = md5(serialize($queryParams));
+            $cacheKey = "discover_{$type}_filter={$serialize_query}";
+            $ttl = Carbon::now()->addDay();
 
-            Log::channel("tmdb")->info("Fetching data from TMDB Service 'discover/{$type}'", $queryParams);
+            $cachedData = Cache::remember($cacheKey, $ttl, function () use ($type, $queryParams) {
+                try {
+                    $response = $this->client->get("discover/{$type}", [
+                        'query' => $queryParams,
+                    ]);
 
-            $response = $this->client->get("discover/{$type}", [
-                'query' => $queryParams,
-            ]);
+                    if ($response->getStatusCode() !== 200) {
+                        Log::channel("tmdb")->error("Error fetching data from TMDB Service 'discover/{$type}', status code: " . $response->getStatusCode());
+                        return null;
+                    }
+                    Log::channel("tmdb")->info("Fetching data from TMDB Service 'discover/{$type}'", $queryParams);
+                    $data = json_decode($response->getBody()->getContents(), true);
+                    return $data['results'];
+                } catch (\Exception $e) {
+                    Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+                    return null;
+                }
+            });
 
-            if ($response->getStatusCode() !== 200) {
-                Log::channel("tmdb")->error("Error fetching data from TMDB Service 'discover/{$type}', status code: " . $response->getStatusCode());
+            if ($cachedData === null) {
                 return Result::failure('Error fetching data from TMDB');
             }
-
-            $data = json_decode($response->getBody()->getContents(), true);
-            $results = $data['results'] ?? null;
-
-            return Result::success($results);
+            return Result::success($cachedData);
         } catch (\Exception $e) {
             Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
             return Result::failure('Exception occurred: ' . $e->getMessage());
@@ -374,22 +384,33 @@ class TmdbService
                 'primary_release_year' => $filters['year'] ?? null,
                 'first_air_date_year' => $filters['year'] ?? null,
             ]);
+            $serialize_query = md5(serialize($queryParams));
+            $cacheKey = "search_{$type}_query={$serialize_query}";
+            $ttl = Carbon::now()->addDay();
 
-            Log::channel("tmdb")->info("Fetching data from TMDB Service 'search/{$type}'", $queryParams);
+            $cachedData = Cache::remember($cacheKey, $ttl, function () use ($type, $queryParams) {
+                try {
+                    $response = $this->client->get("search/{$type}", [
+                        'query' => $queryParams,
+                    ]);
 
-            $response = $this->client->get("search/{$type}", [
-                'query' => $queryParams,
-            ]);
+                    if ($response->getStatusCode() !== 200) {
+                        Log::channel("tmdb")->error("Error fetching data from TMDB Service 'search/{$type}', status code: " . $response->getStatusCode());
+                        return null;
+                    }
+                    Log::channel("tmdb")->info("Fetching data from TMDB Service 'search/{$type}'", $queryParams);
+                    $data = json_decode($response->getBody()->getContents(), true);
+                    return $data['results'];
+                } catch (\Exception $e) {
+                    Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
+                    return null;
+                }
+            });
 
-            if ($response->getStatusCode() !== 200) {
-                Log::channel("tmdb")->error("Error fetching data from TMDB Service 'search/{$type}', status code: " . $response->getStatusCode());
+            if ($cachedData === null) {
                 return Result::failure('Error fetching data from TMDB');
             }
-
-            $data = json_decode($response->getBody()->getContents(), true);
-            $results = $data['results'] ?? null;
-
-            return Result::success($results);
+            return Result::success($cachedData);
         } catch (\Exception $e) {
             Log::channel("tmdb")->error("Exception occurred: {$e->getMessage()}");
             return Result::failure('Exception occurred: ' . $e->getMessage());
