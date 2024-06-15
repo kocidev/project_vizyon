@@ -86,7 +86,8 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                 newPage
             )
                 .then((newShows) => {
-                    setShows(newShows);
+                    setShows((prevShows) => [...prevShows, ...newShows]);
+                    setPage((prevPage) => prevPage + 1);
                 })
                 .finally(() => setMoreIsLoading(false));
         } else {
@@ -101,7 +102,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
 
     const handleOnSelectShow = (show: iShow) => {
         console.log(show);
-        
+
         setSelectedShow(show);
         setIsModalShow((p) => !p);
     };
@@ -253,13 +254,13 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                 />
                             </label>
                             <div className="transition duration-300 max-sm:peer-has-[:checked]:opacity-0 modal-show-info w-full flex flex-col gap-1 relative max-sm:absolute bg-white dark:bg-0F0E0E max-sm:bottom-0">
-                                <div>
-                                    <button className="p-2 font-thin text-3xl dark:text-white text-start border-b dark:border-gray-500 w-full">
+                                <div className="p-2">
+                                    <button className="mb-2 font-thin text-3xl dark:text-white text-start w-full">
                                         {selectedShow.title ||
                                             selectedShow.name}
                                     </button>
-                                    <div className="max-h-40 flex overflow-auto w-full">
-                                        <h1 className="px-2 py-2 text-xs font-medium my-2 text-gray-700 dark:text-gray-300">
+                                    <div className="pt-2 max-h-40 flex overflow-auto w-full border-t dark:border-gray-500 ">
+                                        <h1 className="text-xs font-medium text-gray-700 dark:text-gray-300">
                                             {selectedShow.overview}
                                         </h1>
                                     </div>
