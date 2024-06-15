@@ -13,10 +13,8 @@ import {
     deepEqual,
     genreIdsToNamesForMovies,
     genreIdsToNamesForTV,
-    getLanguageInTurkish,
 } from "@/Utils/misc";
 import Modal from "@/Components/Modal";
-import CircularProgressBar from "@/Components/CircularProgressBar";
 
 interface DiscoverProps extends PageProps {
     shows: iShow[];
@@ -102,6 +100,8 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
     };
 
     const handleOnSelectShow = (show: iShow) => {
+        console.log(show);
+        
         setSelectedShow(show);
         setIsModalShow((p) => !p);
     };
@@ -241,16 +241,20 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                 >
                     {selectedShow && (
                         <div className="flex max-sm:flex-col max-sm:items-center">
-                            <div className="sm:min-w-72 sm:max-w-72 overflow-hidden shadow relative">
+                            <label className="peer sm:min-w-72 sm:max-w-72 overflow-hidden shadow relative block">
+                                <input
+                                    type="checkbox"
+                                    className="peer hidden"
+                                />
                                 <img
-                                    className={"w-full"}
+                                    className="w-full"
                                     src={`https://image.tmdb.org/t/p/w780/${selectedShow?.poster_path}`}
                                     alt="movie-poster"
                                 />
-                            </div>
-                            <div className="pt-2 flex flex-col gap-1 relative w-full">
+                            </label>
+                            <div className="transition duration-300 max-sm:peer-has-[:checked]:opacity-0 modal-show-info w-full flex flex-col gap-1 relative max-sm:absolute bg-white dark:bg-0F0E0E max-sm:bottom-0">
                                 <div>
-                                    <button className="pl-2 pb-2 font-thin text-3xl dark:text-white text-start border-b dark:border-gray-500 w-full">
+                                    <button className="p-2 font-thin text-3xl dark:text-white text-start border-b dark:border-gray-500 w-full">
                                         {selectedShow.title ||
                                             selectedShow.name}
                                     </button>
@@ -275,7 +279,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                 <div className="border-t dark:border-gray-700 mt-auto px-2 py-4 text-gray-700 dark:text-gray-500 text-sm flex items-center">
                                     <div className="flex items-center">
                                         <svg
-                                            className="w-4 h-4 text-yellow-400 me-1"
+                                            className="w-4 h-4 text-yellow-400"
                                             aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="currentColor"
@@ -283,7 +287,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                         >
                                             <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                                         </svg>
-                                        <p className="ms-2 text-sm font-bold text-gray-900 dark:text-gray-100">
+                                        <p className="ms-1 text-sm font-bold text-gray-900 dark:text-gray-100">
                                             {selectedShow?.vote_average?.toFixed(
                                                 1
                                             )}
