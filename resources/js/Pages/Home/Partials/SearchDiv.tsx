@@ -50,7 +50,7 @@ const SearchDiv = () => {
                         id="search"
                         type="text"
                         name="search"
-                        className="w-full sm:w-2/3 py-3 px-4 !ring-0 !outline-none !rounded-l-xl !rounded-r-none !border-none focus:!border-none dark:!bg-lotus-800 dark:placeholder:text-white focus:placeholder:text-transparent dark:focus:placeholder:text-transparent"
+                        className="w-full sm:w-2/3 border-2 border-gray-200 focus:!border-royal-700 py-2.5 px-4 mr-2 dark:bg-shark-950 dark:placeholder:text-white focus:placeholder:text-transparent dark:focus:placeholder:text-transparent dark:focus:!border-lotus-500"
                         placeholder="Aklından neler geçiyor ?"
                         autoComplete="off"
                         value={searchQuery}
@@ -59,7 +59,7 @@ const SearchDiv = () => {
                     />
                     <button
                         onClick={handleSearch}
-                        className="p-3 bg-white text-royal-600 dark:text-FFF2D7 dark:!bg-lotus-800 border-l-2 rounded-r-xl dark:border-FFF2D7/50 hover:text-royal-950 dark:hover:text-lotus-500"
+                        className="p-2.5 bg-white dark:text-white dark:bg-shark-950 border-2 border-gray-200 dark:border-gray-700 text-royal-950 hover:border-royal-700 dark:hover:border-lotus-500"
                     >
                         {!isLoading ? (
                             <IoSearchSharp className="w-6 h-6" />
