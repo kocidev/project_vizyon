@@ -75,7 +75,7 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
             >
                 <>
                     <div className="absolute inset-0 bg-royal-950/70 dark:bg-black/50 z-10"></div>
-                    <div className="absolute right-10 bottom-2">
+                    <div className="absolute right-2 top-2">
                         <img
                             width={52}
                             src={`assets/images/platforms/${sPlatform.name}/logo.png`}
@@ -83,14 +83,14 @@ const PlatformContents = ({ platform }: iPlatformComponent) => {
                         />
                     </div>
                 </>
-                <div className="relative w-full z-50 pl-4 py-4 flex flex-col justify-between min-h-[24rem]">
+                <div className="relative w-full z-10 pl-4 py-4 flex flex-col justify-between min-h-[24rem]">
                     <div className="flex max-md:flex-col md:items-center gap-4 pr-4">
                         <div className="lg:mr-14">
                             <h1 className="text-xl font-semibold tracking-wide text-white">
                                 Son Zamanlarda {sPlatform.label}
                             </h1>
                         </div>
-                        <div className="z-50 w-min overflow-auto scrollbar-hide flex items-center border rounded-3xl border-royal-500 dark:border-white/30">
+                        <div className="w-min overflow-auto scrollbar-hide flex items-center border rounded-3xl border-royal-500 dark:border-white/30">
                             {Platforms.map((platform, i) => (
                                 <div
                                     key={i}

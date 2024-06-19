@@ -37,12 +37,10 @@ const UpComings = ({ auth, popular }: PopularProps) => {
     return (
         <>
             <CoreLayout user={auth.user} title="Vizyondakiler">
-                <div className="w-full h-full flex flex-col mt-20 px-2">
+                <div className="w-full h-full flex flex-col px-2">
                     <div>
                         <Title />
-                        <div className="mt-6">
-                            <SelectTabs />
-                        </div>
+                        <SelectTabs />
                     </div>
                     <div className="w-full mt-10">
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6">

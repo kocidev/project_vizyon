@@ -13,7 +13,7 @@ export default function Loading({
         <div role="spinbutton" className="flex">
             <span
                 className={classNames(
-                    "fonifon loader",
+                    "anim-loading",
                     "border-2 border-solid border-gray-200 border-b-royal-950 dark:border-b-FF3D00",
                     className
                 )}

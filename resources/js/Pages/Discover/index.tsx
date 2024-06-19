@@ -4,7 +4,6 @@ import { FilterBar, ShowList } from "@/Pages/Discover/Partials";
 import TextInput from "@/Components/TextInput";
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import { HiBars3 } from "react-icons/hi2";
 import { iFilterKeys, iShow } from "@/types/discover.type";
 import { DiscoverNewThings, SearchNewThings } from "@/Services/Discover";
 import classNames from "classnames";
@@ -15,6 +14,7 @@ import {
     genreIdsToNamesForTV,
 } from "@/Utils/misc";
 import Modal from "@/Components/Modal";
+import { MdOutlineMenuOpen } from "react-icons/md";
 
 interface DiscoverProps extends PageProps {
     shows: iShow[];
@@ -140,7 +140,7 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                 <button
                                     onClick={() => setMobile(!isMobileActive)}
                                 >
-                                    <HiBars3 className="w-8 h-8 sm:h-10 sm:w-10" />
+                                    <MdOutlineMenuOpen className="w-8 h-8 sm:h-10 sm:w-10" />
                                 </button>
                             </div>
                         </div>
@@ -151,9 +151,9 @@ const Discover = ({ auth, shows }: DiscoverProps) => {
                                 "absolute w-full p-6 bg-F7F2EB dark:bg-0F0E0E transition",
                                 "shadow border-b transition-[opacity,transform] ease-in-out duration-200",
                                 {
-                                    "opacity-0 -translate-y-full":
+                                    "opacity-50 translate-x-full":
                                         !isMobileActive,
-                                    "opacity-100 translate-y-0": isMobileActive,
+                                    "opacity-100 translate-x-0": isMobileActive,
                                 }
                             )}
                         >

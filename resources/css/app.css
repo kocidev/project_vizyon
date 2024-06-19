@@ -82,7 +82,11 @@ Home:SearchDiv
     }
 }
 
-.fonifon.loader {
+/*
+End:Home:SearchDiv
+*/
+
+.anim-loading {
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
@@ -98,5 +102,28 @@ Home:SearchDiv
 }
 
 /*
-End:Home:SearchDiv
+Start:Home:PlatformContent
+*/
+.edge_fade_blur:after {
+    content: "";
+    width: 52px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0,
+        #f7f2eb 100%
+    );
+    will-change: opacity;
+    pointer-events: none;
+    z-index: 10;
+}
+.edge_fade_blur.is_fading:after {
+    transition: linear 0.3s;
+    opacity: 1;
+}
+/*
+End:Home:PlatformContent
 */
