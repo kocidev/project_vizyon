@@ -182,7 +182,7 @@ export default function Header({
                 <div
                     className={classNames(
                         "absolute w-full p-1 py-3 shadow border-b transition-[opacity,transform] duration-200 mt-16",
-                        "bg-F7F2EB dark:bg-111216 dark:border-copper-rose-600 border-danube-500",
+                        "bg-F7F2EB dark:bg-111216 dark:border-copper-rose-600 border-royal-950",
                         {
                             "opacity-0 -translate-y-full":
                                 !showingNavigationDropdown,

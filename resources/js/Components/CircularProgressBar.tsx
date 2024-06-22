@@ -72,8 +72,8 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({ value }) => {
                     style={circleStyle}
                 />
             </svg>
-            <div className="absolute text-white text-xs font-bold">
-                {percentage > 0 ? percentage.toFixed() + "%" : "NA"}
+            <div className="absolute text-white text-sm font-extrabold">
+                {percentage > 0 ? percentage.toFixed() : "NA"}
             </div>
         </div>
     );

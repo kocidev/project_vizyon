@@ -1,9 +1,6 @@
-import CircularProgressBar from "@/Components/CircularProgressBar";
 import LazyLoadedImage from "@/Components/LazyLoadedImage";
 import LoadingDot from "@/Components/LoadingDot";
 import { iShow } from "@/types/discover.type";
-import { iMovie } from "@/types/movie.type";
-import { iSeries } from "@/types/series.type";
 import classNames from "classnames";
 import { MdFullscreen } from "react-icons/md";
 

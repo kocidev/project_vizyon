@@ -1,7 +1,6 @@
 import CoreLayout from "@/Layouts/Core";
 import { PageProps } from "@/types";
 import { iMovie } from "@/types/movie.type";
-
 import { Title, SelectTabs } from "@/Pages/Movie/Partials";
 import classNames from "classnames";
 import CircularProgressBar from "@/Components/CircularProgressBar";
@@ -9,6 +8,7 @@ import LazyLoadedImage from "@/Components/LazyLoadedImage";
 import { useState } from "react";
 import { GetMovieTheaters } from "@/Services/Movie";
 import LoadingDot from "@/Components/LoadingDot";
+import { SquareProgressBar } from "@/Components/SquareProgressBar";
 
 interface TheaterProps extends PageProps {
     theaters: iMovie[];
@@ -62,22 +62,31 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
                                             alt="movie-poster"
                                             isExist={!!movie.poster_path}
                                         />
-                                        <div
-                                            className={classNames(
-                                                "absolute bottom-0 w-full px-4 pb-2 pt-4 sm:pt-6",
-                                                "bg-white",
-                                                "transition-[transform,opacity] duration-300",
-                                                "translate-y-full group-hover:translate-y-0",
-                                                "opacity-0 group-hover:opacity-100"
-                                            )}
-                                        >
-                                            <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
-                                                {movie.title}
-                                            </h1>
-                                            <span className="text-sm font-medium text-gray-500">
-                                                {movie.release_date}
-                                            </span>
-                                            <div className="absolute top-0 left-2 -translate-y-1/2 max-sm:hidden">
+                                        <>
+                                            <div
+                                                className={classNames(
+                                                    "absolute bottom-0 w-full p-3",
+                                                    "bg-white",
+                                                    "transition-[transform,opacity] duration-300",
+                                                    "translate-y-full group-hover:translate-y-0",
+                                                    "opacity-0 group-hover:opacity-100"
+                                                )}
+                                            >
+                                                <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
+                                                    {movie.title}
+                                                </h1>
+                                                <span className="text-sm font-medium text-gray-500">
+                                                    {movie.release_date}
+                                                </span>
+                                            </div>
+                                            <div
+                                                className={classNames(
+                                                    "absolute top-1.5 right-1.5 max-sm:hidden",
+                                                    "transition-[transform,opacity] duration-300",
+                                                    "translate-x-full group-hover:translate-x-0",
+                                                    "opacity-0 group-hover:opacity-100"
+                                                )}
+                                            >
                                                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     <CircularProgressBar
                                                         value={
@@ -86,7 +95,7 @@ const Theaters = ({ auth, theaters }: TheaterProps) => {
                                                     />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </>
                                         <>
                                             <div className="sm:hidden absolute bottom-1 right-1 z-50">
                                                 <CircularProgressBar

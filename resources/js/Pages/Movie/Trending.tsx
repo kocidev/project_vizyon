@@ -64,41 +64,40 @@ const Trending = ({ auth, trending }: TrendingProps) => {
                                             alt="movie-poster"
                                             isExist={!!movie.poster_path}
                                         />
-                                        <div
-                                            className={classNames(
-                                                "absolute bottom-0 w-full px-4 pb-2 pt-4 sm:pt-6",
-                                                "bg-white",
-                                                "transition-[transform,opacity] duration-300",
-                                                "translate-y-full group-hover:translate-y-0",
-                                                "opacity-0 group-hover:opacity-100"
-                                            )}
-                                        >
-                                            <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
-                                                {movie.title}
-                                            </h1>
-                                            <span className="text-sm font-medium text-gray-500">
-                                                {movie.release_date}
-                                            </span>
-                                            <div className="absolute top-0 left-0 -translate-y-1/2 max-sm:hidden w-full">
-                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
-                                                    <div className="flex items-center justify-between">
-                                                        <div>
-                                                            <CircularProgressBar
-                                                                value={
-                                                                    movie.vote_average
-                                                                }
-                                                            />
-                                                        </div>
-                                                        <div className="text-royal-950 bg-white shadow p-1 px-2 rounded flex items-center gap-1">
-                                                            <IoIosStats />
-                                                            <h1 className="text-xs font-bold">
-                                                                {movie.popularity.toFixed()}
-                                                            </h1>
-                                                        </div>
-                                                    </div>
+                                        <>
+                                            <div
+                                                className={classNames(
+                                                    "absolute bottom-0 w-full p-3",
+                                                    "bg-white",
+                                                    "transition-[transform,opacity] duration-300",
+                                                    "translate-y-full group-hover:translate-y-0",
+                                                    "opacity-0 group-hover:opacity-100"
+                                                )}
+                                            >
+                                                <h1 className="text-left text-black font-bold overflow-hidden text-ellipsis">
+                                                    {movie.title}
+                                                </h1>
+                                                <span className="text-sm font-medium text-gray-500">
+                                                    {movie.release_date}
+                                                </span>
+                                            </div>
+                                            <div
+                                                className={classNames(
+                                                    "absolute top-1.5 right-1.5 max-sm:hidden",
+                                                    "transition-[transform,opacity] duration-300",
+                                                    "translate-x-full group-hover:translate-x-0",
+                                                    "opacity-0 group-hover:opacity-100"
+                                                )}
+                                            >
+                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                    <CircularProgressBar
+                                                        value={
+                                                            movie.vote_average
+                                                        }
+                                                    />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </>
                                     </div>
                                 ))}
                         </div>

@@ -400,12 +400,13 @@ const FilterBar: React.FC<iFilterBar> = ({ onChange }) => {
                 <div id="filter_genres">
                     <>
                         <h1 className="font-medium mb-4">Türlere Göre</h1>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="grid grid-cols-2 gap-2">
                             {genres?.map((genre, i) => (
                                 <button
                                     key={i}
                                     className={classNames(
-                                        "px-2.5 py-1 border rounded-full border-indigo-500 dark:border-shark-900",
+                                        "px-2.5 py-1 border border-indigo-500 dark:border-shark-900",
+                                        "hover:bg-indigo-500 hover:dark:bg-shark-900 hover:text-white",
                                         {
                                             "bg-indigo-500 dark:bg-shark-900 text-white":
                                                 with_genres.includes(genre.id),

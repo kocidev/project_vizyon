@@ -35,12 +35,12 @@ const MovieUpComing = ({ upComings }: iUpComingPage) => {
 
     const GridMember: React.FC<{ movie: iMovie }> = ({ movie }) => {
         const image = movie.backdrop_path ?? movie.poster_path;
-        
+
         return (
             <div
                 className={classNames(
                     "flex",
-                    "relative min-w-48 max-w-48 group hover:-translate-y-2 transition duration-500 z-20",
+                    "relative min-w-48 max-w-48 group hover:-translate-y-2 transition duration-500",
                     "cursor-pointer"
                 )}
             >
